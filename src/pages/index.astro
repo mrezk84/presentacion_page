@@ -1,0 +1,100 @@
+---
+import AOSInit from '../components/AOSInit';
+import '../styles/global.css';
+const name = "Marcos Rezk";
+const role = "Analista Programador";
+const description = "Soy desarrollador Full Stack con experiencia en React, C#, Node.js y proyectos de alto impacto para el sector público y privado.";
+const description_en = "I am a Full Stack developer with experience in React, C#, Node.js, and high-impact projects for both the public and private sectors.";
+---
+
+<html lang="es" class="dark">
+  <head>
+    <title>{name} - Presentación Profesional</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .dark body {
+        background-color: #1a202c;
+        color: #edf2f7;
+      }
+      .dark .bg-white {
+        background-color: #2d3748;
+      }
+      .dark .text-gray-600 {
+        color: #a0aec0;
+      }
+      .dark .text-gray-500 {
+        color: #a0aec0;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+    <AOSInit client:load />
+
+    <header class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-gray-800">
+      <nav class="max-w-3xl mx-auto flex flex-col sm:flex-row justify-between gap-2 text-center">
+        <a href="#experiencia" class="text-blue-600 hover:underline dark:text-blue-400">Experiencia</a>
+        <a href="#tecnologias" class="text-blue-600 hover:underline dark:text-blue-400">Tecnologías</a>
+        <a href="#contacto" class="text-blue-600 hover:underline dark:text-blue-400">Contacto</a>
+        <a href="#english" class="text-blue-600 hover:underline dark:text-blue-400">English</a>
+      </nav>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-6">
+      <div class="flex flex-col sm:flex-row items-center gap-4" data-aos="fade-up">
+  <img src="/perfil.jpg" alt="Foto de Marcos Rezk"
+       class="w-32 h-32 rounded-full border border-gray-300 shadow-lg dark:border-gray-600" data-aos="zoom-in" />
+  <div class="text-center sm:text-left">
+    <h1 class="text-4xl font-bold mb-1">{name}</h1>
+    <h2 class="text-xl text-gray-600 dark:text-gray-400">{role}</h2>
+  </div>
+</div>
+
+      <p class="mt-4 mb-6 text-center sm:text-left" data-aos="fade-up" data-aos-delay="200">{description}</p>
+
+      <section id="experiencia" data-aos="fade-right">
+        <h3 class="text-2xl font-semibold mt-8">Experiencia</h3>
+        <ul class="list-disc pl-5">
+          <li>Desarrollador Full Stack en SONDA Uruguay</li>
+          <li>Aplicaciones para el Ministerio del Interior (911, denuncias, grabaciones)</li>
+          <li>Desarrollo de app crítica para SEMM en C#</li>
+        </ul>
+      </section>
+
+      <section id="tecnologias" data-aos="fade-left">
+        <h3 class="text-2xl font-semibold mt-8">Tecnologías</h3>
+        <p>React, C#, ASP.NET Core, Node.js, Java, Spring Boot, SQL Server, Docker</p>
+      </section>
+
+      <section id="contacto" class="mt-8" data-aos="fade-up">
+        <h3 class="text-2xl font-semibold">Contacto</h3>
+        <p>Email: mrezk84@gmail.com</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/marcosrezk" target="_blank" class="text-blue-500 underline hover:text-blue-700">linkedin.com/in/marcosrezk</a></p>
+        <a href="/CV_MarcosRezk.pdf" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+          Descargar CV
+        </a>
+      </section>
+
+      <section id="english" class="mt-12" data-aos="fade-up">
+        <h3 class="text-2xl font-semibold mb-2">About Me (English)</h3>
+        <p class="mb-4">{description_en}</p>
+        <ul class="list-disc pl-5">
+          <li>Full Stack Developer at SONDA Uruguay</li>
+          <li>Systems for the Ministry of Interior (911, complaints, recordings)</li>
+          <li>Critical app development for SEMM in C#</li>
+        </ul>
+        <p class="mt-4">Technologies: React, C#, ASP.NET Core, Node.js, Java, Spring Boot, SQL Server, Docker</p>
+        <a href="/CV_MarcosRezk_EN.pdf" class="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
+          Download CV (English)
+        </a>
+      </section>
+
+      <footer class="mt-10 text-sm text-gray-500 dark:text-gray-400 text-center">
+        © {new Date().getFullYear()} {name}
+      </footer>
+    </main>
+  </body>
+</html>
