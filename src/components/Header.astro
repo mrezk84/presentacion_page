@@ -55,44 +55,44 @@ const links = [
             </svg>
         </button>
     </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div
-        id="mobile-menu"
-        class="fixed inset-0 z-[100] bg-white dark:bg-gray-950 transform translate-x-full transition-transform duration-300 ease-in-out sm:hidden flex flex-col items-center justify-center space-y-8"
-    >
-        <button
-            id="menu-close"
-            class="absolute top-6 right-6 text-gray-600 dark:text-gray-300 focus:outline-none"
-            aria-label="Close menu"
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-8 h-8"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
-
-        {
-            links.map((link) => (
-                <a
-                    href={link.href}
-                    class="mobile-link text-2xl font-medium text-gray-800 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                    {link.name}
-                </a>
-            ))
-        }
-    </div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div
+    id="mobile-menu"
+    class="fixed inset-0 z-[100] bg-white dark:bg-gray-950 transform translate-x-full transition-transform duration-300 ease-in-out sm:hidden flex flex-col items-center justify-center space-y-8"
+>
+    <button
+        id="menu-close"
+        class="absolute top-6 right-6 text-gray-600 dark:text-gray-300 focus:outline-none"
+        aria-label="Close menu"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-8 h-8"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+
+    {
+        links.map((link) => (
+            <a
+                href={link.href}
+                class="mobile-link text-2xl font-medium text-gray-800 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+                {link.name}
+            </a>
+        ))
+    }
+</div>
 
 <script>
     const menuToggle = document.getElementById("menu-toggle");
