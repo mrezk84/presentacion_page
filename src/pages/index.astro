@@ -329,11 +329,13 @@ const description =
           </h3>
           <div class="flex flex-wrap justify-center gap-3">
             {
-              ["SQL Server", "Firebase"].map((tech) => (
-                <span class="px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded-md text-sm text-slate-700 dark:text-slate-300 font-medium border border-slate-200 dark:border-slate-700">
-                  {tech}
-                </span>
-              ))
+              ["SQL Server", "MySQL", "PostgreSQL", "MongoDB", "Firebase"].map(
+                (tech) => (
+                  <span class="px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded-md text-sm text-slate-700 dark:text-slate-300 font-medium border border-slate-200 dark:border-slate-700">
+                    {tech}
+                  </span>
+                ),
+              )
             }
           </div>
         </div>
