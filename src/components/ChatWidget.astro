@@ -91,8 +91,8 @@
                 </svg>
                 Enviar a WhatsApp
             </button>
-            <a
-                href="mailto:mrezk84@gmail.com"
+            <button
+                id="send-email"
                 class="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl font-medium transition-colors text-sm"
             >
                 <svg
@@ -110,7 +110,7 @@
                     ></path>
                 </svg>
                 Enviar Correo
-            </a>
+            </button>
         </div>
     </div>
 
@@ -142,23 +142,45 @@
     const chatWindow = document.getElementById("chat-window");
     const closeChat = document.getElementById("close-chat");
     const sendWhatsapp = document.getElementById("send-whatsapp");
-    const chatMessage = document.getElementById("chat-message");
+    const sendEmail = document.getElementById("send-email");
+    const chatMessage = document.getElementById(
+        "chat-message",
+    ) as HTMLTextAreaElement;
 
     function toggleChat() {
         chatWindow?.classList.toggle("scale-0");
         chatWindow?.classList.toggle("scale-100");
     }
 
-    function sendMessage() {
-        const message =
-            chatMessage.value.trim() ||
-            "Hola Marcos, vi tu portfolio y me gustaría contactarte.";
+    function getMessage() {
+        return (
+            chatMessage?.value.trim() ||
+            "Hola Marcos, vi tu portfolio y me gustaría contactarte."
+        );
+    }
+
+    function sendToWhatsapp() {
+        const message = getMessage();
         const phoneNumber = "59899845879";
-        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+            message,
+        )}`;
+        window.open(url, "_blank");
+    }
+
+    function sendToEmail() {
+        const message = getMessage();
+        const email = "mrezk84@gmail.com";
+        const subject = "Contacto desde Portfolio";
+        const url = `mailto:${email}?subject=${encodeURIComponent(
+            subject,
+        )}&body=${encodeURIComponent(message)}`;
         window.open(url, "_blank");
     }
 
     chatToggle?.addEventListener("click", toggleChat);
     closeChat?.addEventListener("click", toggleChat);
-    sendWhatsapp?.addEventListener("click", sendMessage);
+    sendWhatsapp?.addEventListener("click", sendToWhatsapp);
+    sendEmail?.addEventListener("click", sendToEmail);
 </script>
+```
