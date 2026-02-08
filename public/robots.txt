@@ -1,0 +1,11 @@
+# robots.txt para presentacion_page
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mrezk84.github.io/presentacion_page/sitemap-index.xml
+
+# Disallow specific paths if needed
+# Disallow: /private/
+# Disallow: /admin/

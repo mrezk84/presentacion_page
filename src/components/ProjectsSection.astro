@@ -1,0 +1,103 @@
+---
+const projects = [
+	{
+		title: "Sistema de Denuncias - Ministerio del Interior",
+		description: "Aplicación web full stack para gestión de denuncias ciudadanas con React, C# .NET y SQL Server. Incluye mapa interactivo con ArcGIS, autenticación LDAP y exportación de reportes en PDF.",
+		technologies: ["React", "C# .NET", "SQL Server", "ArcGIS", "LDAP"],
+		image: "/presentacion_page/projects/ministerio.jpg",
+		link: "#",
+		github: "#",
+		highlight: true
+	},
+	{
+		title: "Sistema 911 - Centro de Emergencias",
+		description: "Sistema de gestión de llamadas de emergencia con grabación de audio, geolocalización y distribución en tiempo real a las unidades correspondientes.",
+		technologies: ["React", "Node.js", "WebSocket", "MongoDB"],
+		image: "/presentacion_page/projects/911.jpg",
+		link: "#",
+		github: "#",
+		highlight: true
+	},
+	{
+		title: "SEMM - Gestión de Eventos",
+		description: "Plataforma de gestión de eventos y monitoreo para servicios de emergencia médica. Incluye dashboard en tiempo real y módulo de estadísticas.",
+		technologies: ["React", "C#", "SQL Server", "Chart.js"],
+		image: "/presentacion_page/projects/semm.jpg",
+		link: "#",
+		github: "#",
+		highlight: false
+	}
+];
+---
+
+<section id="proyectos" class="mb-32 scroll-mt-32" data-aos="fade-up">
+	<h2 class="text-4xl font-bold mb-16 text-center text-slate-900 dark:text-slate-100 relative inline-block w-full">
+		<span class="relative z-10 bg-slate-50 dark:bg-slate-950 px-6">Proyectos Destacados</span>
+		<div class="absolute top-1/2 left-0 w-full h-px bg-slate-200 dark:bg-slate-800 -z-0"></div>
+	</h2>
+
+	<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+		{projects.map((project) => (
+			<div
+				class={`group bg-white dark:bg-slate-900 rounded-2xl shadow-xl border ${
+					project.highlight
+						? 'border-amber-500/30 hover:border-amber-500/60 md:col-span-2 lg:col-span-1'
+						: 'border-slate-100 dark:border-slate-800 hover:border-amber-500/30'
+				} overflow-hidden hover:-translate-y-2 transition-all duration-300`}
+			>
+				<div class="relative h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 overflow-hidden">
+					<div class="absolute inset-0 flex items-center justify-center">
+						<div class="text-center">
+							<div class="text-4xl mb-2">🚀</div>
+							<p class="text-sm text-slate-500 dark:text-slate-400">{project.title}</p>
+						</div>
+					</div>
+					{project.highlight && (
+						<div class="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full">
+							Destacado
+						</div>
+					)}
+				</div>
+
+				<div class="p-6">
+					<h3 class="font-serif font-bold text-xl mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+						{project.title}
+					</h3>
+
+					<p class="text-slate-600 dark:text-slate-400 text-sm mb-4 leading-relaxed">
+						{project.description}
+					</p>
+
+					<div class="flex flex-wrap gap-2 mb-4">
+						{project.technologies.map((tech) => (
+							<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs text-slate-700 dark:text-slate-300 font-medium border border-slate-200 dark:border-slate-700">
+								{tech}
+							</span>
+						))}
+					</div>
+
+					<div class="flex gap-3">
+						<a
+							href={project.link}
+							class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-semibold transition-colors text-sm"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+							</svg>
+							Demo
+						</a>
+						<a
+							href={project.github}
+							class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 text-white rounded-lg font-semibold transition-colors text-sm"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+							</svg>
+							Código
+						</a>
+					</div>
+				</div>
+			</div>
+		))}
+	</div>
+</section>

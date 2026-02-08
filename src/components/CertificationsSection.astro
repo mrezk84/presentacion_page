@@ -1,0 +1,88 @@
+---
+const certifications = [
+	{
+		title: "Analista Programador",
+		institution: "Universidad ORT Uruguay",
+		year: "2024",
+		credentialId: "AP-2024-ORT",
+		image: "/presentacion_page/ort_logo.png",
+		link: "/presentacion_page/titulo.png",
+		highlight: true
+	},
+	{
+		title: "Desarrollo Mobile Android",
+		institution: "Instituto BIOS",
+		year: "2016",
+		credentialId: "ANDROID-2016",
+		image: "/presentacion_page/certificates/android.jpg",
+		link: "#",
+		highlight: false
+	},
+	{
+		title: "Técnico en Hardware y Software",
+		institution: "IAC Computación",
+		year: "2003",
+		credentialId: "THS-2003",
+		image: "/presentacion_page/certificates/hardware.jpg",
+		link: "#",
+		highlight: false
+	}
+];
+---
+
+<section id="certificaciones" class="mb-32 scroll-mt-32" data-aos="fade-up">
+	<h2 class="text-4xl font-bold mb-16 text-center text-slate-900 dark:text-slate-100 relative inline-block w-full">
+		<span class="relative z-10 bg-slate-50 dark:bg-slate-950 px-6">Certificaciones</span>
+		<div class="absolute top-1/2 left-0 w-full h-px bg-slate-200 dark:bg-slate-800 -z-0"></div>
+	</h2>
+
+	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+		{certifications.map((cert) => (
+			<div
+				class={`group bg-white dark:bg-slate-900 rounded-2xl shadow-lg border overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300 ${
+					cert.highlight ? 'border-amber-500/30' : 'border-slate-100 dark:border-slate-800'
+				}`}
+			>
+				<div class="relative h-32 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 overflow-hidden">
+					<div class="absolute inset-0 flex items-center justify-center">
+						<div class="text-4xl">🎓</div>
+					</div>
+					{cert.highlight && (
+						<div class="absolute top-3 right-3 px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded-full">
+							Principal
+						</div>
+					)}
+				</div>
+
+				<div class="p-6">
+					<h3 class="font-serif font-bold text-lg mb-2 text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+						{cert.title}
+					</h3>
+
+					<div class="flex items-center gap-2 mb-3">
+						<div class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xs">
+							🏛️
+						</div>
+						<p class="text-sm text-slate-600 dark:text-slate-400">{cert.institution}</p>
+					</div>
+
+					<div class="flex items-center justify-between text-sm">
+						<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-slate-700 dark:text-slate-300 font-medium border border-slate-200 dark:border-slate-700">
+							{cert.year}
+						</span>
+						<a
+							href={cert.link}
+							target="_blank"
+							class="flex items-center gap-1 text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium transition-colors"
+						>
+							Ver certificado
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		))}
+	</div>
+</section>

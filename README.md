@@ -1,48 +1,100 @@
-# Astro Starter Kit: Basics
+# Marcos Rezk - Página de Presentación Personal
 
-```sh
-npm create astro@latest -- --template basics
-```
+Página web profesional de presentación personal construida con **Astro**, **React**, **Tailwind CSS** y animaciones con **AOS**.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mrezk84/presentacion_page)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Características
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+### SEO y Optimización
+- ✅ Meta tags completos (Open Graph, Twitter Cards)
+- ✅ Sitemap dinámico y robots.txt
+- ✅ JSON-LD para datos estructurados
+- ✅ Encabezados de seguridad y caché
+- ✅ Imágenes optimizadas
 
-## 🚀 Project Structure
+### Secciones
+- ✅ Hero con foto y descripción profesional
+- ✅ Experiencia laboral detallada
+- ✅ Proyectos destacados
+- ✅ Stack tecnológico organizado
+- ✅ Certificaciones
+- ✅ Idiomas
+- ✅ Testimonios
+- ✅ Formación académica
+- ✅ Formulario de contacto (Formspree)
+- ✅ Enlaces a redes sociales
 
-Inside of your Astro project, you'll see the following folders and files:
+### Diseño y UX
+- ✅ Modo oscuro automático
+- ✅ Animaciones suaves con AOS
+- ✅ Barra de progreso de lectura
+- ✅ Botón "volver arriba"
+- ✅ Loading screen
+- ✅ Navegación responsive
+- ✅ Accesibilidad (skip links, ARIA)
+- ✅ Transiciones y hover effects
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🛠️ Tecnologías
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- **Astro 5.7** - Framework de sitios estáticos
+- **React 19** - Biblioteca UI
+- **Tailwind CSS 4** - Estilos utility-first
+- **AOS** - Animaciones on scroll
+- **TypeScript** - Tipado estático
 
-## 🧞 Commands
+## 📦 Instalación
 
-All commands are run from the root of the project, from a terminal:
+\`\`\`bash
+# Clonar el repositorio
+git clone https://github.com/mrezk84/presentacion_page.git
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+# Entrar al directorio
+cd presentacion_page
 
-## 👀 Want to learn more?
+# Instalar dependencias
+npm install
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Iniciar servidor de desarrollo
+npm run dev
+\`\`\`
+
+## 🏗️ Scripts Disponibles
+
+| Comando | Acción |
+|---------|--------|
+| `npm run dev` | Inicia servidor de desarrollo (localhost:4321) |
+| `npm run build` | Construye para producción |
+| `npm run preview` | Previa la build de producción |
+| `npm run astro` | Ejecuta comandos de CLI de Astro |
+
+## 🌐 Deployment
+
+### GitHub Pages
+El proyecto está configurado para desplegar automáticamente en GitHub Pages usando GitHub Actions. Simplemente haz push a la rama \`main\` y se desplegará en:
+\`\`\`
+https://mrezk84.github.io/presentacion_page/
+\`\`\`
+
+### Vercel
+\`\`\`bash
+npm install -g vercel
+vercel
+\`\`\`
+
+### Netlify
+\`\`\`bash
+npm install -g netlify-cli
+netlify deploy --prod
+\`\`\`
+
+## 👤 Autor
+
+**Marcos Rezk**
+- LinkedIn: [linkedin.com/in/marcos-rezk](https://www.linkedin.com/in/marcos-rezk)
+- GitHub: [@mrezk84](https://github.com/mrezk84)
+- Email: mrezk84@gmail.com
+
+---
+
+⭐ Si te gusta este proyecto, dale una estrella en GitHub!

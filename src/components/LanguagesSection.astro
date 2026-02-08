@@ -1,0 +1,56 @@
+---
+const languages = [
+	{
+		name: "Español",
+		level: "Nativo",
+		levelPercent: 100,
+		flag: "🇺🇾"
+	},
+	{
+		name: "Inglés",
+		level: "Intermedio - Avanzado",
+		levelPercent: 75,
+		flag: "🇬🇧"
+	},
+	{
+		name: "Portugués",
+		level: "Intermedio",
+		levelPercent: 50,
+		flag: "🇧🇷"
+	}
+];
+---
+
+<section id="idiomas" class="mb-32 scroll-mt-32" data-aos="fade-up">
+	<h2 class="text-4xl font-bold mb-16 text-center text-slate-900 dark:text-slate-100 relative inline-block w-full">
+		<span class="relative z-10 bg-slate-50 dark:bg-slate-950 px-6">Idiomas</span>
+		<div class="absolute top-1/2 left-0 w-full h-px bg-slate-200 dark:bg-slate-800 -z-0"></div>
+	</h2>
+
+	<div class="grid gap-6 md:grid-cols-3">
+		{languages.map((lang) => (
+			<div class="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+				<div class="flex items-center gap-4 mb-4">
+					<div class="text-4xl">{lang.flag}</div>
+					<div>
+						<h3 class="font-serif font-bold text-xl text-slate-900 dark:text-slate-100">
+							{lang.name}
+						</h3>
+						<p class="text-sm text-amber-600 dark:text-amber-400 font-medium">{lang.level}</p>
+					</div>
+				</div>
+
+				<div class="relative h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+					<div
+						class="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full transition-all duration-1000 ease-out"
+						style={`width: ${lang.levelPercent}%`}
+					></div>
+				</div>
+
+				<div class="mt-2 text-right">
+					<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">{lang.levelPercent}%</span>
+				</div>
+			</div>
+		))}
+	</div>
+</section>

@@ -2,7 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import ChatWidget from "../components/ChatWidget.astro";
+import SkipLink from "../components/SkipLink.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
 import AOSInit from "../components/AOSInit";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
+import CertificationsSection from "../components/CertificationsSection.astro";
+import LanguagesSection from "../components/LanguagesSection.astro";
 import "../styles/global.css";
 
 const name = "Marcos Rezk";
@@ -11,13 +17,18 @@ const description =
   "Desarrollador Full Stack con +3 años de experiencia construyendo aplicaciones web escalables con React, C# y SQL Server. He liderado el desarrollo de soluciones críticas para el Ministerio del Interior (911 y sistema de denuncias) y SEMM, incluyendo sistemas de grabación, gestión de llamadas y exportación de reportes. Egresado de ORT Uruguay, enfocado en la mejora continua, calidad del código y buenas prácticas.";
 ---
 
-<Layout>
+<Layout
+  title="Marcos Rezk - Analista Programador Full Stack | React, C#, SQL Server"
+  description={description}
+>
+  <SkipLink />
   <AOSInit client:load />
 
   <Header />
   <ChatWidget />
+  <ScrollToTop />
 
-  <main class="pt-24 pb-12 px-6 max-w-5xl mx-auto">
+  <main id="main-content" class="pt-24 pb-12 px-6 max-w-5xl mx-auto" role="main">
     <!-- Hero Section -->
     <section
       class="min-h-[85vh] flex flex-col justify-center items-center text-center gap-10 mb-24"
@@ -281,6 +292,9 @@ const description =
       </div>
     </section>
 
+    <!-- Projects Section -->
+    <ProjectsSection />
+
     <!-- Tech Stack -->
     <section id="tecnologias" class="mb-32 scroll-mt-32" data-aos="fade-up">
       <h2
@@ -375,6 +389,15 @@ const description =
         </div>
       </div>
     </section>
+
+    <!-- Certifications Section -->
+    <CertificationsSection />
+
+    <!-- Languages Section -->
+    <LanguagesSection />
+
+    <!-- Testimonials Section -->
+    <TestimonialsSection />
 
     <!-- Education Section -->
     <section id="formacion" class="mb-32 scroll-mt-32" data-aos="fade-up">

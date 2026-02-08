@@ -1,11 +1,84 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+}
+
+const {
+	title = "Marcos Rezk - Analista Programador Full Stack",
+	description = "Desarrollador Full Stack con +3 años de experiencia construyendo aplicaciones web escalables con React, C# y SQL Server. Egresado de ORT Uruguay.",
+	image = "/presentacion_page/perfil.jpg"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.site);
+---
+
 <!doctype html>
 <html lang="es" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Marcos Rezk - Presentación Profesional</title>
+
+		<!-- Basic Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content="Marcos Rezk" />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImageURL} />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:site_name" content="Marcos Rezk" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageURL} />
+		<meta name="twitter:creator" content="@mrezk84" />
+
+		<!-- Additional SEO -->
+		<meta name="keywords" content="Marcos Rezk, Analista Programador, Full Stack Developer, React, C#, SQL Server, ORT Uruguay, Desarrollo Web, Uruguay" />
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index, follow" />
+		<meta name="theme-color" content="#0f172a" />
+
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Marcos Rezk",
+			"jobTitle": "Analista Programador",
+			"url": "https://mrezk84.github.io/presentacion_page/",
+			"image": "https://mrezk84.github.io/presentacion_page/presentacion_page/perfil.jpg",
+			"sameAs": [
+				"https://www.linkedin.com/in/marcos-rezk",
+				"https://github.com/mrezk84"
+			],
+			"alumniOf": {
+				"@type": "CollegeOrUniversity",
+				"name": "Universidad ORT Uruguay"
+			},
+			"worksFor": {
+				"@type": "Organization",
+				"name": "SONDA Uruguay"
+			},
+			"knowsAbout": ["React", "C#", "SQL Server", "JavaScript", "Node.js", "Full Stack Development"],
+			"description": "Desarrollador Full Stack con +3 años de experiencia construyendo aplicaciones web escalables con React, C# y SQL Server."
+		}
+		</script>
+
+		<!-- Preconnect -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

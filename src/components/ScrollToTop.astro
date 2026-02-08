@@ -1,0 +1,46 @@
+---
+// Scroll to top button - simplified version
+---
+
+<button
+	id="scroll-to-top"
+	aria-label="Volver arriba"
+	class="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-full shadow-2xl hover:shadow-amber-500/40 hover:-translate-y-1 transition-all duration-300 opacity-0 pointer-events-none"
+>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke-width="2.5"
+		stroke="currentColor"
+		class="w-6 h-6"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+		/>
+	</svg>
+</button>
+
+<script>
+	const scrollButton = document.getElementById('scroll-to-top');
+	const SCROLL_THRESHOLD = 300;
+
+	function toggleScrollButton() {
+		if (window.scrollY > SCROLL_THRESHOLD) {
+			scrollButton?.classList.remove('opacity-0', 'pointer-events-none');
+			scrollButton?.classList.add('opacity-100');
+		} else {
+			scrollButton?.classList.add('opacity-0', 'pointer-events-none');
+			scrollButton?.classList.remove('opacity-100');
+		}
+	}
+
+	scrollButton?.addEventListener('click', () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
+
+	window.addEventListener('scroll', toggleScrollButton);
+	toggleScrollButton();
+</script>

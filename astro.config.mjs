@@ -10,8 +10,15 @@ export default defineConfig({
   site: 'https://mrezk84.github.io',
   base: '/presentacion_page',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      cssMinify: true,
+      assetsInlineLimit: 4096,
+    },
   },
-
-  integrations: [react()]
+  integrations: [react()],
+  output: 'static',
+  build: {
+    format: 'directory',
+  },
 });
