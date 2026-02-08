@@ -1,19 +1,11 @@
-// @ts-check
+// Configuración específica para Vercel
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
-
 import react from '@astrojs/react';
 
-// Detectar si estamos en Vercel
-const isVercel = process.env.VERCEL === '1';
-
-// https://astro.build/config
 export default defineConfig({
-  site: isVercel ? undefined : 'https://mrezk84.github.io',
-  // 'base' solo se usa para GitHub Pages
-  // Vercel usa root '/' por defecto
-  base: isVercel ? '/' : '/presentacion_page',
+  // No usar 'base' para Vercel (diferente a GitHub Pages)
+  site: 'https://presentacion-page.vercel.app',
   vite: {
     plugins: [tailwindcss()],
     build: {

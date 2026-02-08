@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:vercel": "astro build",
+    "build:github": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
