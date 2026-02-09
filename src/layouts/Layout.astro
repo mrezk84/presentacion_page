@@ -11,12 +11,18 @@ const {
 	image = "/perfil.jpg"
 } = Astro.props;
 
+// Get base path from Astro config
+const isVercel = process.env.VERCEL === '1';
+const basePath = isVercel ? '' : '/presentacion_page';
+
+// Helper function to build URLs with base path
+const assetUrl = (path: string) => `${basePath}${path}`;
+
 // Use relative URLs for both platforms (Astro handles base path automatically)
 const canonicalURL = Astro.url.pathname;
 const socialImageURL = image;
 
 // Build absolute URLs for JSON-LD (requires full URLs)
-const isVercel = process.env.VERCEL === '1';
 const baseURL = isVercel
   ? 'https://tu-vercel-url.vercel.app' // Reemplaza con tu URL de Vercel
   : 'https://mrezk84.github.io/presentacion_page';
@@ -27,6 +33,9 @@ const imagePath = image.replace(/^\//, '');
 
 const fullImageURL = `${baseURLClean}/${imagePath}`;
 const fullCanonicalURL = `${baseURLClean}/`;
+
+// Expose helper to slot
+const { slot } = Astro;
 ---
 
 <!doctype html>
