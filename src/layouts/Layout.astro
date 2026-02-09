@@ -8,7 +8,7 @@ interface Props {
 const {
 	title = "Marcos Rezk - Analista Programador Full Stack",
 	description = "Desarrollador Full Stack con +3 años de experiencia construyendo aplicaciones web escalables con React, C# y SQL Server. Egresado de ORT Uruguay.",
-	image = "/presentacion_page/perfil.jpg"
+	image = "/perfil.jpg"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -59,8 +59,9 @@ const socialImageURL = new URL(image, Astro.site);
 			"@type": "Person",
 			"name": "Marcos Rezk",
 			"jobTitle": "Analista Programador",
+			"url": "https://mrezk84.github.io/",
+			"image": "https://mrezk84.github.io/presentacion_page/perfil.jpg",
 			"url": "https://mrezk84.github.io/presentacion_page/",
-			"image": "https://mrezk84.github.io/presentacion_page/presentacion_page/perfil.jpg",
 			"sameAs": [
 				"https://www.linkedin.com/in/marcos-rezk",
 				"https://github.com/mrezk84"
