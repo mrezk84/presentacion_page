@@ -8,11 +8,19 @@ import react from '@astrojs/react';
 // Detectar si estamos en Vercel
 const isVercel = process.env.VERCEL === '1';
 
+// Para GitHub Pages:
+// - Si usas el repo principal (username.github.io), base debe ser '/'
+// - Si usas un repo específico (username.github.io/repo-name), base debe ser '/repo-name'
+// Actualmente: 'https://mrezk84.github.io/presentacion_page'
+
+// Para cambiar la URL, tienes estas opciones:
+// 1. Renombrar el repositorio a "marcosrezk.github.io" para usar la URL raíz
+// 2. Configurar un dominio personalizado en GitHub Pages
+// 3. Usar Vercel/Netlify con dominio personalizado
+
 // https://astro.build/config
 export default defineConfig({
-  site: isVercel ? undefined : 'https://mrezk84.github.io',
-  // 'base' solo se usa para GitHub Pages
-  // Vercel usa root '/' por defecto
+  site: isVercel ? 'https://marcosrezk.vercel.app' : 'https://mrezk84.github.io/presentacion_page',
   base: isVercel ? '/' : '/presentacion_page',
   vite: {
     plugins: [tailwindcss()],

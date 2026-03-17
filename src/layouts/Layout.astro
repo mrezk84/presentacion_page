@@ -6,8 +6,8 @@ interface Props {
 }
 
 const {
-	title = "Marcos Rezk - Analista Programador Full Stack",
-	description = "Desarrollador Full Stack con +3 años de experiencia construyendo aplicaciones web escalables con React, C# y SQL Server. Egresado de ORT Uruguay.",
+	title = "Marcos Rezk | Full Stack Developer",
+	description = "Full Stack Developer con experiencia en React, C# .NET, SQL Server y más. Egresado de ORT Uruguay. Especialista en desarrollo de aplicaciones web escalables.",
 	image = "/perfil.jpg"
 } = Astro.props;
 
@@ -24,8 +24,8 @@ const socialImageURL = image;
 
 // Build absolute URLs for JSON-LD (requires full URLs)
 const baseURL = isVercel
-  ? 'https://tu-vercel-url.vercel.app' // Reemplaza con tu URL de Vercel
-  : 'https://mrezk84.github.io/presentacion_page';
+  ? 'https://marcosrezk.vercel.app'
+  : 'https://mrezk84.github.io';
 
 // Remove trailing slash from baseURL and leading slash from image path
 const baseURLClean = baseURL.replace(/\/$/, '');
@@ -70,7 +70,7 @@ const { slot } = Astro;
 		<meta name="twitter:creator" content="@mrezk84" />
 
 		<!-- Additional SEO -->
-		<meta name="keywords" content="Marcos Rezk, Analista Programador, Full Stack Developer, React, C#, SQL Server, ORT Uruguay, Desarrollo Web, Uruguay" />
+		<meta name="keywords" content="Marcos Rezk, Full Stack Developer, React Developer, C# Developer, SQL Server, ORT Uruguay, Web Developer, Software Developer, Uruguay, Backend, Frontend" />
 		<meta name="robots" content="index, follow" />
 		<meta name="googlebot" content="index, follow" />
 		<meta name="theme-color" content="#0f172a" />
