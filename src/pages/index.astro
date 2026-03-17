@@ -430,6 +430,48 @@ const skills = [
       </div>
     </section>
 
+    <!-- Tools & IDEs Section -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-950" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium mb-4">
+            Herramientas
+          </span>
+          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
+            IDEs y Herramientas
+          </h2>
+          <p class="text-lg text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">
+            Entornos de desarrollo y herramientas que utilizo en mi día a día.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {[
+            { name: "GoLand", icon: "🐹", color: "hover:from-cyan-400 hover:to-blue-500", desc: "IDE para Go" },
+            { name: "Visual Studio", icon: "💜", color: "hover:from-purple-400 hover:to-purple-600", desc: "IDE para .NET" },
+            { name: "VS Code", icon: "📘", color: "hover:from-blue-400 hover:to-blue-600", desc: "Editor de código" },
+            { name: "IntelliJ IDEA", icon: "🧠", color: "hover:from-orange-400 hover:to-red-500", desc: "IDE para Java" },
+            { name: "Postman", icon: "🚀", color: "hover:from-orange-500 hover:to-yellow-500", desc: "API testing" },
+            { name: "Docker", icon: "🐳", color: "hover:from-blue-500 hover:to-cyan-500", desc: "Contenedores" },
+            { name: "Git", icon: "📦", color: "hover:from-orange-400 hover:to-red-500", desc: "Control de versiones" },
+            { name: "SSMS", icon: "🗄️", color: "hover:from-red-400 hover:to-red-600", desc: "SQL Server Studio" }
+          ].map((tool, index) => (
+            <div
+              class="group bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center"
+              data-aos="fade-up"
+              data-aos-delay={index * 50}
+            >
+              <div class={`text-4xl mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                {tool.icon}
+              </div>
+              <p class="font-semibold text-slate-900 dark:text-slate-100">{tool.name}</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{tool.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- Certifications Section -->
     <CertificationsSection />
 
@@ -686,6 +728,27 @@ const skills = [
     if (el.querySelector('[data-width]')) {
       observer.observe(el);
     }
+  });
+
+  // Animate language bars
+  const langObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bars = entry.target.querySelectorAll('[data-width]');
+        bars.forEach(bar => {
+          const width = bar.getAttribute('data-width');
+          if (width) {
+            setTimeout(() => {
+              (bar as HTMLElement).style.width = width + '%';
+            }, 300);
+          }
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('#idiomas .group').forEach(el => {
+    langObserver.observe(el);
   });
 </script>
 
