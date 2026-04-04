@@ -11,7 +11,6 @@ import CertificationsSection from "../components/CertificationsSection.astro";
 import LanguagesSection from "../components/LanguagesSection.astro";
 import "../styles/global.css";
 
-// Get base path for GitHub Pages
 const isVercel = process.env.VERCEL === '1';
 const basePath = isVercel ? '' : '/presentacion_page';
 
@@ -20,24 +19,49 @@ const role = "Full Stack Developer";
 
 const stats = [
   { value: "3+", label: "Años de experiencia" },
-  { value: "10+", label: "Proyectos entregados" },
-  { value: "5", label: "Tecnologías principales" },
-  { value: "100%", label: "Compromiso con calidad" }
+  { value: "10+", label: "Proyectos críticos" },
+  { value: "15+", label: "Tecnologías dominadas" },
+  { value: "100%", label: "Compromiso de calidad" }
 ];
 
-const skills = [
-  { name: "React", level: 90, icon: "⚛️", color: "from-cyan-400 to-blue-500" },
-  { name: "C# .NET", level: 85, icon: "🔷", color: "from-purple-400 to-purple-600" },
-  { name: "SQL Server", level: 80, icon: "🗄️", color: "from-red-400 to-red-600" },
-  { name: "JavaScript", level: 88, icon: "📜", color: "from-yellow-400 to-yellow-600" },
-  { name: "Node.js", level: 75, icon: "🟢", color: "from-green-400 to-green-600" },
-  { name: "ArcGIS", level: 70, icon: "🗺️", color: "from-emerald-400 to-teal-600" }
+const services = [
+  {
+    icon: "⚛️",
+    title: "Desarrollo Frontend",
+    description: "Aplicaciones web modernas con React, JavaScript y CSS. Interfaces responsivas y用户体验 optimizado.",
+    technologies: ["React", "JavaScript", "HTML/CSS", "XAML"]
+  },
+  {
+    icon: "🔷",
+    title: "Desarrollo Backend",
+    description: "APIs robustas y escalables con C# .NET, Node.js y Java. Integración con bases de datos SQL y NoSQL.",
+    technologies: ["C# .NET", "Node.js", "Java", "Spring Boot"]
+  },
+  {
+    icon: "🗄️",
+    title: "Bases de Datos",
+    description: "Diseño y optimización de esquemas. SQL Server, PostgreSQL, MongoDB. Mejoras de hasta 40% en rendimiento.",
+    technologies: ["SQL Server", "PostgreSQL", "MongoDB", "MySQL"]
+  },
+  {
+    icon: "🔗",
+    title: "Integraciones",
+    description: "Integración de servicios web, APIs REST/SOAP, LDAP, ArcGIS y sistemas de telefonía como Asterisk.",
+    technologies: ["REST APIs", "WCF", "ArcGIS", "Asterisk"]
+  }
+];
+
+const achievements = [
+  { icon: "🏛️", text: "Sistemas críticos para el Ministerio del Interior" },
+  { icon: "🚨", text: "Centro de Emergencias 911 - Gestión de llamadas" },
+  { icon: "🏥", text: "SEMM - Plataforma de eventos médicos" },
+  { icon: "🎓", text: "Egresado Analista Programador - ORT Uruguay" }
 ];
 ---
 
 <Layout
-  title="Marcos Rezk | Full Stack Developer - React, C#, SQL Server"
-  description="Full Stack Developer con experiencia construyendo aplicaciones web escalables con React, C# .NET y SQL Server. Egresado de ORT Uruguay."
+  title="Marcos Rezk | Full Stack Developer - Disponible para trabajar"
+  description="Full Stack Developer con experiencia en React, C# .NET, SQL Server, Java, Spring Boot y PostgreSQL. Desarrollador de sistemas críticos para el Ministerio del Interior y SEMM. Disponible para nuevas oportunidades."
 >
   <SkipLink />
   <AOSInit client:load />
@@ -46,8 +70,8 @@ const skills = [
   <ScrollToTop />
 
   <main id="main-content" class="min-h-screen" role="main">
-    <!-- Hero Section - Rediseñado -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Hero Section - Landing Page Optimized -->
+    <section class="relative min-h-screen flex items-center overflow-hidden">
       <!-- Animated Background -->
       <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-amber-50/30 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
         <div class="absolute inset-0 opacity-30">
@@ -57,16 +81,20 @@ const skills = [
         </div>
       </div>
 
-      <div class="relative z-10 max-w-6xl mx-auto px-6 py-24">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-0">
+        <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           <!-- Text Content -->
           <div class="text-center lg:text-left order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1000">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 dark:bg-amber-900/30 rounded-full mb-6">
-              <span class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
-              <span class="text-sm font-medium text-amber-700 dark:text-amber-300">Disponible para oportunidades</span>
+            <!-- Available Badge - Prominent -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full mb-6 animate-pulse">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+              <span class="text-sm font-bold text-green-700 dark:text-green-300">DISPONIBLE PARA OPORTUNIDADES</span>
             </div>
 
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
               <span class="block text-slate-900 dark:text-slate-100 font-serif">Hola, soy</span>
               <span class="block mt-2">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 dark:from-amber-400 dark:via-yellow-400 dark:to-amber-500 animate-gradient">
@@ -75,40 +103,64 @@ const skills = [
               </span>
             </h1>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-8">
-              <span class="text-2xl sm:text-3xl text-slate-700 dark:text-slate-300 font-serif">{role}</span>
-              <a href={`${basePath}/titulo.png`} target="_blank" class="group flex items-center gap-2">
-                <div class="relative">
-                  <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-red-700 rounded-full blur opacity-0 group-hover:opacity-40 transition duration-300"></div>
-                  <img src={`${basePath}/ort_logo.png`} alt="ORT Uruguay" class="relative w-8 h-8 rounded-full object-cover shadow-lg group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <span class="text-sm text-red-600 dark:text-red-400 font-medium">ORT Uruguay</span>
-              </a>
-            </div>
-
-            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
-              Especializado en desarrollar aplicaciones web escalables con <strong class="text-slate-900 dark:text-slate-100">React</strong>, <strong class="text-slate-900 dark:text-slate-100">C# .NET</strong> y <strong class="text-slate-900 dark:text-slate-100">SQL Server</strong>. He construido soluciones críticas para el Ministerio del Interior y SEMM.
+            <p class="text-2xl sm:text-3xl text-slate-700 dark:text-slate-300 font-serif mb-4">
+              {role}
             </p>
 
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6 max-w-xl mx-auto lg:mx-0">
+              Especialista en desarrollo de aplicaciones web escalables con <strong class="text-slate-900 dark:text-slate-100">React</strong>, <strong class="text-slate-900 dark:text-slate-100">C# .NET</strong> y <strong class="text-slate-900 dark:text-slate-100">SQL Server</strong>. Egresado de <strong class="text-red-600 dark:text-red-400">ORT Uruguay</strong>.
+            </p>
+
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+              <div class="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                <span class="text-xl">🏛️</span>
+                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Ministerio del Interior</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                <span class="text-xl">🚨</span>
+                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Sistema 911</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                <span class="text-xl">🎓</span>
+                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">ORT Uruguay</span>
+              </div>
+            </div>
+
+            <!-- CTAs - Primary Focus -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a
+                href="#contacto"
+                class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-2xl font-bold shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-1 transition-all duration-300 text-lg"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                </svg>
+                <span>Contáctame</span>
+              </a>
               <a
                 href={`${basePath}/CV_Marcos_Rezk_ES.pdf`}
                 download
-                class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-2xl font-bold shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-1 transition-all duration-300"
+                class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 rounded-2xl font-semibold border-2 border-slate-200 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M12 12.75l-3-3m0 0 3-3m-3 3h7.5" />
                 </svg>
                 <span>Descargar CV</span>
               </a>
-              <a
-                href="#contacto"
-                class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 rounded-2xl font-semibold border-2 border-slate-200 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </div>
+
+            <!-- Social Proof -->
+            <div class="flex items-center justify-center lg:justify-start gap-6 mt-8">
+              <a href="https://www.linkedin.com/in/marcos-rezk" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
                 </svg>
-                <span>Contactar</span>
+              </a>
+              <a href="https://github.com/mrezk84" target="_blank" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -121,10 +173,10 @@ const skills = [
                 <div class="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 rounded-[2rem]"></div>
                 <img
                   src={`${basePath}/perfil.jpg`}
-                  alt="Marcos Rezk"
+                  alt="Marcos Rezk - Full Stack Developer"
                   class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-[2rem] object-cover shadow-2xl border-4 border-white dark:border-slate-800"
                 />
-                <!-- Floating Badge -->
+                <!-- Status Badge - Floating -->
                 <div class="absolute -bottom-4 -right-4 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-4 border border-slate-100 dark:border-slate-700">
                   <div class="flex items-center gap-3">
                     <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center">
@@ -142,18 +194,18 @@ const skills = [
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <span class="text-sm text-slate-500 dark:text-slate-400">Descubre más</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-amber-500">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </div>
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <span class="text-sm text-slate-500 dark:text-slate-400">Conoce más</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-amber-500">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
       </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats Section - Social Proof -->
     <section class="py-16 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-6">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -169,87 +221,161 @@ const skills = [
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Value Proposition / Why Hire Me -->
     <section class="py-24 bg-slate-50 dark:bg-slate-950" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            Sobre mí
+            Propuesta de valor
           </span>
           <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Apasionado por crear <span class="text-amber-500">soluciones digitales</span>
+            ¿Por qué <span class="text-amber-500">contratarme</span>?
           </h2>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="space-y-6">
-            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              Soy un desarrollador Full Stack egresado de la <strong class="text-slate-900 dark:text-slate-100">Universidad ORT Uruguay</strong> con más de 3 años de experiencia en el desarrollo de aplicaciones web escalables.
-            </p>
-            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              Mi trayectoria profesional incluye trabajar en proyectos críticos para instituciones como el <strong class="text-slate-900 dark:text-slate-100">Ministerio del Interior</strong> (sistemas 911 y denuncias ciudadanas) y <strong class="text-slate-900 dark:text-slate-100">SEMM</strong>, donde he desarrollado soluciones tecnológicas que impactan directamente en la vida de las personas.
-            </p>
-            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              Me caracterizo por mi <strong class="text-slate-900 dark:text-slate-100">compromiso con la calidad</strong>, capacidad de aprendizaje continuo y enfoque en las buenas prácticas de desarrollo. Siempre busco optimizar procesos y mejorar la eficiencia de las aplicaciones.
-            </p>
-          </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              icon: "🎯",
+              title: "Enfoque en resultados",
+              description: "Optimización de consultas SQL con 40% mejora en rendimiento. Soluciones que impactan directamente en la operación."
+            },
+            {
+              icon: "🔄",
+              title: "Aprendizaje continuo",
+              description: "Constante actualización tecnológica. Egresado reciente con conocimientos frescos y experiencia práctica."
+            },
+            {
+              icon: "🤝",
+              title: "Trabajo en equipo",
+              description: "Experiencia en metodologías ágiles (Scrum, Kanban). Colaboración efectiva con equipos multidisciplinarios."
+            },
+            {
+              icon: "🏆",
+              title: "Proyectos críticos",
+              description: "Desarrollo de sistemas para el Ministerio del Interior y SEMM. Código que salva vidas."
+            }
+          ].map((value, index) => (
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div class="text-4xl mb-4">{value.icon}</div>
+              <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-slate-100">{value.title}</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-          <div class="space-y-4">
-            {skills.slice(0, 4).map((skill, index) => (
-              <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-lg border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-shadow" data-aos="fade-left" data-aos-delay={index * 100}>
-                <div class="flex items-center justify-between mb-3">
-                  <div class="flex items-center gap-3">
-                    <span class="text-2xl">{skill.icon}</span>
-                    <span class="font-semibold text-slate-900 dark:text-slate-100">{skill.name}</span>
-                  </div>
-                  <span class="text-sm font-medium text-amber-600 dark:text-amber-400">{skill.level}%</span>
+    <!-- Services Section - What I Offer -->
+    <section class="py-24 bg-white dark:bg-slate-900" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium mb-4">
+            Servicios
+          </span>
+          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
+            Lo que puedo hacer por ti
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {services.map((service, index) => (
+            <div
+              class="group bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div class="flex items-start gap-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform">
+                  {service.icon}
                 </div>
-                <div class="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                  <div class={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000`} style="width: 0%" data-width={skill.level}></div>
+                <div class="flex-1">
+                  <h3 class="font-serif font-bold text-xl mb-2 text-slate-900 dark:text-slate-100">{service.title}</h3>
+                  <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">{service.description}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {service.technologies.map((tech) => (
+                      <span class="px-3 py-1 bg-white dark:bg-slate-900 rounded-lg text-xs text-amber-700 dark:text-amber-400 font-medium border border-amber-200 dark:border-amber-800">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA in Services -->
+        <div class="mt-12 text-center">
+          <a
+            href="#contacto"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-2xl font-bold shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-1 transition-all duration-300"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </svg>
+            <span>Hablemos de tu proyecto</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements / Logos -->
+    <section class="py-16 bg-gradient-to-r from-slate-100 to-amber-50 dark:from-slate-900 dark:to-slate-950" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-10">
+          <p class="text-slate-600 dark:text-slate-400 font-medium">Experiencia en proyectos de impacto</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {achievements.map((achievement, index) => (
+            <div
+              class="flex items-center justify-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <span class="text-2xl">{achievement.icon}</span>
+              <span class="text-sm font-medium text-slate-700 dark:text-slate-300 text-center">{achievement.text}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
     <!-- Experience Section - Timeline -->
-    <section id="experiencia" class="py-24 bg-white dark:bg-slate-900 scroll-mt-24" data-aos="fade-up">
+    <section id="experiencia" class="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-24" data-aos="fade-up">
       <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-16">
           <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            Trayectoria profesional
+            Trayectoria
           </span>
           <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Experiencia Laboral
+            Experiencia Profesional
           </h2>
         </div>
 
         <div class="relative">
-          <!-- Timeline Line -->
           <div class="absolute left-0 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500 to-transparent sm:-translate-x-1/2"></div>
 
           <!-- SONDA -->
           <div class="relative mb-12" data-aos="fade-up">
             <div class="flex flex-col sm:flex-row gap-6 items-start">
               <div class="sm:w-1/2 sm:text-right sm:pr-12">
-                <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow sm:ml-auto sm:mr-0 max-w-md">
-                  <span class="inline-block px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full mb-3">Actualidad</span>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow sm:ml-auto sm:mr-0 max-w-md">
+                  <span class="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full mb-3">Actualidad</span>
                   <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-2">Desarrollador Full Stack</h3>
                   <p class="text-amber-600 dark:text-amber-400 font-medium mb-4">SONDA Uruguay · 2022 – Presente</p>
                   <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
                     <li class="flex items-start gap-2 sm:justify-end">
                       <span class="text-amber-500 mt-1">•</span>
-                      <span>Desarrollo en React y C# .NET para sistemas críticos del Ministerio del Interior</span>
+                      <span>Desarrollo en React, C# .NET, XAML para sistemas críticos del Ministerio del Interior</span>
                     </li>
                     <li class="flex items-start gap-2 sm:justify-end">
                       <span class="text-amber-500 mt-1">•</span>
-                      <span>Implementación de módulos de grabación y exportación de reportes PDF</span>
-                    </li>
-                    <li class="flex items-start gap-2 sm:justify-end">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Integración de APIs REST, autenticación LDAP y mapas ArcGIS</span>
+                      <span>Sistema 911 con WCF, ArcGIS y Asterisk para telefonía IP</span>
                     </li>
                     <li class="flex items-start gap-2 sm:justify-end">
                       <span class="text-amber-500 mt-1">•</span>
@@ -269,7 +395,7 @@ const skills = [
               <div class="sm:w-1/2 sm:pr-12 order-2 sm:order-1"></div>
               <div class="absolute left-0 sm:left-1/2 w-4 h-4 bg-slate-400 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 -translate-y-2 top-8"></div>
               <div class="sm:w-1/2 sm:pl-12 order-1 sm:order-2">
-                <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow max-w-md">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow max-w-md">
                   <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-2">Supervisor de Mesa de Ayuda</h3>
                   <p class="text-amber-600 dark:text-amber-400 font-medium mb-4">ANCAP · 2018 – 2022</p>
                   <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
@@ -291,7 +417,7 @@ const skills = [
           <div class="relative" data-aos="fade-up" data-aos-delay="200">
             <div class="flex flex-col sm:flex-row gap-6 items-start">
               <div class="sm:w-1/2 sm:text-right sm:pr-12">
-                <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow sm:ml-auto sm:mr-0 max-w-md">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow sm:ml-auto sm:mr-0 max-w-md">
                   <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-2">Manager</h3>
                   <p class="text-amber-600 dark:text-amber-400 font-medium mb-4">SONDA Uruguay · 2009 – 2018</p>
                   <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
@@ -320,7 +446,7 @@ const skills = [
     <!-- GitHub Repos Section -->
     <GitHubRepos />
 
-    <!-- Tech Stack - Rediseñado -->
+    <!-- Tech Stack -->
     <section id="tecnologias" class="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-24" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
@@ -346,18 +472,18 @@ const skills = [
             { name: "ArcGIS", icon: "🗺️", color: "hover:from-emerald-400 hover:to-teal-600" },
             { name: "MongoDB", icon: "🍃", color: "hover:from-green-500 hover:to-green-700" },
             { name: "WCF", icon: "🔌", color: "hover:from-blue-400 hover:to-blue-600" },
-            { name: "WPF", icon: "🖥️", color: "hover:from-slate-400 hover:to-slate-600" },
+            { name: "XAML", icon: "🖼️", color: "hover:from-blue-400 hover:to-indigo-600" },
             { name: "REST APIs", icon: "🔗", color: "hover:from-indigo-400 hover:to-indigo-600" },
             { name: "LDAP", icon: "🔐", color: "hover:from-amber-400 hover:to-amber-600" },
             { name: "Go", icon: "🐹", color: "hover:from-cyan-400 hover:to-blue-600" },
-            { name: "Git", icon: "📦", color: "hover:from-orange-400 hover:to-red-500" }
+            { name: "Asterisk", icon: "📞", color: "hover:from-orange-400 hover:to-red-600" }
           ].map((tech, index) => (
             <div
               class="group bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center"
               data-aos="fade-up"
               data-aos-delay={index * 50}
             >
-              <div class={`text-4xl mb-3 group-hover:scale-110 transition-transform duration-300`}>
+              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                 {tech.icon}
               </div>
               <p class="font-semibold text-slate-900 dark:text-slate-100">{tech.name}</p>
@@ -367,75 +493,8 @@ const skills = [
       </div>
     </section>
 
-    <!-- Agile Methodologies Section -->
-    <section class="py-24 bg-white dark:bg-slate-900" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium mb-4">
-            Metodología
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Metodologías Ágiles
-          </h2>
-          <p class="text-lg text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">
-            Experiencia trabajando en equipos ágiles con enfoque en colaboración y entrega continua.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Scrum -->
-          <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-slate-900 rounded-3xl p-8 border border-green-100 dark:border-green-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
-              🏃
-            </div>
-            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Scrum</h3>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Participación activa en ceremonias de Scrum: Daily Standup, Sprint Planning, Sprint Review y Retrospectiva. Colaboración efectiva con Product Owners y Scrum Masters.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-green-700 dark:text-green-400 font-medium border border-green-200 dark:border-green-800">Sprints</span>
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-green-700 dark:text-green-400 font-medium border border-green-200 dark:border-green-800">Backlog</span>
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-green-700 dark:text-green-400 font-medium border border-green-200 dark:border-green-800">User Stories</span>
-            </div>
-          </div>
-
-          <!-- Kanban -->
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-slate-900 rounded-3xl p-8 border border-blue-100 dark:border-blue-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
-              📊
-            </div>
-            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Kanban</h3>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Gestión visual del trabajo mediante tableros Kanban. Optimización del flujo de trabajo y limitación del WIP (Work In Progress) para mejorar la eficiencia del equipo.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-blue-700 dark:text-blue-400 font-medium border border-blue-200 dark:border-blue-800">Flow</span>
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-blue-700 dark:text-blue-400 font-medium border border-blue-200 dark:border-blue-800">WIP Limits</span>
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-blue-700 dark:text-blue-400 font-medium border border-blue-200 dark:border-blue-800">Continuous Delivery</span>
-            </div>
-          </div>
-
-          <!-- Agile Practices -->
-          <div class="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-slate-900 rounded-3xl p-8 border border-purple-100 dark:border-purple-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
-              🔄
-            </div>
-            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Prácticas Ágiles</h3>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Aplicación de principios ágiles en el desarrollo de software. Enfoque en la mejora continua, integración frecuente y adaptabilidad al cambio.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-purple-700 dark:text-purple-400 font-medium border border-purple-200 dark:border-purple-800">TDD</span>
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-purple-700 dark:text-purple-400 font-medium border border-purple-200 dark:border-purple-800">CI/CD</span>
-              <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-xs text-purple-700 dark:text-purple-400 font-medium border border-purple-200 dark:border-purple-800">Pair Programming</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Tools & IDEs Section -->
-    <section class="py-24 bg-slate-50 dark:bg-slate-950" data-aos="fade-up">
+    <section class="py-24 bg-white dark:bg-slate-900" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <span class="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium mb-4">
@@ -444,9 +503,6 @@ const skills = [
           <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
             IDEs y Herramientas
           </h2>
-          <p class="text-lg text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">
-            Entornos de desarrollo y herramientas que utilizo en mi día a día.
-          </p>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -461,17 +517,63 @@ const skills = [
             { name: "SSMS", icon: "🗄️", color: "hover:from-red-400 hover:to-red-600", desc: "SQL Server Studio" }
           ].map((tool, index) => (
             <div
-              class="group bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center"
+              class="group bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center"
               data-aos="fade-up"
               data-aos-delay={index * 50}
             >
-              <div class={`text-4xl mb-3 group-hover:scale-110 transition-transform duration-300`}>
+              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                 {tool.icon}
               </div>
               <p class="font-semibold text-slate-900 dark:text-slate-100">{tool.name}</p>
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{tool.desc}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Agile Methodologies Section -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-950" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium mb-4">
+            Metodología
+          </span>
+          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
+            Metodologías Ágiles
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-slate-900 rounded-3xl p-8 border border-green-100 dark:border-green-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
+              🏃
+            </div>
+            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Scrum</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Participación en ceremonias: Daily, Planning, Review y Retrospectiva.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-slate-900 rounded-3xl p-8 border border-blue-100 dark:border-blue-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
+              📊
+            </div>
+            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Kanban</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Gestión visual del trabajo y optimización del flujo continuo.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-slate-900 rounded-3xl p-8 border border-purple-100 dark:border-purple-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
+              🔄
+            </div>
+            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Prácticas Ágiles</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              CI/CD, TDD, Pair Programming y mejora continua.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -490,15 +592,14 @@ const skills = [
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            Mi formación
+            Formación
           </span>
           <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Formación Académica
+            Educación
           </h2>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- ORT - Principal -->
           <div class="md:col-span-1" data-aos="fade-up">
             <div class="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-slate-900 rounded-3xl p-8 border-2 border-amber-200 dark:border-amber-800 h-full hover:shadow-xl transition-shadow">
               <div class="flex items-center gap-3 mb-6">
@@ -522,7 +623,6 @@ const skills = [
             </div>
           </div>
 
-          <!-- Other Education -->
           <div class="md:col-span-2 grid sm:grid-cols-2 gap-6">
             <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
               <p class="text-amber-600 dark:text-amber-400 text-sm font-bold mb-2">2016</p>
@@ -540,55 +640,55 @@ const skills = [
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-24" data-aos="fade-up">
+    <!-- Contact Section - CTA Focused -->
+    <section id="contacto" class="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 scroll-mt-24" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            Hablemos
+          <span class="inline-block px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-medium mb-4">
+            Contacto
           </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-4">
-            ¿Trabajamos juntos?
+          <h2 class="text-4xl sm:text-5xl font-bold text-white font-serif mb-4">
+            ¿Listo para el siguiente paso?
           </h2>
-          <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Estoy siempre abierto a discutir nuevos proyectos, oportunidades o simplemente conectar.
+          <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+            Estoy disponible para nuevos desafíos. Conectemos y llevemos tu proyecto al siguiente nivel.
           </p>
         </div>
 
         <div class="grid lg:grid-cols-2 gap-12">
           <!-- Contact Form -->
-          <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border border-slate-100 dark:border-slate-800">
+          <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
             <form action="https://formspree.io/f/mrezk84@gmail.com" method="POST" class="space-y-6">
               <div>
-                <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nombre</label>
+                <label for="name" class="block text-sm font-medium text-slate-200 mb-2">Nombre</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
                   placeholder="Tu nombre"
                 />
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
+                <label for="email" class="block text-sm font-medium text-slate-200 mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
                   placeholder="tu@email.com"
                 />
               </div>
               <div>
-                <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Mensaje</label>
+                <label for="message" class="block text-sm font-medium text-slate-200 mb-2">Mensaje</label>
                 <textarea
                   id="message"
                   name="message"
                   rows="4"
                   required
-                  class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all resize-none"
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all resize-none"
                   placeholder="Cuéntame sobre tu proyecto..."></textarea>
               </div>
               <button
@@ -603,94 +703,93 @@ const skills = [
             </form>
           </div>
 
-          <!-- Contact Options -->
+          <!-- Quick Contact Options -->
           <div class="space-y-6">
-            <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border border-slate-100 dark:border-slate-800">
-              <h3 class="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-6">O contáctame directamente</h3>
-
-              <div class="space-y-4">
-                <!-- WhatsApp -->
-                <a
-                  href="https://wa.me/59899845879?text=Hola%20Marcos,%20me%20gustaría%20contactarte%20para..."
-                  target="_blank"
-                  class="flex items-center gap-4 p-4 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-2xl text-slate-900 dark:text-slate-100 transition-all group"
-                >
-                  <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
-                    </svg>
-                  </div>
-                  <div class="flex-1">
-                    <p class="font-semibold">WhatsApp</p>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Respuesta rápida</p>
-                  </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-slate-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </a>
-
-                <!-- Email -->
-                <a
-                  href="mailto:mrezk84@gmail.com"
-                  class="flex items-center gap-4 p-4 bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100 dark:hover:bg-amber-900/30 rounded-2xl text-slate-900 dark:text-slate-100 transition-all group"
-                >
-                  <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                    </svg>
-                  </div>
-                  <div class="flex-1">
-                    <p class="font-semibold">Email</p>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">mrezk84@gmail.com</p>
-                  </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </a>
-
-                <!-- LinkedIn -->
-                <a
-                  href="https://www.linkedin.com/in/marcos-rezk"
-                  target="_blank"
-                  class="flex items-center gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-2xl text-slate-900 dark:text-slate-100 transition-all group"
-                >
-                  <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                    </svg>
-                  </div>
-                  <div class="flex-1">
-                    <p class="font-semibold">LinkedIn</p>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Conectemos</p>
-                  </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </a>
-
-                <!-- GitHub -->
-                <a
-                  href="https://github.com/mrezk84"
-                  target="_blank"
-                  class="flex items-center gap-4 p-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-2xl text-slate-900 dark:text-slate-100 transition-all group"
-                >
-                  <div class="w-12 h-12 bg-slate-800 dark:bg-slate-700 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                  </div>
-                  <div class="flex-1">
-                    <p class="font-semibold">GitHub</p>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Ver mis proyectos</p>
-                  </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-all">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </a>
+            <!-- WhatsApp - Primary -->
+            <a
+              href="https://wa.me/59899845879?text=Hola%20Marcos,%20me%20gustaría%20contactarte%20para..."
+              target="_blank"
+              class="flex items-center gap-4 p-6 bg-green-500 hover:bg-green-400 rounded-2xl text-white transition-all group hover:-translate-y-1 hover:shadow-xl hover:shadow-green-500/20"
+            >
+              <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
+                </svg>
               </div>
+              <div class="flex-1">
+                <p class="text-xl font-bold">WhatsApp</p>
+                <p class="text-green-100 text-sm">+598 99 845 879</p>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 group-hover:translate-x-1 transition-transform">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+
+            <!-- Email -->
+            <a
+              href="mailto:mrezk84@gmail.com"
+              class="flex items-center gap-4 p-6 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all group hover:-translate-y-1"
+            >
+              <div class="w-14 h-14 bg-amber-500/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-amber-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-xl font-bold">Email</p>
+                <p class="text-slate-300 text-sm">mrezk84@gmail.com</p>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 group-hover:translate-x-1 transition-transform">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+
+            <!-- LinkedIn & GitHub -->
+            <div class="grid grid-cols-2 gap-4">
+              <a
+                href="https://www.linkedin.com/in/marcos-rezk"
+                target="_blank"
+                class="flex items-center justify-center gap-2 p-4 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-semibold transition-all hover:-translate-y-1"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                </svg>
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/mrezk84"
+                target="_blank"
+                class="flex items-center justify-center gap-2 p-4 bg-white/10 hover:bg-white/20 rounded-xl text-white font-semibold transition-all hover:-translate-y-1"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                GitHub
+              </a>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-16 bg-amber-500" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 font-serif mb-4">
+          Tu próximo proyecto merece un desarrollador comprometido
+        </h2>
+        <p class="text-lg text-slate-800 mb-8">
+          Hablemos de cómo puedo aportar valor a tu equipo desde el primer día.
+        </p>
+        <a
+          href="#contacto"
+          class="inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all hover:-translate-y-1 shadow-xl"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+          </svg>
+          <span class="text-lg">Contáctame Hoy</span>
+        </a>
       </div>
     </section>
 
@@ -701,60 +800,23 @@ const skills = [
           <p class="text-slate-400 text-sm">
             © {new Date().getFullYear()} {name}. Todos los derechos reservados.
           </p>
-          <div class="flex items-center gap-2">
-            <span class="text-slate-500 text-sm">Hecho con</span>
-            <span class="text-red-500 animate-pulse">❤️</span>
-            <span class="text-slate-500 text-sm">y Astro</span>
+          <div class="flex items-center gap-6">
+            <a href="https://www.linkedin.com/in/marcos-rezk" target="_blank" class="text-slate-400 hover:text-blue-500 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/mrezk84" target="_blank" class="text-slate-400 hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
     </footer>
   </main>
 </Layout>
-
-<script>
-  // Animate skill bars on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const bar = entry.target.querySelector('[data-width]');
-        if (bar) {
-          const width = bar.getAttribute('data-width');
-          setTimeout(() => {
-            bar.style.width = width + '%';
-          }, 200);
-        }
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('[data-aos]').forEach(el => {
-    if (el.querySelector('[data-width]')) {
-      observer.observe(el);
-    }
-  });
-
-  // Animate language bars
-  const langObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const bars = entry.target.querySelectorAll('[data-width]');
-        bars.forEach(bar => {
-          const width = bar.getAttribute('data-width');
-          if (width) {
-            setTimeout(() => {
-              (bar as HTMLElement).style.width = width + '%';
-            }, 300);
-          }
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('#idiomas .group').forEach(el => {
-    langObserver.observe(el);
-  });
-</script>
 
 <style>
   @keyframes gradient {
