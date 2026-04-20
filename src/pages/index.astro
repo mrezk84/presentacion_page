@@ -431,7 +431,8 @@ const achievements = [
         </div>
 
         <div class="relative">
-          <div class="absolute left-0 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500 to-transparent sm:-translate-x-1/2"></div>
+          <!-- Timeline line - visible in both themes -->
+          <div class="absolute left-0 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-500 via-amber-400 to-amber-300 dark:from-amber-600 dark:via-amber-500 dark:to-amber-400 sm:-translate-x-1/2 opacity-60"></div>
 
           <!-- SONDA -->
           <div class="relative mb-12" data-aos="fade-up">
@@ -733,43 +734,43 @@ const achievements = [
 
         <div class="grid lg:grid-cols-2 gap-12">
           <!-- Contact Form -->
-          <div class="glass-modern rounded-3xl p-8">
+          <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-amber-500/20 shadow-2xl">
             <form action="https://formspree.io/f/mrezk84@gmail.com" method="POST" class="space-y-6">
               <div>
-                <label for="name" class="block text-sm font-medium text-slate-200 mb-2">Nombre</label>
+                <label for="name" class="block text-sm font-medium text-amber-400 mb-2">Nombre</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-all"
+                  class="w-full px-4 py-3 bg-slate-950/50 border border-amber-500/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all"
                   placeholder="Tu nombre"
                 />
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium text-slate-200 mb-2">Email</label>
+                <label for="email" class="block text-sm font-medium text-amber-400 mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-all"
+                  class="w-full px-4 py-3 bg-slate-950/50 border border-amber-500/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all"
                   placeholder="tu@email.com"
                 />
               </div>
               <div>
-                <label for="message" class="block text-sm font-medium text-slate-200 mb-2">Mensaje</label>
+                <label for="message" class="block text-sm font-medium text-amber-400 mb-2">Mensaje</label>
                 <textarea
                   id="message"
                   name="message"
                   rows="4"
                   required
-                  class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-all resize-none"
+                  class="w-full px-4 py-3 bg-slate-950/50 border border-amber-500/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all resize-none"
                   placeholder="Cuéntame sobre tu proyecto..."></textarea>
               </div>
               <button
                 type="submit"
-                class="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-xl font-bold hover:from-amber-400 hover:to-yellow-400 transition-all shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:-translate-y-0.5 magnetic-hover"
+                class="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-xl font-bold hover:from-amber-400 hover:to-yellow-400 transition-all shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:-translate-y-0.5 magnetic-hover"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
@@ -785,7 +786,7 @@ const achievements = [
             <a
               href="https://wa.me/59899845879?text=Hola%20Marcos,%20me%20gustaría%20contactarte%20para..."
               target="_blank"
-              class="group flex items-center gap-4 p-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 rounded-2xl text-white transition-all hover-lift"
+              class="group flex items-center gap-4 p-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 rounded-2xl text-white transition-all hover-lift shadow-lg shadow-green-500/20"
             >
               <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
@@ -804,7 +805,7 @@ const achievements = [
             <!-- Email -->
             <a
               href="mailto:mrezk84@gmail.com"
-              class="group flex items-center gap-4 p-6 glass-modern hover-glow rounded-2xl text-white transition-all hover-lift"
+              class="group flex items-center gap-4 p-6 bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-2xl text-white transition-all hover-lift border border-amber-500/20"
             >
               <div class="w-14 h-14 bg-amber-500/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-amber-400">
@@ -835,7 +836,7 @@ const achievements = [
               <a
                 href="https://github.com/mrezk84"
                 target="_blank"
-                class="group flex items-center justify-center gap-2 p-4 glass-modern hover-glow rounded-xl text-white font-semibold transition-all hover-lift"
+                class="group flex items-center justify-center gap-2 p-4 bg-slate-700 hover:bg-slate-600 rounded-xl text-white font-semibold transition-all hover-lift"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
