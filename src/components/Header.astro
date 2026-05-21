@@ -21,7 +21,7 @@ const socialLinks = [
         <div class="flex items-center justify-between h-16 sm:h-20">
             <!-- Logo -->
             <a
-                href="#"
+                href="#inicio"
                 class="flex items-center gap-3 group"
             >
                 <div class="relative">
@@ -83,6 +83,22 @@ const socialLinks = [
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white dark:border-slate-900"></span>
                     </span>
                 </div>
+
+                <!-- Dark Mode Toggle Desktop -->
+                <button
+                    id="theme-toggle"
+                    class="ml-3 w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    aria-label="Toggle dark mode"
+                >
+                    <!-- Sun icon (shown in dark mode) -->
+                    <svg id="sun-icon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                    </svg>
+                    <!-- Moon icon (shown in light mode) -->
+                    <svg id="moon-icon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                    </svg>
+                </button>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -164,6 +180,20 @@ const socialLinks = [
             >
                 Contratar
             </a>
+
+            <!-- Dark Mode Toggle Mobile -->
+            <button
+                id="theme-toggle-mobile"
+                class="mobile-link w-full max-w-xs mt-4 px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold rounded-xl flex items-center justify-center gap-3"
+            >
+                <svg id="sun-icon-mobile" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+                <svg id="moon-icon-mobile" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+                <span id="theme-text-mobile">Modo oscuro</span>
+            </button>
         </div>
     </div>
 </header>
@@ -207,8 +237,6 @@ const socialLinks = [
     });
 
     // Header scroll effect
-    let lastScroll = 0;
-
     window.addEventListener("scroll", () => {
         const currentScroll = window.pageYOffset;
 
@@ -233,8 +261,66 @@ const socialLinks = [
                 "dark:border-slate-800/50"
             );
         }
+    });
 
-        lastScroll = currentScroll;
+    // Dark mode toggle functionality
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+    const sunIcon = document.getElementById("sun-icon");
+    const moonIcon = document.getElementById("moon-icon");
+    const sunIconMobile = document.getElementById("sun-icon-mobile");
+    const moonIconMobile = document.getElementById("moon-icon-mobile");
+    const themeTextMobile = document.getElementById("theme-text-mobile");
+
+    function getTheme() {
+        return localStorage.getItem('theme') || 'system';
+    }
+
+    function setTheme(theme) {
+        localStorage.setItem('theme', theme);
+        updateThemeUI(theme);
+    }
+
+    function updateThemeUI(theme) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = theme === 'dark' || (theme === 'system' && prefersDark);
+
+        document.documentElement.classList.toggle('dark', isDark);
+
+        // Update desktop icons
+        sunIcon?.classList.toggle('hidden', !isDark);
+        moonIcon?.classList.toggle('hidden', isDark);
+
+        // Update mobile icons
+        sunIconMobile?.classList.toggle('hidden', !isDark);
+        moonIconMobile?.classList.toggle('hidden', isDark);
+        if (themeTextMobile) {
+            themeTextMobile.textContent = isDark ? 'Modo claro' : 'Modo oscuro';
+        }
+    }
+
+    // Initialize theme UI on page load
+    updateThemeUI(getTheme());
+
+    // Theme toggle handlers
+    function toggleTheme() {
+        const currentTheme = getTheme();
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = currentTheme === 'dark' || (currentTheme === 'system' && prefersDark);
+
+        if (currentTheme === 'system') {
+            setTheme(isDark ? 'light' : 'dark');
+        } else {
+            setTheme(currentTheme === 'dark' ? 'light' : 'system');
+        }
+    }
+
+    themeToggle?.addEventListener('click', toggleTheme);
+    themeToggleMobile?.addEventListener('click', toggleTheme);
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        updateThemeUI(getTheme());
     });
 </script>
 
