@@ -529,3 +529,128 @@ a:active {
 .dark .gradient-border {
 	background: #0f172a;
 }
+
+/* ========================================
+   CONTACT FORM VALIDATION & MODAL (NEW)
+   ======================================== */
+
+/* Active Inputs Validation */
+.input-transition {
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.input-valid {
+	border-color: rgba(34, 197, 94, 0.4) !important;
+	box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15) !important;
+}
+
+.input-invalid {
+	border-color: rgba(239, 68, 68, 0.4) !important;
+	box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Validation Message Tip */
+.validation-tip {
+	font-size: 0.75rem;
+	color: #ef4444;
+	margin-top: 0.375rem;
+	opacity: 0;
+	transform: translateY(-5px);
+	transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+	display: none;
+}
+
+.validation-tip.show {
+	display: block;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Modal Animation States */
+.modal-backdrop {
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.show {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.modal-content-anim {
+	transform: scale(0.9) translateY(20px);
+	opacity: 0;
+	transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-backdrop.show .modal-content-anim {
+	transform: scale(1) translateY(0);
+	opacity: 1;
+}
+
+/* Animated Checkmark inside Success Modal */
+.checkmark-circle {
+	stroke-dasharray: 166;
+	stroke-dashoffset: 166;
+	stroke-width: 2;
+	stroke-miterlimit: 10;
+	stroke: #2256f2; /* Will be color-amber-500 from JS/Tailwind */
+	fill: none;
+	animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	display: block;
+	stroke-width: 2;
+	stroke: #fff;
+	stroke-miterlimit: 10;
+	box-shadow: inset 0px 0px 0px #fbbf24;
+	animation: fill-checkmark .4s ease-in-out .4s forwards, scale-checkmark .3s ease-in-out .9s forwards;
+}
+
+.checkmark-check {
+	transform-origin: 50% 50%;
+	stroke-dasharray: 48;
+	stroke-dashoffset: 48;
+	animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes scale-checkmark {
+	0%, 100% {
+		transform: none;
+	}
+	50% {
+		transform: scale3d(1.1, 1.1, 1);
+	}
+}
+
+@keyframes fill-checkmark {
+	100% {
+		box-shadow: inset 0px 0px 0px 30px #f59e0b;
+	}
+}
+
+/* Spinner Loader */
+@keyframes spin-loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.animate-spin-loader {
+	animation: spin-loader 0.8s linear infinite;
+}
+

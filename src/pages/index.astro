@@ -14,6 +14,11 @@ import "../styles/global.css";
 const isVercel = process.env.VERCEL === '1';
 const basePath = isVercel ? '' : '/presentacion_page';
 
+const formspreeEndpoint = process.env.VITE_FORMSPREE_ENDPOINT || "mrezk84@gmail.com";
+const formAction = formspreeEndpoint.startsWith("http")
+  ? formspreeEndpoint
+  : `https://formspree.io/f/${formspreeEndpoint.replace('/f/', '').trim()}`;
+
 const name = "Marcos Rezk";
 const role = "Full Stack Developer";
 
@@ -175,7 +180,7 @@ const achievements = [
               <div class="absolute -inset-6 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-[3rem] blur-3xl opacity-40 animate-pulse"></div>
 
               <!-- Main image container -->
-              <div class="relative glass-modern rounded-[2.5rem] p-3 shadow-2xl">
+              <div class="relative glass-modern rounded-[2.5rem] p-3 shadow-2xl animate-float">
                 <img
                   src={`${basePath}/perfil.jpg`}
                   alt="Marcos Rezk - Full Stack Developer"
@@ -737,50 +742,111 @@ const achievements = [
 
         <div class="grid lg:grid-cols-2 gap-12">
           <!-- Contact Form -->
-          <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-amber-500/20 shadow-2xl">
-            <form action="https://formspree.io/f/mrezk84@gmail.com" method="POST" class="space-y-6">
+          <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-amber-500/20 shadow-2xl relative overflow-hidden">
+            <!-- Subtle glow accent inside card -->
+            <div class="absolute -top-16 -right-16 w-36 h-36 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <form action={formAction} method="POST" class="space-y-6" novalidate>
               <div>
-                <label for="name" class="block text-sm font-medium text-amber-400 mb-2">Nombre</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  class="w-full px-4 py-3 bg-slate-950/50 border border-amber-500/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all"
-                  placeholder="Tu nombre"
-                />
+                <label for="name" class="block text-sm font-semibold text-amber-400 mb-2 tracking-wider uppercase">Nombre Completo</label>
+                <div class="relative">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="input-transition w-full px-4 py-3.5 bg-slate-950/40 border border-slate-700/60 focus:border-amber-500/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/25 transition-all text-sm font-medium"
+                    placeholder="Tu nombre"
+                  />
+                  <!-- Validation visual indicator -->
+                  <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
+                    <span class="text-xs" id="name-status"></span>
+                  </div>
+                </div>
+                <p id="name-tip" class="validation-tip">Por favor ingresa tu nombre (mínimo 2 letras)</p>
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium text-amber-400 mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="w-full px-4 py-3 bg-slate-950/50 border border-amber-500/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all"
-                  placeholder="tu@email.com"
-                />
+                <label for="email" class="block text-sm font-semibold text-amber-400 mb-2 tracking-wider uppercase">Correo Electrónico</label>
+                <div class="relative">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="input-transition w-full px-4 py-3.5 bg-slate-950/40 border border-slate-700/60 focus:border-amber-500/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/25 transition-all text-sm font-medium"
+                    placeholder="tu@email.com"
+                  />
+                  <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
+                    <span class="text-xs" id="email-status"></span>
+                  </div>
+                </div>
+                <p id="email-tip" class="validation-tip">Por favor ingresa un correo electrónico válido</p>
               </div>
               <div>
-                <label for="message" class="block text-sm font-medium text-amber-400 mb-2">Mensaje</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  required
-                  class="w-full px-4 py-3 bg-slate-950/50 border border-amber-500/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all resize-none"
-                  placeholder="Cuéntame sobre tu proyecto..."></textarea>
+                <label for="message" class="block text-sm font-semibold text-amber-400 mb-2 tracking-wider uppercase">Tu Mensaje</label>
+                <div class="relative">
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    required
+                    class="input-transition w-full px-4 py-3.5 bg-slate-950/40 border border-slate-700/60 focus:border-amber-500/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/25 transition-all text-sm font-medium resize-none"
+                    placeholder="Cuéntame sobre tu proyecto o consulta..."></textarea>
+                  <div class="absolute top-3 right-3 pointer-events-none text-slate-500">
+                    <span class="text-xs" id="message-status"></span>
+                  </div>
+                </div>
+                <p id="message-tip" class="validation-tip">Por favor escribe un mensaje (mínimo 10 caracteres)</p>
               </div>
               <button
                 type="submit"
-                class="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-xl font-bold hover:from-amber-400 hover:to-yellow-400 transition-all shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:-translate-y-0.5 magnetic-hover"
+                id="submit-contact"
+                class="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-xl font-bold hover:from-amber-400 hover:to-yellow-400 transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer magnetic-hover"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                 </svg>
-                Enviar Mensaje
+                <span>Enviar Mensaje</span>
               </button>
             </form>
+          </div>
+
+          <!-- Glassmorphic Success/Error Modal (Asynchronous Feedback) -->
+          <div id="contact-modal" class="modal-backdrop fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+            <div class="modal-content-anim w-full max-w-md bg-white dark:bg-slate-900 rounded-[2.2rem] p-8 border border-slate-200/60 dark:border-slate-800 shadow-2xl relative overflow-hidden">
+              <!-- Radial gradients inside modal for dynamic reflections -->
+              <div class="absolute -top-20 -right-20 w-44 h-44 bg-amber-500/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+              <div class="absolute -bottom-20 -left-20 w-44 h-44 bg-yellow-500/10 dark:bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+              <div class="flex flex-col items-center text-center">
+                <!-- Success icon with custom animation -->
+                <div id="modal-success-icon" class="mb-6 flex justify-center items-center">
+                  <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                  </svg>
+                </div>
+
+                <!-- Error icon in case of API failure -->
+                <div id="modal-error-icon" class="mb-6 hidden text-red-500 bg-red-100 dark:bg-red-950/20 p-4.5 rounded-full border border-red-500/20">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-12 h-12">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                  </svg>
+                </div>
+
+                <h3 id="modal-title" class="text-3xl font-serif font-bold text-slate-900 dark:text-slate-100 mb-3">
+                  ¡Mensaje Enviado!
+                </h3>
+                
+                <p id="modal-description" class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 px-2">
+                  Muchas gracias por contactarme. He recibido tu mensaje con éxito y te estaré respondiendo a la brevedad.
+                </p>
+
+                <button id="modal-close-btn" class="w-full py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-900 rounded-2xl font-bold hover:shadow-xl hover:shadow-amber-500/25 active:scale-[0.98] transition-all text-sm cursor-pointer shadow-md">
+                  Entendido
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- Quick Contact Options -->
@@ -918,3 +984,198 @@ const achievements = [
     scroll-behavior: smooth;
   }
 </style>
+
+<script>
+  // Contact form elements
+  const form = document.querySelector('#contacto form') as HTMLFormElement;
+  const nameInput = document.getElementById('name') as HTMLInputElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+  const submitBtn = document.getElementById('submit-contact') as HTMLButtonElement;
+  const submitText = submitBtn?.querySelector('span');
+
+  // Modal elements
+  const modal = document.getElementById('contact-modal');
+  const modalSuccessIcon = document.getElementById('modal-success-icon');
+  const modalErrorIcon = document.getElementById('modal-error-icon');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+
+  // Input status elements
+  const nameStatus = document.getElementById('name-status');
+  const emailStatus = document.getElementById('email-status');
+  const messageStatus = document.getElementById('message-status');
+
+  // Validation rules
+  function validateName(val: string): boolean {
+    return val.trim().length >= 2;
+  }
+
+  function validateEmail(val: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(val.trim());
+  }
+
+  function validateMessage(val: string): boolean {
+    return val.trim().length >= 10;
+  }
+
+  // Update input visual styles and status indicators
+  function setInputStatus(
+    input: HTMLInputElement | HTMLTextAreaElement,
+    statusEl: HTMLElement | null,
+    isValid: boolean,
+    isDirty: boolean
+  ) {
+    const tip = document.getElementById(`${input.id}-tip`);
+
+    if (!isDirty) {
+      input.classList.remove('input-valid', 'input-invalid');
+      if (statusEl) statusEl.innerHTML = '';
+      if (tip) tip.classList.remove('show');
+      return;
+    }
+
+    if (isValid) {
+      input.classList.remove('input-invalid');
+      input.classList.add('input-valid');
+      if (statusEl) {
+        statusEl.innerHTML = '<span class="text-green-500 font-bold text-sm bg-green-500/10 w-6 h-6 flex items-center justify-center rounded-full border border-green-500/20">✓</span>';
+      }
+      if (tip) tip.classList.remove('show');
+    } else {
+      input.classList.remove('input-valid');
+      input.classList.add('input-invalid');
+      if (statusEl) {
+        statusEl.innerHTML = '<span class="text-red-500 font-bold text-sm bg-red-500/10 w-6 h-6 flex items-center justify-center rounded-full border border-red-500/20">!</span>';
+      }
+      if (tip) tip.classList.add('show');
+    }
+  }
+
+  // Event Listeners for Live Validation
+  nameInput?.addEventListener('input', () => {
+    setInputStatus(nameInput, nameStatus, validateName(nameInput.value), nameInput.value.length > 0);
+  });
+
+  emailInput?.addEventListener('input', () => {
+    setInputStatus(emailInput, emailStatus, validateEmail(emailInput.value), emailInput.value.length > 0);
+  });
+
+  messageInput?.addEventListener('input', () => {
+    setInputStatus(messageInput, messageStatus, validateMessage(messageInput.value), messageInput.value.length > 0);
+  });
+
+  // Modal controls
+  function openModal(isSuccess: boolean, errorMsg?: string) {
+    if (!modal) return;
+    
+    if (isSuccess) {
+      modalSuccessIcon?.classList.remove('hidden');
+      modalErrorIcon?.classList.add('hidden');
+      if (modalTitle) modalTitle.textContent = "¡Mensaje Enviado!";
+      if (modalDescription) {
+        modalDescription.textContent = "Muchas gracias por contactarme. He recibido tu mensaje con éxito y te estaré respondiendo a la brevedad.";
+      }
+    } else {
+      modalSuccessIcon?.classList.add('hidden');
+      modalErrorIcon?.classList.remove('hidden');
+      if (modalTitle) modalTitle.textContent = "Error al enviar";
+      if (modalDescription) {
+        modalDescription.textContent = errorMsg || "Hubo un inconveniente al enviar tu mensaje. Por favor, inténtalo de nuevo o contáctame directamente por WhatsApp/Email.";
+      }
+    }
+
+    modal.classList.add('show');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('show');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  modalCloseBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Form submission handling via AJAX
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const isNameValid = validateName(nameInput.value);
+    const isEmailValid = validateEmail(emailInput.value);
+    const isMessageValid = validateMessage(messageInput.value);
+
+    // Force validation alerts on submit
+    setInputStatus(nameInput, nameStatus, isNameValid, true);
+    setInputStatus(emailInput, emailStatus, isEmailValid, true);
+    setInputStatus(messageInput, messageStatus, isMessageValid, true);
+
+    if (!isNameValid || !isEmailValid || !isMessageValid) {
+      if (!isNameValid) nameInput.focus();
+      else if (!isEmailValid) emailInput.focus();
+      else messageInput.focus();
+      return;
+    }
+
+    // Set interactive loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+    }
+    
+    const originalBtnHTML = submitBtn.innerHTML;
+
+    submitBtn.innerHTML = `
+      <svg class="animate-spin-loader h-5 w-5 text-slate-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      <span>Enviando mensaje...</span>
+    `;
+
+    try {
+      const formData = new FormData(form);
+      const action = form.getAttribute('action') || 'https://formspree.io/f/mrezk84@gmail.com';
+      
+      const response = await fetch(action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        openModal(true);
+        form.reset();
+        setInputStatus(nameInput, nameStatus, false, false);
+        setInputStatus(emailInput, emailStatus, false, false);
+        setInputStatus(messageInput, messageStatus, false, false);
+      } else {
+        let errorMsg = "Hubo un inconveniente al enviar tu mensaje. Por favor, asegúrate de que tu correo esté escrito correctamente.";
+        try {
+          const data = await response.json();
+          if (data.errors && data.errors.length > 0) {
+            errorMsg = data.errors.map((err: any) => err.message).join(', ');
+          }
+        } catch (_) {}
+        openModal(false, errorMsg);
+      }
+    } catch (err) {
+      console.error(err);
+      openModal(false);
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+        submitBtn.innerHTML = originalBtnHTML;
+      }
+    }
+  });
+</script>
+
