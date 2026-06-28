@@ -6,9 +6,9 @@ import ScrollToTop from "../components/ScrollToTop.astro";
 import AOSInit from "../components/AOSInit";
 import ProjectsSection from "../components/ProjectsSection.astro";
 import GitHubRepos from "../components/GitHubRepos.astro";
-import TestimonialsSection from "../components/TestimonialsSection.astro";
 import CertificationsSection from "../components/CertificationsSection.astro";
 import LanguagesSection from "../components/LanguagesSection.astro";
+import Icon from "../components/Icon.astro";
 import "../styles/global.css";
 
 const isVercel = process.env.VERCEL === '1';
@@ -29,38 +29,11 @@ const stats = [
   { value: "100%", label: "Compromiso de calidad" }
 ];
 
-const services = [
-  {
-    icon: "⚛️",
-    title: "Desarrollo Frontend",
-    description: "Aplicaciones web modernas con React, JavaScript y CSS. Interfaces responsivas y experiencia de usuario optimizada.",
-    technologies: ["React", "JavaScript", "HTML/CSS", "XAML"]
-  },
-  {
-    icon: "🔷",
-    title: "Desarrollo Backend",
-    description: "APIs robustas y escalables con C# .NET, Node.js y Java. Integración con bases de datos SQL y NoSQL.",
-    technologies: ["C# .NET", "Node.js", "Java", "Spring Boot"]
-  },
-  {
-    icon: "🗄️",
-    title: "Bases de Datos",
-    description: "Diseño y optimización de esquemas. SQL Server, PostgreSQL, MongoDB. Mejoras de hasta 40% en rendimiento.",
-    technologies: ["SQL Server", "PostgreSQL", "MongoDB", "MySQL"]
-  },
-  {
-    icon: "🔗",
-    title: "Integraciones",
-    description: "Integración de servicios web, APIs REST/SOAP, LDAP, ArcGIS y sistemas de telefonía como Asterisk.",
-    technologies: ["REST APIs", "WCF", "ArcGIS", "Asterisk"]
-  }
-];
-
 const achievements = [
-  { icon: "🏛️", text: "Sistemas críticos para el Ministerio del Interior" },
-  { icon: "🚨", text: "Centro de Emergencias 911 - Gestión de llamadas" },
-  { icon: "🏥", text: "SEMM - Plataforma de eventos médicos" },
-  { icon: "🎓", text: "Egresado Analista Programador - ORT Uruguay" }
+  { icon: "building", text: "Sistemas críticos para el Ministerio del Interior" },
+  { icon: "phone", text: "Centro de Emergencias 911 — Gestión de llamadas" },
+  { icon: "shield", text: "SEMM — Plataforma de eventos médicos" },
+  { icon: "academic", text: "Egresado Analista Programador — ORT Uruguay" }
 ];
 ---
 
@@ -79,11 +52,10 @@ const achievements = [
     <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden noise-bg">
       <!-- Modern Animated Background -->
       <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-amber-50/20 to-slate-100 dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-950">
-        <!-- Animated gradient orbs -->
+        <!-- Soft ambient orbs -->
         <div class="absolute inset-0 overflow-hidden">
-          <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-gradient-to-br from-amber-400/20 via-yellow-300/10 to-transparent rounded-full blur-3xl animate-blob"></div>
-          <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl animate-blob" style="animation-delay: 2s;"></div>
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-amber-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 via-amber-300/5 to-transparent rounded-full blur-3xl animate-blob"></div>
+          <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-amber-500/8 to-transparent rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
         </div>
         <!-- Grid pattern overlay -->
         <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"></div>
@@ -120,17 +92,17 @@ const achievements = [
             </p>
 
             <!-- Trust Badges -->
-            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
-              <div class="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                <span class="text-xl">🏛️</span>
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
+              <div class="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-slate-800/60 rounded-lg border border-slate-200/70 dark:border-slate-700/60">
+                <Icon name="building" class="w-4 h-4 text-amber-600 dark:text-amber-400" />
                 <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Ministerio del Interior</span>
               </div>
-              <div class="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                <span class="text-xl">🚨</span>
+              <div class="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-slate-800/60 rounded-lg border border-slate-200/70 dark:border-slate-700/60">
+                <Icon name="phone" class="w-4 h-4 text-amber-600 dark:text-amber-400" />
                 <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Sistema 911</span>
               </div>
-              <div class="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                <span class="text-xl">🎓</span>
+              <div class="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-slate-800/60 rounded-lg border border-slate-200/70 dark:border-slate-700/60">
+                <Icon name="academic" class="w-4 h-4 text-amber-600 dark:text-amber-400" />
                 <span class="text-sm font-medium text-slate-700 dark:text-slate-300">ORT Uruguay</span>
               </div>
             </div>
@@ -176,8 +148,8 @@ const achievements = [
           <!-- Image - Modern 2025 Style -->
           <div class="flex justify-center order-1 lg:order-2" data-aos="fade-left" data-aos-duration="1000">
             <div class="relative">
-              <!-- Gradient glow background -->
-              <div class="absolute -inset-6 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-[3rem] blur-3xl opacity-40 animate-pulse"></div>
+              <!-- Soft glow background -->
+              <div class="absolute -inset-6 bg-gradient-to-br from-amber-400/40 to-amber-500/20 rounded-[3rem] blur-3xl opacity-50"></div>
 
               <!-- Main image container -->
               <div class="relative glass-modern rounded-[2.5rem] p-3 shadow-2xl animate-float">
@@ -188,13 +160,13 @@ const achievements = [
                 />
 
                 <!-- Floating tech badges -->
-                <div class="absolute -top-3 -left-3 px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl shadow-lg text-white text-xs font-bold">
+                <div class="absolute -top-3 -left-3 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-lg text-slate-800 dark:text-slate-100 text-xs font-bold border border-slate-200/70 dark:border-slate-700">
                   React
                 </div>
-                <div class="absolute -top-3 -right-3 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl shadow-lg text-white text-xs font-bold">
+                <div class="absolute -top-3 -right-3 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-lg text-slate-800 dark:text-slate-100 text-xs font-bold border border-slate-200/70 dark:border-slate-700">
                   .NET
                 </div>
-                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl shadow-lg text-white text-sm font-bold flex items-center gap-2">
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl shadow-lg text-white text-sm font-bold flex items-center gap-2">
                   <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
@@ -247,41 +219,34 @@ const achievements = [
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
-              icon: "🎯",
+              icon: "target",
               title: "Enfoque en resultados",
-              description: "Optimización de consultas SQL con 40% mejora en rendimiento. Soluciones que impactan directamente en la operación.",
-              gradient: "from-orange-400 to-red-500"
+              description: "Optimización de consultas SQL con 40% mejora en rendimiento. Soluciones que impactan directamente en la operación."
             },
             {
-              icon: "🔄",
+              icon: "refresh",
               title: "Aprendizaje continuo",
-              description: "Constante actualización tecnológica. Egresado reciente con conocimientos frescos y experiencia práctica.",
-              gradient: "from-blue-400 to-cyan-500"
+              description: "Constante actualización tecnológica. Egresado reciente con conocimientos frescos y experiencia práctica."
             },
             {
-              icon: "🤝",
+              icon: "team",
               title: "Trabajo en equipo",
-              description: "Experiencia en metodologías ágiles (Scrum, Kanban). Colaboración efectiva con equipos multidisciplinarios.",
-              gradient: "from-purple-400 to-violet-500"
+              description: "Experiencia en metodologías ágiles (Scrum, Kanban). Colaboración efectiva con equipos multidisciplinarios."
             },
             {
-              icon: "🏆",
+              icon: "trophy",
               title: "Proyectos críticos",
-              description: "Desarrollo de sistemas para el Ministerio del Interior y SEMM. Código que salva vidas.",
-              gradient: "from-amber-400 to-yellow-500"
+              description: "Desarrollo de sistemas para el Ministerio del Interior y SEMM. Soluciones de misión crítica."
             }
           ].map((value, index) => (
             <div
-              class="group relative bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-lg border border-slate-100 dark:border-slate-800 hover-lift overflow-hidden"
+              class="group relative bg-white dark:bg-slate-900 rounded-3xl p-7 shadow-sm border border-slate-200/70 dark:border-slate-800 hover-lift overflow-hidden"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <!-- Background gradient on hover -->
-              <div class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-slate-50 to-transparent dark:from-slate-800/50"></div>
-
               <!-- Icon container -->
-              <div class={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${value.gradient} flex items-center justify-center text-2xl shadow-lg mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                {value.icon}
+              <div class="relative w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-5 ring-1 ring-amber-500/20 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
+                <Icon name={value.icon} class="w-6 h-6" />
               </div>
 
               <h3 class="relative font-bold text-lg mb-2 text-slate-900 dark:text-slate-100">{value.title}</h3>
@@ -307,10 +272,10 @@ const achievements = [
         <!-- Bento Grid -->
         <div class="bento-grid">
           <!-- Frontend - Large card -->
-          <div class="bento-card-3 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-lg border border-slate-100 dark:border-slate-700" data-aos="fade-up">
+          <div class="bento-card-3 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up">
             <div class="h-full flex flex-col">
-              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-3xl shadow-lg mb-6">
-                ⚛️
+              <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-6">
+                <Icon name="code" class="w-7 h-7" />
               </div>
               <h3 class="font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Desarrollo Frontend</h3>
               <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed flex-1">
@@ -327,10 +292,10 @@ const achievements = [
           </div>
 
           <!-- Backend - Standard card -->
-          <div class="bento-card-2 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-lg border border-slate-100 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
+          <div class="bento-card-2 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
             <div class="h-full flex flex-col">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400 to-violet-500 flex items-center justify-center text-2xl shadow-lg mb-5">
-                🔷
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-5">
+                <Icon name="server" class="w-6 h-6" />
               </div>
               <h3 class="font-bold text-xl mb-2 text-slate-900 dark:text-slate-100">Desarrollo Backend</h3>
               <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed flex-1">
@@ -347,10 +312,10 @@ const achievements = [
           </div>
 
           <!-- Database - Standard card -->
-          <div class="bento-card-2 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-lg border border-slate-100 dark:border-slate-700" data-aos="fade-up" data-aos-delay="200">
+          <div class="bento-card-2 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up" data-aos-delay="200">
             <div class="h-full flex flex-col">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center text-2xl shadow-lg mb-5">
-                🗄️
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-5">
+                <Icon name="database" class="w-6 h-6" />
               </div>
               <h3 class="font-bold text-xl mb-2 text-slate-900 dark:text-slate-100">Bases de Datos</h3>
               <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed flex-1">
@@ -367,10 +332,10 @@ const achievements = [
           </div>
 
           <!-- Integrations - Tall card -->
-          <div class="bento-card-4 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-lg border border-slate-100 dark:border-slate-700" data-aos="fade-up" data-aos-delay="300">
+          <div class="bento-card-4 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up" data-aos-delay="300">
             <div class="h-full flex flex-col">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-2xl shadow-lg mb-5">
-                🔗
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-5">
+                <Icon name="link" class="w-6 h-6" />
               </div>
               <h3 class="font-bold text-xl mb-3 text-slate-900 dark:text-slate-100">Integraciones</h3>
               <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed">
@@ -411,12 +376,14 @@ const achievements = [
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           {achievements.map((achievement, index) => (
             <div
-              class="flex items-center justify-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700"
+              class="flex items-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200/70 dark:border-slate-700"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <span class="text-2xl">{achievement.icon}</span>
-              <span class="text-sm font-medium text-slate-700 dark:text-slate-300 text-center">{achievement.text}</span>
+              <span class="shrink-0 w-9 h-9 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                <Icon name={achievement.icon} class="w-5 h-5" />
+              </span>
+              <span class="text-sm font-medium text-slate-700 dark:text-slate-300">{achievement.text}</span>
             </div>
           ))}
         </div>
@@ -435,9 +402,9 @@ const achievements = [
           </h2>
         </div>
 
-        <div class="relative">
-          <!-- Timeline line - continuous from top to bottom -->
-          <div class="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-500 via-amber-400 to-amber-500 dark:from-amber-600 dark:via-amber-500 dark:to-amber-600 sm:-translate-x-1/2"></div>
+        <div class="relative" style="min-height: 600px;">
+          <!-- Timeline line - continuous from top to bottom with improved visibility -->
+          <div class="absolute left-6 sm:left-1/2 top-0 bottom-0 w-1 rounded-full bg-amber-500 dark:bg-amber-400 sm:-translate-x-1/2 z-0"></div>
 
           <!-- SONDA -->
           <div class="relative mb-12 pb-12" data-aos="fade-up">
@@ -464,7 +431,7 @@ const achievements = [
                 </div>
               </div>
               <!-- Timeline dot -->
-              <div class="absolute left-4 sm:left-1/2 top-6 w-4 h-4 bg-amber-500 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10 shadow-lg shadow-amber-500/50"></div>
+              <div class="absolute left-6 sm:left-1/2 top-6 w-5 h-5 bg-amber-500 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10 shadow-lg shadow-amber-500/50"></div>
               <div class="sm:w-1/2 sm:pl-12"></div>
             </div>
           </div>
@@ -474,7 +441,7 @@ const achievements = [
             <div class="flex flex-col sm:flex-row gap-6 items-start">
               <div class="sm:w-1/2 sm:pr-12 order-2 sm:order-1"></div>
               <!-- Timeline dot -->
-              <div class="absolute left-4 sm:left-1/2 top-6 w-4 h-4 bg-slate-400 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10"></div>
+              <div class="absolute left-6 sm:left-1/2 top-6 w-5 h-5 bg-slate-400 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10"></div>
               <div class="sm:w-1/2 sm:pl-12 order-1 sm:order-2">
                 <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow max-w-md">
                   <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-2">Supervisor de Mesa de Ayuda</h3>
@@ -514,7 +481,7 @@ const achievements = [
                 </div>
               </div>
               <!-- Timeline dot -->
-              <div class="absolute left-4 sm:left-1/2 top-6 w-4 h-4 bg-slate-400 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10"></div>
+              <div class="absolute left-6 sm:left-1/2 top-6 w-5 h-5 bg-slate-400 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10"></div>
               <div class="sm:w-1/2 sm:pl-12"></div>
             </div>
           </div>
@@ -540,38 +507,31 @@ const achievements = [
           </h2>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { name: "React", icon: "⚛️", gradient: "from-cyan-400 to-blue-500" },
-            { name: "C# .NET", icon: "🔷", gradient: "from-purple-400 to-purple-600" },
-            { name: "SQL Server", icon: "🗄️", gradient: "from-red-400 to-red-600" },
-            { name: "PostgreSQL", icon: "🐘", gradient: "from-blue-400 to-indigo-600" },
-            { name: "JavaScript", icon: "📜", gradient: "from-yellow-400 to-yellow-600" },
-            { name: "Java", icon: "☕", gradient: "from-orange-500 to-red-600" },
-            { name: "Node.js", icon: "🟢", gradient: "from-green-400 to-green-600" },
-            { name: "Spring Boot", icon: "🍃", gradient: "from-green-500 to-emerald-600" },
-            { name: "HTML/CSS", icon: "🎨", gradient: "from-orange-400 to-orange-600" },
-            { name: "ArcGIS", icon: "🗺️", gradient: "from-emerald-400 to-teal-600" },
-            { name: "MongoDB", icon: "🍃", gradient: "from-green-500 to-green-700" },
-            { name: "WCF", icon: "🔌", gradient: "from-blue-400 to-blue-600" },
-            { name: "XAML", icon: "🖼️", gradient: "from-blue-400 to-indigo-600" },
-            { name: "REST APIs", icon: "🔗", gradient: "from-indigo-400 to-indigo-600" },
-            { name: "LDAP", icon: "🔐", gradient: "from-amber-400 to-amber-600" },
-            { name: "Go", icon: "🐹", gradient: "from-cyan-400 to-blue-600" },
-            { name: "Asterisk", icon: "📞", gradient: "from-orange-400 to-red-600" }
-          ].map((tech, index) => (
+            { group: "Frontend", icon: "code", items: ["React", "JavaScript", "HTML / CSS", "XAML"] },
+            { group: "Backend", icon: "server", items: ["C# .NET", "Java", "Spring Boot", "Node.js", "Go"] },
+            { group: "Datos", icon: "database", items: ["SQL Server", "PostgreSQL", "MongoDB"] },
+            { group: "Integraciones", icon: "link", items: ["REST APIs", "WCF", "ArcGIS", "LDAP", "Asterisk"] }
+          ].map((cat, index) => (
             <div
-              class="group relative bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-800 hover-lift overflow-hidden scroll-scale-in"
+              class="group bg-white dark:bg-slate-900 rounded-3xl p-7 shadow-sm border border-slate-200/70 dark:border-slate-800 hover-lift scroll-fade-in"
               data-aos="fade-up"
-              data-aos-delay={index * 50}
+              data-aos-delay={index * 100}
             >
-              <!-- Hover gradient background -->
-              <div class={`absolute inset-0 bg-gradient-to-br ${tech.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-
-              <div class="relative text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                {tech.icon}
+              <div class="flex items-center gap-3 mb-5">
+                <span class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center">
+                  <Icon name={cat.icon} class="w-5 h-5" />
+                </span>
+                <h3 class="font-bold text-lg text-slate-900 dark:text-slate-100">{cat.group}</h3>
               </div>
-              <p class="relative font-semibold text-slate-900 dark:text-slate-100">{tech.name}</p>
+              <ul class="flex flex-wrap gap-2">
+                {cat.items.map((item) => (
+                  <li class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300">
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -592,22 +552,22 @@ const achievements = [
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[
-            { name: "GoLand", icon: "🐹", color: "hover:from-cyan-400 hover:to-blue-500", desc: "IDE para Go" },
-            { name: "Visual Studio", icon: "💜", color: "hover:from-purple-400 hover:to-purple-600", desc: "IDE para .NET" },
-            { name: "VS Code", icon: "📘", color: "hover:from-blue-400 hover:to-blue-600", desc: "Editor de código" },
-            { name: "IntelliJ IDEA", icon: "🧠", color: "hover:from-orange-400 hover:to-red-500", desc: "IDE para Java" },
-            { name: "Postman", icon: "🚀", color: "hover:from-orange-500 hover:to-yellow-500", desc: "API testing" },
-            { name: "Docker", icon: "🐳", color: "hover:from-blue-500 hover:to-cyan-500", desc: "Contenedores" },
-            { name: "Git", icon: "📦", color: "hover:from-orange-400 hover:to-red-500", desc: "Control de versiones" },
-            { name: "SSMS", icon: "🗄️", color: "hover:from-red-400 hover:to-red-600", desc: "SQL Server Studio" }
+            { name: "GoLand", icon: "terminal", desc: "IDE para Go" },
+            { name: "Visual Studio", icon: "window", desc: "IDE para .NET" },
+            { name: "VS Code", icon: "code", desc: "Editor de código" },
+            { name: "IntelliJ IDEA", icon: "spark", desc: "IDE para Java" },
+            { name: "Postman", icon: "rocket", desc: "API testing" },
+            { name: "Docker", icon: "cube", desc: "Contenedores" },
+            { name: "Git", icon: "branch", desc: "Control de versiones" },
+            { name: "SSMS", icon: "database", desc: "SQL Server Studio" }
           ].map((tool, index) => (
             <div
-              class="group bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center"
+              class="group bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200/70 dark:border-slate-700 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center"
               data-aos="fade-up"
               data-aos-delay={index * 50}
             >
-              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                {tool.icon}
+              <div class="inline-flex w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
+                <Icon name={tool.icon} class="w-6 h-6" />
               </div>
               <p class="font-semibold text-slate-900 dark:text-slate-100">{tool.name}</p>
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{tool.desc}</p>
@@ -630,35 +590,19 @@ const achievements = [
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-slate-900 rounded-3xl p-8 border border-green-100 dark:border-green-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
-              🏃
+          {[
+            { icon: "sprint", title: "Scrum", desc: "Participación en ceremonias: Daily, Planning, Review y Retrospectiva." },
+            { icon: "board", title: "Kanban", desc: "Gestión visual del trabajo y optimización del flujo continuo." },
+            { icon: "cycle", title: "Prácticas Ágiles", desc: "CI/CD, TDD, Pair Programming y mejora continua." }
+          ].map((m, index) => (
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200/70 dark:border-slate-800 shadow-sm hover-lift" data-aos="fade-up" data-aos-delay={index * 100}>
+              <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-6">
+                <Icon name={m.icon} class="w-7 h-7" />
+              </div>
+              <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">{m.title}</h3>
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed">{m.desc}</p>
             </div>
-            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Scrum</h3>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Participación en ceremonias: Daily, Planning, Review y Retrospectiva.
-            </p>
-          </div>
-
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-slate-900 rounded-3xl p-8 border border-blue-100 dark:border-blue-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
-              📊
-            </div>
-            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Kanban</h3>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Gestión visual del trabajo y optimización del flujo continuo.
-            </p>
-          </div>
-
-          <div class="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-slate-900 rounded-3xl p-8 border border-purple-100 dark:border-purple-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-3xl mb-6 shadow-lg">
-              🔄
-            </div>
-            <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Prácticas Ágiles</h3>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-              CI/CD, TDD, Pair Programming y mejora continua.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -668,9 +612,6 @@ const achievements = [
 
     <!-- Languages Section -->
     <LanguagesSection />
-
-    <!-- Testimonials Section -->
-    <TestimonialsSection />
 
     <!-- Education Section -->
     <section id="formacion" class="py-24 bg-white dark:bg-slate-900 scroll-mt-24" data-aos="fade-up">
@@ -949,7 +890,7 @@ const achievements = [
       <div class="max-w-6xl mx-auto px-6">
         <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
           <p class="text-slate-400 text-sm">
-            © {new Date().getFullYear()} {name}. Diseñado con 🧡
+            © {new Date().getFullYear()} {name} · Full Stack Developer
           </p>
           <div class="flex items-center gap-6">
             <a href="https://www.linkedin.com/in/marcos-rezk" target="_blank" class="text-slate-400 hover:text-blue-500 transition-colors hover-lift">

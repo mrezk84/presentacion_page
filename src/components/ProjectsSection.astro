@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 // Fetch real GitHub repositories
 const githubRepos = [
 	{
@@ -58,7 +60,7 @@ const featuredProjects = [
 		isWorkProject: true,
 		client: "Ministerio del Interior",
 		year: "2024",
-		icon: "🏛️"
+		icon: "building"
 	},
 	{
 		title: "Sistema 911 - Centro de Emergencias",
@@ -70,7 +72,7 @@ const featuredProjects = [
 		isWorkProject: true,
 		client: "Centro de Emergencias 911",
 		year: "2023",
-		icon: "🚨"
+		icon: "phone"
 	},
 	{
 		title: "SEMM - Gestión de Eventos",
@@ -82,7 +84,7 @@ const featuredProjects = [
 		isWorkProject: true,
 		client: "SEMM",
 		year: "2023",
-		icon: "🏥"
+		icon: "shield"
 	}
 ];
 ---
@@ -123,7 +125,9 @@ const featuredProjects = [
 							<div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]" style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 20px 20px;"></div>
 							<div class="absolute inset-0 flex items-center justify-center">
 								<div class="text-center">
-									<div class="text-6xl mb-2 drop-shadow-xl transform group-hover:scale-110 transition-transform duration-500">{project.icon}</div>
+									<div class="inline-flex w-16 h-16 rounded-2xl bg-white/80 dark:bg-slate-900/70 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 shadow-sm items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-500">
+										<Icon name={project.icon} class="w-8 h-8" />
+									</div>
 									<p class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold px-4">{project.client}</p>
 								</div>
 							</div>
