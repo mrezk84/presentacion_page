@@ -20,7 +20,7 @@ const isVercel = process.env.VERCEL === '1';
 
 // https://astro.build/config
 export default defineConfig({
-  site: isVercel ? 'https://marcosrezk.vercel.app' : 'https://mrezk84.github.io/presentacion_page',
+  site: isVercel ? 'https://presentacion-page.vercel.app' : 'https://mrezk84.github.io/presentacion_page',
   base: isVercel ? '/' : '/presentacion_page',
   vite: {
     plugins: [tailwindcss()],
