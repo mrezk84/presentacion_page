@@ -948,18 +948,53 @@ const achievements = [
   const emailStatus = document.getElementById('email-status');
   const messageStatus = document.getElementById('message-status');
 
-  // Validation rules
+  // Sanitization functions to prevent XSS
+  function sanitizeInput(val: string): string {
+    return val
+      .trim()
+      .replace(/[<>]/g, '') // Remove potential HTML tags
+      .replace(/javascript:/gi, '') // Remove javascript: protocol
+      .replace(/on\w+=/gi, '') // Remove event handlers like onclick=
+      .substring(0, 1000); // Limit length to prevent DoS
+  }
+
+  // Enhanced validation rules with security checks
   function validateName(val: string): boolean {
-    return val.trim().length >= 2;
+    const sanitized = sanitizeInput(val);
+    return sanitized.length >= 2 && sanitized.length <= 100 && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]+$/.test(sanitized);
   }
 
   function validateEmail(val: string): boolean {
+    const sanitized = sanitizeInput(val);
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(val.trim());
+    return emailRegex.test(sanitized) && sanitized.length <= 254;
   }
 
   function validateMessage(val: string): boolean {
-    return val.trim().length >= 10;
+    const sanitized = sanitizeInput(val);
+    return sanitized.length >= 10 && sanitized.length <= 5000;
+  }
+
+  // Rate limiting tracking (simple implementation)
+  let submitAttempts = 0;
+  const maxAttempts = 3;
+  const lastSubmitTime = Date.now();
+  const cooldownPeriod = 60000; // 1 minute cooldown
+
+  function checkRateLimit(): boolean {
+    const now = Date.now();
+    const timeSinceLastSubmit = now - lastSubmitTime;
+
+    if (timeSinceLastSubmit > cooldownPeriod) {
+      submitAttempts = 0; // Reset attempts after cooldown
+      return true;
+    }
+
+    if (submitAttempts >= maxAttempts) {
+      return false; // Rate limit exceeded
+    }
+
+    return true;
   }
 
   // Update input visual styles and status indicators
@@ -1043,9 +1078,15 @@ const achievements = [
     if (e.target === modal) closeModal();
   });
 
-  // Form submission handling via AJAX
+  // Form submission handling via AJAX with security enhancements
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Check rate limiting first
+    if (!checkRateLimit()) {
+      openModal(false, "Has excedido el límite de envíos. Por favor, espera unos minutos antes de intentar nuevamente.");
+      return;
+    }
 
     const isNameValid = validateName(nameInput.value);
     const isEmailValid = validateEmail(emailInput.value);
@@ -1063,12 +1104,27 @@ const achievements = [
       return;
     }
 
+    // Sanitize all inputs before submission
+    const sanitizedData = {
+      name: sanitizeInput(nameInput.value),
+      email: sanitizeInput(emailInput.value),
+      message: sanitizeInput(messageInput.value)
+    };
+
+    // Update form values with sanitized data
+    nameInput.value = sanitizedData.name;
+    emailInput.value = sanitizedData.email;
+    messageInput.value = sanitizedData.message;
+
+    // Increment submit attempts for rate limiting
+    submitAttempts++;
+
     // Set interactive loading state
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
     }
-    
+
     const originalBtnHTML = submitBtn.innerHTML;
 
     submitBtn.innerHTML = `
@@ -1082,7 +1138,7 @@ const achievements = [
     try {
       const formData = new FormData(form);
       const action = form.getAttribute('action') || 'https://formspree.io/f/mrezk84@gmail.com';
-      
+
       const response = await fetch(action, {
         method: 'POST',
         body: formData,
@@ -1097,6 +1153,7 @@ const achievements = [
         setInputStatus(nameInput, nameStatus, false, false);
         setInputStatus(emailInput, emailStatus, false, false);
         setInputStatus(messageInput, messageStatus, false, false);
+        submitAttempts = 0; // Reset on successful submission
       } else {
         let errorMsg = "Hubo un inconveniente al enviar tu mensaje. Por favor, asegúrate de que tu correo esté escrito correctamente.";
         try {

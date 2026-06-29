@@ -16,6 +16,7 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env*.local
 
 # macOS-specific files
 .DS_Store
@@ -23,4 +24,20 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
-.env*.local
+
+# security sensitive files
+*.pem
+*.key
+*.cert
+*.token
+credentials.json
+secrets/
+
+# development files
+.claude/
+.agents/
+docs/
+
+# cache
+.cache/
+.parcel-cache/

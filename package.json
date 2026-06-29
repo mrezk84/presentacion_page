@@ -8,7 +8,12 @@
     "build:vercel": "astro build",
     "build:github": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "security:audit": "npm audit --audit-level=moderate",
+    "security:fix": "npm audit fix",
+    "security:check": "npm audit --production",
+    "security:outdated": "npm outdated",
+    "test:security": "npm run security:audit && npm run security:check"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.7",
