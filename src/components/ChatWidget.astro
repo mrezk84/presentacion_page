@@ -11,33 +11,43 @@ const basePath = isVercel ? '' : '/presentacion_page';
     <!-- Chat Window -->
     <div
         id="chat-window"
-        class="mb-4 w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-0 origin-bottom-right transition-transform duration-300 ease-out overflow-hidden"
+        class="mb-4 w-80 glass-modern rounded-3xl shadow-2xl border border-amber-500/20 transform scale-0 origin-bottom-right transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl"
     >
         <!-- Header -->
         <div
-            class="bg-slate-900 dark:bg-slate-950 p-4 border-b border-slate-800 flex justify-between items-center"
+            class="bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 p-4 border-b border-amber-500/20 flex justify-between items-center relative overflow-hidden"
         >
-            <div class="flex items-center gap-3">
-                <div class="relative">
+            <!-- Subtle animated gradient in header background -->
+            <div class="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-amber-500/5 animate-gradient opacity-50"></div>
+
+            <div class="flex items-center gap-3 relative z-10">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
                     <img
                         src={`${basePath}/perfil.jpg`}
                         alt="Marcos Rezk"
-                        class="w-10 h-10 rounded-full border-2 border-amber-500 object-cover"
+                        class="relative w-10 h-10 rounded-full border-2 border-amber-500 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <span
-                        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full"
+                        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full animate-pulse"
                     ></span>
                 </div>
                 <div>
                     <h4 class="text-white font-serif font-bold text-sm">
                         Marcos Rezk
                     </h4>
-                    <p class="text-slate-400 text-xs">En línea</p>
+                    <p class="text-slate-400 text-xs flex items-center gap-1">
+                        <span class="relative flex h-1.5 w-1.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+                        </span>
+                        En línea
+                    </p>
                 </div>
             </div>
             <button
                 id="close-chat"
-                class="text-slate-400 hover:text-white transition-colors"
+                class="relative z-10 text-slate-400 hover:text-white hover:rotate-90 transition-all duration-300 transform"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -56,46 +66,57 @@ const basePath = isVercel ? '' : '/presentacion_page';
         </div>
 
         <!-- Body -->
-        <div class="p-4 bg-slate-50 dark:bg-slate-900/50 flex flex-col gap-3">
+        <div class="p-4 bg-gradient-to-br from-slate-50 to-amber-50/30 dark:from-slate-900/50 dark:to-slate-900/80 flex flex-col gap-3 relative overflow-hidden">
+            <!-- Subtle pattern overlay -->
+            <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, rgba(245,158,11,1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+
             <div
-                class="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 max-w-[85%]"
+                class="relative bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none shadow-lg border border-amber-200/50 dark:border-amber-800/30 max-w-[85%] hover:shadow-xl transition-shadow duration-300"
             >
-                <p class="text-slate-700 dark:text-slate-300 text-sm">
-                    ¡Hola! 👋 <br />
-                    Escribe tu mensaje aquí y envíamelo directamente a mi WhatsApp.
-                </p>
+                <div class="flex items-start gap-2">
+                    <div class="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span class="text-white text-xs">👋</span>
+                    </div>
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                        ¡Hola! Escribe tu mensaje aquí y envíamelo directamente a mi WhatsApp.
+                    </p>
+                </div>
             </div>
             <textarea
                 id="chat-message"
-                class="w-full p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
+                class="relative w-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 resize-none transition-all duration-300 shadow-sm focus:shadow-md"
                 rows="3"
                 placeholder="Escribe tu mensaje..."></textarea>
         </div>
 
         <!-- Footer / Actions -->
         <div
-            class="p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2"
+            class="p-4 bg-gradient-to-r from-slate-100 to-amber-50/50 dark:from-slate-900 dark:to-slate-800/80 border-t border-amber-200/50 dark:border-amber-800/20 flex flex-col gap-3"
         >
             <button
                 id="send-whatsapp"
-                class="flex items-center justify-center gap-2 w-full py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium transition-colors text-sm shadow-md hover:shadow-lg"
+                class="group relative flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white rounded-xl font-bold transition-all duration-300 text-sm shadow-lg hover:shadow-green-500/30 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] overflow-hidden"
             >
+                <!-- Animated shine effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:animate-shine"></div>
+
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
                     height="18"
                     fill="currentColor"
                     viewBox="0 0 16 16"
+                    class="relative z-10"
                 >
                     <path
                         d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
                     ></path>
                 </svg>
-                Enviar a WhatsApp
+                <span class="relative z-10">Enviar a WhatsApp</span>
             </button>
             <button
                 id="send-email"
-                class="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl font-medium transition-colors text-sm"
+                class="group flex items-center justify-center gap-2 w-full py-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl font-bold transition-all duration-300 text-sm shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-700 hover:border-amber-500/50 dark:hover:border-amber-500/30"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +124,7 @@ const basePath = isVercel ? '' : '/presentacion_page';
                     viewBox="0 0 24 24"
                     stroke-width="2"
                     stroke="currentColor"
-                    class="w-4 h-4"
+                    class="w-4 h-4 text-amber-500"
                 >
                     <path
                         stroke-linecap="round"
@@ -119,23 +140,36 @@ const basePath = isVercel ? '' : '/presentacion_page';
     <!-- Toggle Button -->
     <button
         id="chat-toggle"
-        class="group flex items-center justify-center w-14 h-14 bg-amber-500 hover:bg-amber-400 text-white rounded-full shadow-lg hover:shadow-amber-500/30 transition-all duration-300 hover:scale-110"
+        class="group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-white rounded-full shadow-lg hover:shadow-amber-500/40 hover:shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95"
         aria-label="Abrir chat"
     >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="w-7 h-7"
-        >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-            ></path>
-        </svg>
+        <!-- Pulsing rings -->
+        <span class="absolute -inset-1 rounded-full bg-amber-500/20 animate-ping opacity-75"></span>
+        <span class="absolute -inset-2 rounded-full bg-amber-500/10 animate-pulse"></span>
+
+        <!-- Icon container with subtle rotation on hover -->
+        <div class="relative transition-transform duration-300 group-hover:rotate-12">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-8 h-8"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
+                ></path>
+            </svg>
+        </div>
+
+        <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 flex h-5 w-5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-5 w-5 bg-green-500 text-white text-xs font-bold items-center justify-center">1</span>
+        </span>
     </button>
 </div>
 
@@ -149,9 +183,33 @@ const basePath = isVercel ? '' : '/presentacion_page';
         "chat-message",
     ) as HTMLTextAreaElement;
 
+    let isChatOpen = false;
+
     function toggleChat() {
-        chatWindow?.classList.toggle("scale-0");
-        chatWindow?.classList.toggle("scale-100");
+        isChatOpen = !isChatOpen;
+
+        if (isChatOpen) {
+            // Enhanced open animation
+            chatWindow?.classList.remove("scale-0");
+            chatWindow?.classList.add("scale-100");
+
+            // Add subtle bounce effect
+            setTimeout(() => {
+                chatWindow?.classList.add("animate-bounce-short");
+                setTimeout(() => {
+                    chatWindow?.classList.remove("animate-bounce-short");
+                }, 500);
+            }, 100);
+
+            // Auto-focus textarea
+            setTimeout(() => {
+                chatMessage?.focus();
+            }, 300);
+        } else {
+            // Enhanced close animation
+            chatWindow?.classList.remove("scale-100");
+            chatWindow?.classList.add("scale-0");
+        }
     }
 
     function getMessage() {
@@ -161,13 +219,41 @@ const basePath = isVercel ? '' : '/presentacion_page';
         );
     }
 
+    function addButtonClickEffect(button: HTMLElement | null) {
+        if (!button) return;
+
+        // Create ripple effect
+        button.classList.add("scale-95");
+        setTimeout(() => {
+            button.classList.remove("scale-95");
+        }, 150);
+
+        // Add success feedback
+        const originalContent = button.innerHTML;
+        button.innerHTML = `
+            <svg class="animate-spin-loader h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Procesando...</span>
+        `;
+
+        setTimeout(() => {
+            button.innerHTML = originalContent;
+        }, 2000);
+    }
+
     function sendToWhatsapp() {
         const message = getMessage();
         const phoneNumber = "59899845879";
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
             message,
         )}`;
-        window.open(url, "_blank");
+
+        addButtonClickEffect(sendWhatsapp);
+        setTimeout(() => {
+            window.open(url, "_blank");
+        }, 500);
     }
 
     function sendToEmail() {
@@ -177,11 +263,80 @@ const basePath = isVercel ? '' : '/presentacion_page';
         const url = `mailto:${email}?subject=${encodeURIComponent(
             subject,
         )}&body=${encodeURIComponent(message)}`;
-        window.open(url, "_blank");
+
+        addButtonClickEffect(sendEmail);
+        setTimeout(() => {
+            window.open(url, "_blank");
+        }, 500);
     }
 
-    chatToggle?.addEventListener("click", toggleChat);
+    // Enhanced event listeners with visual feedback
+    chatToggle?.addEventListener("click", () => {
+        // Add ripple effect on click
+        const ripple = document.createElement("span");
+        ripple.style.cssText = `
+            position: absolute;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-effect 0.6s linear;
+            pointer-events: none;
+        `;
+
+        const rect = chatToggle.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `0px`;
+        ripple.style.top = `0px`;
+
+        chatToggle.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+
+        toggleChat();
+    });
+
     closeChat?.addEventListener("click", toggleChat);
+
     sendWhatsapp?.addEventListener("click", sendToWhatsapp);
     sendEmail?.addEventListener("click", sendToEmail);
+
+    // Add keyboard shortcuts
+    document.addEventListener("keydown", (e) => {
+        // Close chat on Escape
+        if (e.key === "Escape" && isChatOpen) {
+            toggleChat();
+        }
+
+        // Send message on Ctrl+Enter when in chat
+        if (e.ctrlKey && e.key === "Enter" && document.activeElement === chatMessage) {
+            sendToWhatsapp();
+        }
+    });
+
+    // Auto-resize textarea
+    chatMessage?.addEventListener("input", function() {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+    });
+
+    // Add CSS for animations
+    const style = document.createElement("style");
+    style.textContent = `
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .animate-bounce-short {
+            animation: bounce-short 0.5s ease-out;
+        }
+
+        @keyframes bounce-short {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    `;
+    document.head.appendChild(style);
 </script>
