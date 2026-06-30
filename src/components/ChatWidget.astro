@@ -1,7 +1,8 @@
 ---
 // Get base path for GitHub Pages
-const isVercel = process.env.VERCEL === '1';
-const basePath = isVercel ? '' : '/presentacion_page';
+const isVercel = import.meta.env.VERCEL === '1';
+const isDevelopment = import.meta.env.DEV;
+const basePath = isVercel || isDevelopment ? '' : '/presentacion_page';
 ---
 
 <div

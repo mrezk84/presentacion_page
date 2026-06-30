@@ -29,7 +29,8 @@ const githubRepos = [
 
 // Get base path
 const isVercel = import.meta.env.VERCEL === '1';
-const basePath = isVercel ? '' : '/presentacion_page';
+const isDevelopment = import.meta.env.DEV;
+const basePath = isVercel || isDevelopment ? '' : '/presentacion_page';
 
 // Language colors
 const languageColors: Record<string, string> = {

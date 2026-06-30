@@ -8,6 +8,11 @@ import react from '@astrojs/react';
 // Detectar si estamos en Vercel
 const isVercel = process.env.VERCEL === '1';
 
+// Detectar entorno basado en command o variables de entorno
+// development: servidor local
+// production: build para despliegue
+const isDevelopment = process.env.ASTRO_DEV === 'true' || process.argv.includes('dev');
+
 // Para GitHub Pages:
 // - Si usas el repo principal (username.github.io), base debe ser '/'
 // - Si usas un repo específico (username.github.io/repo-name), base debe ser '/repo-name'
@@ -21,7 +26,8 @@ const isVercel = process.env.VERCEL === '1';
 // https://astro.build/config
 export default defineConfig({
   site: isVercel ? 'https://presentacion-page.vercel.app' : 'https://mrezk84.github.io/presentacion_page',
-  base: isVercel ? '/' : '/presentacion_page',
+  // En desarrollo o Vercel usar raíz, en GitHub Pages usar /presentacion_page
+  base: isVercel || isDevelopment ? '/' : '/presentacion_page',
   vite: {
     plugins: [tailwindcss()],
     build: {

@@ -4,7 +4,16 @@ import 'aos/dist/aos.css';
 
 export default function AOSInit() {
   useEffect(() => {
-    AOS.init();
+    // Solo inicializar AOS en el cliente
+    if (typeof window !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 50,
+        delay: 0,
+      });
+    }
   }, []);
 
   return null;
