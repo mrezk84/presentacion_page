@@ -11,39 +11,29 @@ const {
 	image = "/perfil.jpg"
 } = Astro.props;
 
-// Get base path from Astro config
-const isVercel = process.env.VERCEL === '1';
-// Detect development environment
+const isVercel = import.meta.env.VERCEL === '1';
 const isDevelopment = import.meta.env.DEV;
 
 const basePath = isVercel || isDevelopment ? '' : '/presentacion_page';
 
-// Helper function to build URLs with base path
 const assetUrl = (path: string) => `${basePath}${path}`;
 
-// Use relative URLs for both platforms (Astro handles base path automatically)
-const canonicalURL = Astro.url.pathname;
-const socialImageURL = assetUrl(image);
 const faviconURL = assetUrl('/favicon.svg');
 
-// Build absolute URLs for JSON-LD (requires full URLs)
+// Absolute URLs for JSON-LD and social cards.
 const baseURL = isVercel
   ? 'https://presentacion-page.vercel.app'
-  : 'https://mrezk84.github.io';
+  : 'https://mrezk84.github.io/presentacion_page';
 
-// Remove trailing slash from baseURL and leading slash from image path
 const baseURLClean = baseURL.replace(/\/$/, '');
 const imagePath = image.replace(/^\//, '');
 
 const fullImageURL = `${baseURLClean}/${imagePath}`;
 const fullCanonicalURL = `${baseURLClean}/`;
-
-// Expose helper to slot
-const { slot } = Astro;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth no-js">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,39 +44,48 @@ const { slot } = Astro;
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="author" content="Marcos Rezk" />
-		<link rel="canonical" href={canonicalURL} />
+		<link rel="canonical" href={fullCanonicalURL} />
 
 		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:type" content="profile" />
+		<meta property="og:url" content={fullCanonicalURL} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={socialImageURL} />
-		<meta property="og:locale" content="es_ES" />
+		<meta property="og:image" content={fullImageURL} />
+		<meta property="og:locale" content="es_UY" />
 		<meta property="og:site_name" content="Marcos Rezk" />
 
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:url" content={fullCanonicalURL} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={socialImageURL} />
+		<meta name="twitter:image" content={fullImageURL} />
 		<meta name="twitter:creator" content="@mrezk84" />
 
 		<!-- Additional SEO -->
-		<meta name="keywords" content="Marcos Rezk, Full Stack Developer, React Developer, C# Developer, SQL Server, ORT Uruguay, Web Developer, Software Developer, Uruguay, Backend, Frontend" />
+		<meta name="keywords" content="Marcos Rezk, Full Stack Developer, React Developer, C# Developer, .NET, SQL Server, ORT Uruguay, Web Developer, Software Developer, Uruguay, Montevideo, Backend, Frontend, contratar desarrollador" />
 		<meta name="robots" content="index, follow" />
 		<meta name="googlebot" content="index, follow" />
-		<meta name="theme-color" content="#0f172a" />
+		<!-- Matches --c-paper in each scheme so the browser chrome blends in. -->
+		<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0b1110" media="(prefers-color-scheme: dark)" />
 
 		<!-- Structured Data (JSON-LD) -->
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "Person",
 			"name": "Marcos Rezk",
-			"jobTitle": "Analista Programador",
+			"jobTitle": "Full Stack Developer",
 			"url": fullCanonicalURL,
 			"image": fullImageURL,
+			"email": "mailto:mrezk84@gmail.com",
+			"telephone": "+59899845879",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Montevideo",
+				"addressCountry": "UY"
+			},
 			"sameAs": [
 				"https://www.linkedin.com/in/marcos-rezk",
 				"https://github.com/mrezk84"
@@ -99,62 +98,61 @@ const { slot } = Astro;
 				"@type": "Organization",
 				"name": "SONDA Uruguay"
 			},
-			"knowsAbout": ["React", "C#", "SQL Server", "JavaScript", "Node.js", "Full Stack Development"],
-			"description": "Desarrollador Full Stack con +3 años de experiencia construyendo aplicaciones web escalables con React, C# y SQL Server."
+			"knowsLanguage": ["es", "en"],
+			"knowsAbout": ["React", "C#", ".NET", "SQL Server", "PostgreSQL", "Java", "Spring Boot", "JavaScript", "Node.js", "Full Stack Development"],
+			"description": "Desarrollador Full Stack con más de 3 años construyendo sistemas críticos con React, C# .NET y SQL Server para el Ministerio del Interior, el Centro de Emergencias 911 y SEMM."
 		})}>
 		</script>
 
-		<!-- Preconnect -->
+		<!-- Typography: Bricolage Grotesque (display) + IBM Plex Sans/Mono (engineering) -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<!-- Distinctive typography: Outfit (tech geometric) + Instrument Serif (elegant editorial) -->
 		<link
-			href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
 			rel="stylesheet"
 		/>
 
-		<!-- Dark Mode Init Script - runs before paint to prevent flash -->
+		<!-- Runs before paint: sets the colour scheme and drops the no-js
+		     guard so reveal animations can take over from the static fallback. -->
 		<script is:inline>
-			(function() {
+			(function () {
+				document.documentElement.classList.remove('no-js');
 				const theme = localStorage.getItem('theme') || 'system';
 				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				const shouldDark = theme === 'dark' || (theme === 'system' && prefersDark);
-				if (shouldDark) {
+				if (theme === 'dark' || (theme === 'system' && prefersDark)) {
 					document.documentElement.classList.add('dark');
-				} else {
-					document.documentElement.classList.remove('dark');
 				}
 			})();
 		</script>
 	</head>
-	<body
-		class="font-sans antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-200"
-	>
+	<body class="bg-paper text-ink antialiased">
 		<slot />
+
+		<script>
+			// Progressive reveal. Replaces the AOS dependency (and the React
+			// island that existed only to initialise it). Anything already in
+			// view on load is shown immediately so the first screen never
+			// flashes empty.
+			const revealables = document.querySelectorAll<HTMLElement>('.reveal');
+
+			if (!('IntersectionObserver' in window)) {
+				revealables.forEach((el) => el.classList.add('is-visible'));
+			} else {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							const el = entry.target as HTMLElement;
+							const delay = Number(el.dataset.revealDelay ?? 0);
+							window.setTimeout(() => el.classList.add('is-visible'), delay);
+							observer.unobserve(el);
+						});
+					},
+					{ rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+				);
+
+				revealables.forEach((el) => observer.observe(el));
+			}
+		</script>
 	</body>
 </html>
-
-<style is:global>
-	:root {
-		--accent: 212, 175, 55; /* Gold */
-		--accent-light: 250, 235, 150;
-		--accent-dark: 140, 110, 20;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: "Outfit", system-ui, -apple-system, sans-serif;
-	}
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: "Instrument Serif", Georgia, serif;
-	}
-</style>
