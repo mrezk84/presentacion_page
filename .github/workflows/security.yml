@@ -56,6 +56,15 @@ jobs:
     name: Dependency Review
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    # La acción falla con "Dependency review is not supported on this
+    # repository" mientras Dependency graph esté deshabilitado, así que hoy
+    # rompe todos los PR sin revisar nada. Queda como no bloqueante para no
+    # dar un rojo que no informa de nada.
+    #
+    # ARREGLO REAL: habilitar Dependency graph en
+    # Settings -> Security & analysis. Una vez activo, quitá este
+    # continue-on-error para que el chequeo vuelva a bloquear de verdad.
+    continue-on-error: true
 
     steps:
       - name: Checkout code
