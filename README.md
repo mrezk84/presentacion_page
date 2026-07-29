@@ -1,6 +1,8 @@
 # Marcos Rezk | Full Stack Developer Portfolio
 
-Portfolio web profesional construido con **Astro**, **React**, **Tailwind CSS** y animaciones con **AOS**. Muestra proyectos de GitHub y experiencia profesional de forma elegante y accesible.
+Portfolio web profesional construido con **Astro** y **Tailwind CSS**, sin JavaScript de framework en el cliente. Muestra proyectos de GitHub y experiencia profesional de forma elegante y accesible.
+
+El sistema de diseño (**"Dispatch"**) usa una paleta semántica de tokens — papel hueso, tinta, verde pino y bermellón de señal — que se invierte por completo en modo oscuro sin variantes `dark:` en el marcado.
 
 ## Características
 
@@ -17,16 +19,14 @@ Portfolio web profesional construido con **Astro**, **React**, **Tailwind CSS** 
 - Proyectos profesionales destacados (SONDA, Ministerio del Interior, SEMM, 911)
 - Repositorios de GitHub con datos reales
 - Stack tecnológico organizado por categoría
-- Certificaciones profesionales
-- Idiomas
-- Testimonios
-- Formación académica
+- Credenciales: formación académica, certificaciones e idiomas
 - Formulario de contacto (Formspree)
 - Enlaces a redes sociales y GitHub
 
 ### Diseño y UX
-- Modo oscuro automático
-- Animaciones suaves con AOS
+- Modo oscuro automático, con tokens semánticos que invierten toda la paleta
+- Revelado progresivo por scroll con IntersectionObserver (sin dependencias)
+- Contraste verificado: 0 fallos WCAG AA en modo claro y oscuro
 - Scrollbar personalizado
 - Navegación responsive
 - Accesibilidad (skip links, ARIA, focus states)
@@ -36,11 +36,12 @@ Portfolio web profesional construido con **Astro**, **React**, **Tailwind CSS** 
 
 ## Tecnologías
 
-- **Astro 5.7** - Framework de sitios estáticos
-- **React 19** - Biblioteca UI
-- **Tailwind CSS 4** - Estilos utility-first
-- **AOS** - Animaciones on scroll
+- **Astro 7** - Framework de sitios estáticos
+- **Tailwind CSS 4** - Estilos utility-first, con tokens vía `@theme inline`
 - **TypeScript** - Tipado estático
+- **Bricolage Grotesque + IBM Plex Sans/Mono** - Tipografía
+
+No se envía React ni AOS al cliente: los revelados son CSS + `IntersectionObserver`.
 
 ## Instalación
 
@@ -66,6 +67,14 @@ npm run dev
 | `npm run build` | Construye para producción |
 | `npm run preview` | Previa la build de producción |
 | `npm run astro` | Ejecuta comandos de CLI de Astro |
+
+### Variables de entorno
+
+Copiá `.env.example` a `.env.local`. La única variable que afecta el
+comportamiento es `VITE_FORMSPREE_ENDPOINT`: debe ser el **ID del formulario**
+de Formspree (o la URL completa), no una dirección de correo. Si no está
+definida, el formulario cae a un enlace `mailto:` en lugar de fallar en
+silencio.
 
 ## Deployment
 

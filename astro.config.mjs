@@ -3,8 +3,6 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
-import react from '@astrojs/react';
-
 // Detectar si estamos en Vercel
 const isVercel = process.env.VERCEL === '1';
 
@@ -35,7 +33,6 @@ export default defineConfig({
       assetsInlineLimit: 4096,
     },
   },
-  integrations: [react()],
   output: 'static',
   build: {
     format: 'directory',

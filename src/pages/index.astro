@@ -3,11 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import SkipLink from "../components/SkipLink.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
-import AOSInit from "../components/AOSInit";
 import ProjectsSection from "../components/ProjectsSection.astro";
 import GitHubRepos from "../components/GitHubRepos.astro";
-import CertificationsSection from "../components/CertificationsSection.astro";
-import LanguagesSection from "../components/LanguagesSection.astro";
+import CredentialsSection from "../components/CredentialsSection.astro";
 import Icon from "../components/Icon.astro";
 import "../styles/global.css";
 
@@ -15,522 +13,397 @@ const isVercel = import.meta.env.VERCEL === '1';
 const isDevelopment = import.meta.env.DEV;
 const basePath = isVercel || isDevelopment ? '' : '/presentacion_page';
 
-const formspreeEndpoint = process.env.VITE_FORMSPREE_ENDPOINT || "mrezk84@gmail.com";
-const formAction = formspreeEndpoint.startsWith("http")
-  ? formspreeEndpoint
-  : `https://formspree.io/f/${formspreeEndpoint.replace('/f/', '').trim()}`;
+// Formspree form ID, e.g. "xrgvabcd". Set VITE_FORMSPREE_ENDPOINT to a full
+// URL or a bare form ID. Without it the form falls back to a mailto: action
+// so the page never ships a silently broken submit button.
+const formspreeEndpoint = (import.meta.env.VITE_FORMSPREE_ENDPOINT ?? "").trim();
+const formAction = formspreeEndpoint
+  ? (formspreeEndpoint.startsWith("http")
+      ? formspreeEndpoint
+      : `https://formspree.io/f/${formspreeEndpoint.replace(/^\/?f\//, '')}`)
+  : "mailto:mrezk84@gmail.com";
+const formIsLive = Boolean(formspreeEndpoint);
 
 const name = "Marcos Rezk";
 const role = "Full Stack Developer";
 
-const stats = [
-  { value: "3+", label: "Años de experiencia" },
-  { value: "10+", label: "Proyectos críticos" },
-  { value: "15+", label: "Tecnologías dominadas" },
-  { value: "100%", label: "Compromiso de calidad" }
+// Availability facts a hiring manager screens for in the first 10 seconds.
+const availability = [
+  { label: "Ubicación", value: "Montevideo, Uruguay" },
+  { label: "Modalidad", value: "Remoto · Híbrido · Presencial" },
+  { label: "Zona horaria", value: "UTC−3 · solapa con LATAM y EE.UU." },
+  { label: "Respuesta", value: "Menos de 24 h hábiles" }
 ];
 
-const achievements = [
-  { icon: "building", text: "Sistemas críticos para el Ministerio del Interior" },
-  { icon: "phone", text: "Centro de Emergencias 911 — Gestión de llamadas" },
-  { icon: "shield", text: "SEMM — Plataforma de eventos médicos" },
-  { icon: "academic", text: "Egresado Analista Programador — ORT Uruguay" }
+const stats = [
+  { value: "40", unit: "%", label: "Mejora de rendimiento en consultas SQL Server", note: "Sistema de denuncias" },
+  { value: "15", unit: "+", label: "Años en entornos de misión crítica", note: "Soporte, gestión y desarrollo" },
+  { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP" },
+  { value: "3", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server" }
+];
+
+const marqueeItems = [
+  "React", "C# .NET", "SQL Server", "Java", "Spring Boot", "PostgreSQL",
+  "Node.js", "Go", "MongoDB", "XAML", "WCF", "REST APIs", "ArcGIS",
+  "LDAP", "Asterisk", "Docker", "Git", "Scrum"
+];
+
+const capabilities = [
+  {
+    icon: "server",
+    title: "Backend y APIs",
+    lead: "Servicios que sostienen operación real, no demos.",
+    body: "APIs REST y SOAP en C# .NET, Java con Spring Boot y Node.js. Integraciones con LDAP, ArcGIS y telefonía IP Asterisk para el Centro de Emergencias 911.",
+    stack: ["C# .NET", "Java", "Spring Boot", "Node.js", "Go", "WCF"]
+  },
+  {
+    icon: "database",
+    title: "Datos y rendimiento",
+    lead: "Donde suele estar el cuello de botella.",
+    body: "Diseño de esquemas, índices y procedimientos almacenados. Optimización de consultas con 40% de mejora medida en producción sobre SQL Server.",
+    stack: ["SQL Server", "PostgreSQL", "MongoDB"]
+  },
+  {
+    icon: "code",
+    title: "Frontend de producto",
+    lead: "Interfaces que la gente usa ocho horas por día.",
+    body: "Aplicaciones React y clientes de escritorio XAML pensados para operadores: flujos densos en información, accesibles y rápidos bajo carga.",
+    stack: ["React", "JavaScript", "HTML / CSS", "XAML"]
+  },
+  {
+    icon: "team",
+    title: "Entrega y equipo",
+    lead: "Vengo del otro lado de la mesa de soporte.",
+    body: "Scrum y Kanban, CI/CD, revisión de código y pair programming. Nueve años gestionando proyectos técnicos antes de desarrollarlos.",
+    stack: ["Scrum", "Kanban", "CI/CD", "Git", "Docker"]
+  }
+];
+
+const experience = [
+  {
+    title: "Desarrollador Full Stack",
+    org: "SONDA Uruguay",
+    period: "2022 — Presente",
+    current: true,
+    bullets: [
+      "Desarrollo en React, C# .NET y XAML para sistemas críticos del Ministerio del Interior.",
+      "Sistema 911 con WCF, ArcGIS y Asterisk para telefonía IP.",
+      "Optimización de SQL Server con 40% de mejora en rendimiento."
+    ]
+  },
+  {
+    title: "Supervisor de Mesa de Ayuda",
+    org: "Proyecto ANCAP a través de SONDA",
+    period: "2018 — 2022",
+    current: false,
+    bullets: [
+      "Gestión de un equipo de soporte técnico de 13 personas.",
+      "Coordinación con áreas técnicas para el cierre de tickets críticos."
+    ]
+  },
+  {
+    title: "Manager",
+    org: "SONDA Uruguay",
+    period: "2009 — 2018",
+    current: false,
+    bullets: [
+      "Coordinación de proyectos técnicos a nivel nacional.",
+      "Supervisión de la implementación de soluciones empresariales."
+    ]
+  }
+];
+
+const stack = [
+  { group: "Frontend", icon: "code", items: ["React", "JavaScript", "HTML / CSS", "XAML"] },
+  { group: "Backend", icon: "server", items: ["C# .NET", "Java", "Spring Boot", "Node.js", "Go"] },
+  { group: "Datos", icon: "database", items: ["SQL Server", "PostgreSQL", "MongoDB"] },
+  { group: "Integraciones", icon: "link", items: ["REST APIs", "WCF", "ArcGIS", "LDAP", "Asterisk"] },
+  { group: "Entorno", icon: "terminal", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
+  { group: "Entrega", icon: "cycle", items: ["Git", "Docker", "Postman", "Scrum", "Kanban", "CI/CD"] }
 ];
 ---
 
 <Layout
-  title="Marcos Rezk | Full Stack Developer - Disponible para trabajar"
-  description="Full Stack Developer con experiencia en React, C# .NET, SQL Server, Java, Spring Boot y PostgreSQL. Desarrollador de sistemas críticos para el Ministerio del Interior y SEMM. Disponible para nuevas oportunidades."
+  title="Marcos Rezk | Full Stack Developer — disponible para nuevos proyectos"
+  description="Full Stack Developer en Montevideo. React, C# .NET, SQL Server, Java y Spring Boot. Sistemas críticos para el Ministerio del Interior, el Centro de Emergencias 911 y SEMM. Disponible para nuevas oportunidades."
 >
   <SkipLink />
-  <AOSInit client:load />
-
   <Header />
   <ScrollToTop />
 
-  <main id="main-content" class="min-h-screen" role="main">
-    <!-- Hero Section - Modern 2025 Design -->
-    <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden noise-bg">
-      <!-- Modern Animated Background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-amber-50/20 to-slate-100 dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-950">
-        <!-- Soft ambient orbs -->
-        <div class="absolute inset-0 overflow-hidden">
-          <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 via-amber-300/5 to-transparent rounded-full blur-3xl animate-blob"></div>
-          <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-amber-500/8 to-transparent rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
-        </div>
-        <!-- Grid pattern overlay -->
-        <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"></div>
-      </div>
+  <main id="main-content" role="main">
 
-      <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-0">
-        <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          <!-- Text Content -->
-          <div class="text-center lg:text-left order-2 lg:order-1 scroll-fade-in" data-aos="fade-right" data-aos-duration="1000">
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/50 dark:bg-slate-800/50 rounded-full border border-amber-200/50 dark:border-amber-800/30 backdrop-blur-sm">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Disponible para proyectos</span>
+    <!-- ══════════════════════════════════════════════════════
+         HERO
+         Asymmetric 7/5 split. The left column carries the claim,
+         the right one carries the evidence card.
+         ══════════════════════════════════════════════════════ -->
+    <section id="inicio" class="relative overflow-hidden grain pt-32 pb-16 lg:pt-40 lg:pb-20">
+      <div class="blueprint absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+      <div
+        class="absolute -top-24 -right-32 w-[36rem] h-[36rem] rounded-full pointer-events-none opacity-40"
+        style="background: radial-gradient(circle, var(--c-pine-wash) 0%, transparent 66%);"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+          <!-- Claim -->
+          <div class="lg:col-span-7">
+            <div class="rise flex items-center gap-3 mb-8" style="animation-delay: 40ms;">
+              <span class="pulse-dot"></span>
+              <span class="label label-signal">Disponible para nuevos proyectos</span>
             </div>
 
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
-              <span class="block text-slate-900 dark:text-slate-100">Hola, soy</span>
-              <span class="block mt-2">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 dark:from-amber-400 dark:via-yellow-400 dark:to-amber-500 animate-gradient">
-                  {name}
-                </span>
-              </span>
+            <h1 class="display-xl text-[clamp(2.75rem,7.5vw,5rem)] mb-7">
+              <span class="rise block" style="animation-delay: 120ms;">Construyo software</span>
+              <span class="rise block text-pine" style="animation-delay: 200ms;">que no puede fallar.</span>
             </h1>
 
-            <p class="text-2xl sm:text-3xl text-slate-700 dark:text-slate-300 mb-4">
-              {role}
+            <p class="rise measure text-lg sm:text-xl text-ink-soft leading-relaxed mb-8" style="animation-delay: 280ms;">
+              Soy <strong class="text-ink font-semibold">{name}</strong>, {role} en Montevideo. Los últimos tres años los pasé construyendo los sistemas que usan el <strong class="text-ink font-semibold">Ministerio del Interior</strong>, el <strong class="text-ink font-semibold">Centro de Emergencias 911</strong> y <strong class="text-ink font-semibold">SEMM</strong> — donde una caída no es un ticket, es una emergencia.
             </p>
 
-            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6 max-w-xl mx-auto lg:mx-0">
-              Especialista en desarrollo de aplicaciones web escalables con <strong class="text-slate-900 dark:text-slate-100">React</strong>, <strong class="text-slate-900 dark:text-slate-100">C# .NET</strong> y <strong class="text-slate-900 dark:text-slate-100">SQL Server</strong>. Egresado de <strong class="text-red-600 dark:text-red-400">ORT Uruguay</strong>.
-            </p>
-
-            <!-- Trust Badges -->
-            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
-              <div class="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-slate-800/60 rounded-lg border border-slate-200/70 dark:border-slate-700/60">
-                <Icon name="building" class="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Ministerio del Interior</span>
-              </div>
-              <div class="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-slate-800/60 rounded-lg border border-slate-200/70 dark:border-slate-700/60">
-                <Icon name="phone" class="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Sistema 911</span>
-              </div>
-              <div class="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-slate-800/60 rounded-lg border border-slate-200/70 dark:border-slate-700/60">
-                <Icon name="academic" class="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">ORT Uruguay</span>
-              </div>
-            </div>
-
-            <!-- CTAs - Primary Focus -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="#contacto"
-                class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-2xl font-bold shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-1 transition-all duration-300 text-lg overflow-hidden ripple-effect magnetic-hover-enhanced"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                </svg>
-                <span>Contáctame</span>
+            <div class="rise flex flex-col sm:flex-row gap-3 mb-12" style="animation-delay: 360ms;">
+              <a href="#contacto" class="btn btn-signal">
+                <Icon name="mail" class="w-[18px] h-[18px]" strokeWidth={2} />
+                Hablemos de tu proyecto
               </a>
               <a
                 href={`${basePath}/Marcos_Rezk_CV.pdf`}
                 download
-                class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 rounded-2xl font-semibold border-2 border-slate-200 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300 ripple-effect hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-1"
+                class="btn btn-outline"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M12 12.75l-3-3m0 0 3-3m-3 3h7.5" />
-                </svg>
-                <span>Descargar CV</span>
+                <Icon name="download" class="w-[18px] h-[18px]" strokeWidth={2} />
+                Descargar CV
               </a>
             </div>
 
-            <!-- Social Proof -->
-            <div class="flex items-center justify-center lg:justify-start gap-6 mt-8">
-              <a href="https://www.linkedin.com/in/marcos-rezk" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                </svg>
-              </a>
-              <a href="https://github.com/mrezk84" target="_blank" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Image - Modern 2025 Style -->
-          <div class="flex justify-center order-1 lg:order-2" data-aos="fade-left" data-aos-duration="1000">
-            <div class="relative">
-              <!-- Soft glow background -->
-              <div class="absolute -inset-6 bg-gradient-to-br from-amber-400/40 to-amber-500/20 rounded-[3rem] blur-3xl opacity-50"></div>
-
-              <!-- Main image container -->
-              <div class="relative glass-modern rounded-[2.5rem] p-3 shadow-2xl animate-float">
-                <img
-                  src={`${basePath}/perfil.jpg`}
-                  alt="Marcos Rezk - Full Stack Developer"
-                  class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-[2rem] object-cover"
-                />
-
-                <!-- Floating tech badges -->
-                <div class="absolute -top-3 -left-3 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-lg text-slate-800 dark:text-slate-100 text-xs font-bold border border-slate-200/70 dark:border-slate-700">
-                  React
+            <!-- Availability facts: the screening questions, answered up front. -->
+            <dl class="rise grid grid-cols-2 gap-x-8 gap-y-5 border-t border-line pt-7" style="animation-delay: 440ms;">
+              {availability.map((item) => (
+                <div>
+                  <dt class="label mb-1.5">{item.label}</dt>
+                  <dd class="text-sm font-medium text-ink">{item.value}</dd>
                 </div>
-                <div class="absolute -top-3 -right-3 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-lg text-slate-800 dark:text-slate-100 text-xs font-bold border border-slate-200/70 dark:border-slate-700">
-                  .NET
+              ))}
+            </dl>
+          </div>
+
+          <!-- Evidence card -->
+          <div class="lg:col-span-5 rise" style="animation-delay: 320ms;">
+            <div class="card ticked relative">
+              <div class="flex items-center justify-between px-5 py-3 border-b border-line">
+                <span class="label label-pine">Perfil</span>
+                <span class="label">UY · UTC−3</span>
+              </div>
+
+              <div class="p-5">
+                <div class="relative mb-5 overflow-hidden">
+                  <img
+                    src={`${basePath}/perfil.jpg`}
+                    alt="Retrato de Marcos Rezk"
+                    width="440"
+                    height="440"
+                    loading="eager"
+                    fetchpriority="high"
+                    class="w-full aspect-square object-cover"
+                  />
+                  <div class="absolute bottom-0 inset-x-0 flex items-center gap-2 px-3 py-2 bg-signal text-on-signal">
+                    <span class="pulse-dot" style="background: currentColor;"></span>
+                    <span class="label" style="color: currentColor;">Open to work</span>
+                  </div>
                 </div>
-                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl shadow-lg text-white text-sm font-bold flex items-center gap-2">
-                  <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                  </span>
-                  Open to Work
-                </div>
+
+                <p class="font-display text-2xl font-bold text-ink leading-tight">{name}</p>
+                <p class="text-sm text-ink-soft mb-5">{role} · Analista Programador</p>
+
+                <ul class="space-y-2.5 border-t border-line pt-5">
+                  {[
+                    "Ministerio del Interior — sistemas críticos",
+                    "Centro de Emergencias 911 — gestión de llamadas",
+                    "SEMM — plataforma de eventos médicos",
+                    "Analista Programador — Universidad ORT"
+                  ].map((item) => (
+                    <li class="flex items-start gap-2.5 text-sm text-ink-soft">
+                      <Icon name="check" class="w-4 h-4 mt-0.5 shrink-0 text-pine" strokeWidth={2.5} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <span class="text-sm text-slate-500 dark:text-slate-400">Conoce más</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-amber-500">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        </svg>
-      </div>
-    </section>
-
-    <!-- Stats Section - Social Proof -->
-    <section class="py-16 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div class="text-center group" data-aos="fade-up" data-aos-delay={index * 100}>
-              <div class="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-600 dark:from-amber-400 dark:to-yellow-400 mb-2">
-                {stat.value}
-              </div>
-              <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">{stat.label}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
 
-    <!-- Value Proposition - Modern Cards -->
-    <section id="about" class="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-24" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            01. Propuesta de valor
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100">
-            ¿Por qué <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-500">contratarme</span>?
-          </h2>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              icon: "target",
-              title: "Enfoque en resultados",
-              description: "Optimización de consultas SQL con 40% mejora en rendimiento. Soluciones que impactan directamente en la operación."
-            },
-            {
-              icon: "refresh",
-              title: "Aprendizaje continuo",
-              description: "Constante actualización tecnológica. Egresado reciente con conocimientos frescos y experiencia práctica."
-            },
-            {
-              icon: "team",
-              title: "Trabajo en equipo",
-              description: "Experiencia en metodologías ágiles (Scrum, Kanban). Colaboración efectiva con equipos multidisciplinarios."
-            },
-            {
-              icon: "trophy",
-              title: "Proyectos críticos",
-              description: "Desarrollo de sistemas para el Ministerio del Interior y SEMM. Soluciones de misión crítica."
-            }
-          ].map((value, index) => (
-            <div
-              class="group relative bg-white dark:bg-slate-900 rounded-3xl p-7 shadow-sm border border-slate-200/70 dark:border-slate-800 hover-lift overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
-              <!-- Icon container -->
-              <div class="relative w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-5 ring-1 ring-amber-500/20 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
-                <Icon name={value.icon} class="w-6 h-6" />
-              </div>
-
-              <h3 class="relative font-bold text-lg mb-2 text-slate-900 dark:text-slate-100">{value.title}</h3>
-              <p class="relative text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{value.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section - Bento Grid Layout (2025 trend) -->
-    <section class="py-24 bg-slate-50 dark:bg-slate-950" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium mb-4">
-            02. Servicios
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Lo que puedo hacer por ti
-          </h2>
-        </div>
-
-        <!-- Bento Grid -->
-        <div class="bento-grid">
-          <!-- Frontend - Large card -->
-          <div class="bento-card-3 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up">
-            <div class="h-full flex flex-col">
-              <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-6">
-                <Icon name="code" class="w-7 h-7" />
-              </div>
-              <h3 class="font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">Desarrollo Frontend</h3>
-              <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed flex-1">
-                Aplicaciones web modernas con React, JavaScript y CSS. Interfaces responsivas y experiencia de usuario optimizada.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                {["React", "JavaScript", "HTML/CSS", "XAML"].map((tech) => (
-                  <span class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm text-slate-700 dark:text-slate-300 font-medium">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <!-- Backend - Standard card -->
-          <div class="bento-card-2 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
-            <div class="h-full flex flex-col">
-              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-5">
-                <Icon name="server" class="w-6 h-6" />
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-slate-900 dark:text-slate-100">Desarrollo Backend</h3>
-              <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed flex-1">
-                APIs robustas y escalables con C# .NET, Node.js y Java.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                {["C# .NET", "Node.js", "Java"].map((tech) => (
-                  <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs text-slate-700 dark:text-slate-300 font-medium">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <!-- Database - Standard card -->
-          <div class="bento-card-2 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up" data-aos-delay="200">
-            <div class="h-full flex flex-col">
-              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-5">
-                <Icon name="database" class="w-6 h-6" />
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-slate-900 dark:text-slate-100">Bases de Datos</h3>
-              <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed flex-1">
-                Diseño y optimización con 40% mejora en rendimiento.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                {["SQL Server", "PostgreSQL", "MongoDB"].map((tech) => (
-                  <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs text-slate-700 dark:text-slate-300 font-medium">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <!-- Integrations - Tall card -->
-          <div class="bento-card-4 bg-white dark:bg-slate-900 rounded-3xl p-8 hover-lift scroll-fade-in shadow-sm border border-slate-200/70 dark:border-slate-700" data-aos="fade-up" data-aos-delay="300">
-            <div class="h-full flex flex-col">
-              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-5">
-                <Icon name="link" class="w-6 h-6" />
-              </div>
-              <h3 class="font-bold text-xl mb-3 text-slate-900 dark:text-slate-100">Integraciones</h3>
-              <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed">
-                Integración de servicios web, APIs REST/SOAP, LDAP, ArcGIS y sistemas de telefonía como Asterisk.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-auto">
-                {["REST APIs", "WCF", "ArcGIS"].map((tech) => (
-                  <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs text-slate-700 dark:text-slate-300 font-medium">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CTA in Services -->
-        <div class="mt-16 text-center scroll-fade-in">
-          <a
-            href="#contacto"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-2xl font-bold shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-1 transition-all duration-300 magnetic-hover"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-            </svg>
-            <span>Hablemos de tu proyecto</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Achievements / Logos -->
-    <section class="py-16 bg-gradient-to-r from-slate-100 to-amber-50 dark:from-slate-900 dark:to-slate-950" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-10">
-          <p class="text-slate-600 dark:text-slate-400 font-medium">Experiencia en proyectos de impacto</p>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {achievements.map((achievement, index) => (
-            <div
-              class="flex items-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200/70 dark:border-slate-700"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
-              <span class="shrink-0 w-9 h-9 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                <Icon name={achievement.icon} class="w-5 h-5" />
+    <!-- ══════════════════════════════════════════════════════
+         TECHNOLOGY TICKER
+         ══════════════════════════════════════════════════════ -->
+    <div class="border-y border-line bg-surface py-4 overflow-hidden" aria-hidden="true">
+      <div class="marquee">
+        {[0, 1].map(() => (
+          <div class="marquee__track">
+            {marqueeItems.map((item) => (
+              <span class="label whitespace-nowrap flex items-center gap-3">
+                <span class="w-1 h-1 rounded-full bg-pine"></span>
+                {item}
               </span>
-              <span class="text-sm font-medium text-slate-700 dark:text-slate-300">{achievement.text}</span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         01 — NUMBERS
+         ══════════════════════════════════════════════════════ -->
+    <section class="py-20 sm:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="eyebrow mb-12 reveal">
+          <span class="label label-pine">01 / En números</span>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
+          {stats.map((stat, index) => (
+            <div class="bg-paper p-6 sm:p-7 reveal" data-reveal-delay={index * 70}>
+              <p class="font-display text-5xl sm:text-6xl font-bold text-pine leading-none mb-4 tracking-tight">
+                {stat.value}<span class="text-3xl sm:text-4xl align-top">{stat.unit}</span>
+              </p>
+              <p class="text-sm font-medium text-ink leading-snug mb-1.5">{stat.label}</p>
+              <p class="label">{stat.note}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Experience Section - Timeline -->
-    <section id="experiencia" class="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-24" data-aos="fade-up">
-      <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            03. Trayectoria
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Experiencia Profesional
-          </h2>
+    <!-- ══════════════════════════════════════════════════════
+         02 — CAPABILITIES
+         ══════════════════════════════════════════════════════ -->
+    <section id="about" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="eyebrow mb-10 reveal">
+          <span class="label label-pine">02 / Qué resuelvo</span>
         </div>
 
-        <div class="relative" style="min-height: 600px;">
-          <!-- Timeline line - continuous from top to bottom with improved visibility -->
-          <div class="absolute left-6 sm:left-1/2 top-0 bottom-0 w-1 rounded-full bg-amber-500 dark:bg-amber-400 sm:-translate-x-1/2 z-0"></div>
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
+          <h2 class="lg:col-span-7 display-xl text-[clamp(2rem,4.5vw,3.25rem)] reveal">
+            Cuatro frentes, un mismo criterio: que funcione en producción.
+          </h2>
+          <p class="lg:col-span-5 text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
+            No trabajé en productos donde un bug se corrige el martes siguiente.
+            Trabajé donde el sistema atiende llamadas de emergencia. Eso define
+            cómo escribo código, cómo lo pruebo y qué considero terminado.
+          </p>
+        </div>
 
-          <!-- SONDA -->
-          <div class="relative mb-12 pb-12" data-aos="fade-up">
-            <div class="flex flex-col sm:flex-row gap-6 items-start">
-              <div class="sm:w-1/2 sm:text-right sm:pr-12">
-                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow sm:ml-auto sm:mr-0 max-w-md">
-                  <span class="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full mb-3">Actualidad</span>
-                  <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-2">Desarrollador Full Stack</h3>
-                  <p class="text-amber-600 dark:text-amber-400 font-medium mb-4">SONDA Uruguay · 2022 – Presente</p>
-                  <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
-                    <li class="flex items-start gap-2 sm:justify-end">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Desarrollo en React, C# .NET, XAML para sistemas críticos del Ministerio del Interior</span>
-                    </li>
-                    <li class="flex items-start gap-2 sm:justify-end">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Sistema 911 con WCF, ArcGIS y Asterisk para telefonía IP</span>
-                    </li>
-                    <li class="flex items-start gap-2 sm:justify-end">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Optimización de SQL Server (40% mejora en rendimiento)</span>
-                    </li>
-                  </ul>
+        <div class="grid md:grid-cols-2 gap-px bg-line border border-line">
+          {capabilities.map((cap, index) => (
+            <article class="group bg-paper p-7 sm:p-9 reveal" data-reveal-delay={index * 80}>
+              <div class="flex items-start gap-4 mb-5">
+                <span class="shrink-0 w-11 h-11 flex items-center justify-center border border-line text-pine transition-colors duration-300 group-hover:bg-pine group-hover:text-on-pine group-hover:border-pine">
+                  <Icon name={cap.icon} class="w-5 h-5" />
+                </span>
+                <div>
+                  <h3 class="font-display text-xl font-bold text-ink leading-tight">{cap.title}</h3>
+                  <p class="text-sm text-pine font-medium">{cap.lead}</p>
                 </div>
               </div>
-              <!-- Timeline dot -->
-              <div class="absolute left-6 sm:left-1/2 top-6 w-5 h-5 bg-amber-500 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10 shadow-lg shadow-amber-500/50"></div>
-              <div class="sm:w-1/2 sm:pl-12"></div>
-            </div>
+
+              <p class="text-sm text-ink-soft leading-relaxed mb-6">{cap.body}</p>
+
+              <ul class="flex flex-wrap gap-1.5">
+                {cap.stack.map((tech) => (
+                  <li class="label px-2.5 py-1 bg-sunk border border-line">{tech}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         03 — EXPERIENCE
+         ══════════════════════════════════════════════════════ -->
+    <section id="experiencia" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="eyebrow mb-10 reveal">
+          <span class="label label-pine">03 / Trayectoria</span>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <div class="lg:col-span-4">
+            <h2 class="display-xl text-[clamp(2rem,4.5vw,3rem)] mb-5 reveal">
+              Quince años en el mismo tipo de sistemas.
+            </h2>
+            <p class="text-ink-soft leading-relaxed reveal" data-reveal-delay="100">
+              Empecé sosteniendo la operación desde soporte y gestión. Hoy la
+              construyo. Esa ruta poco habitual es la razón por la que pienso
+              primero en quién va a usar el sistema a las tres de la mañana.
+            </p>
           </div>
 
-          <!-- ANCAP -->
-          <div class="relative mb-12 pb-12" data-aos="fade-up" data-aos-delay="100">
-            <div class="flex flex-col sm:flex-row gap-6 items-start">
-              <div class="sm:w-1/2 sm:pr-12 order-2 sm:order-1"></div>
-              <!-- Timeline dot -->
-              <div class="absolute left-6 sm:left-1/2 top-6 w-5 h-5 bg-slate-400 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10"></div>
-              <div class="sm:w-1/2 sm:pl-12 order-1 sm:order-2">
-                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow max-w-md">
-                  <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-2">Supervisor de Mesa de Ayuda</h3>
-                  <p class="text-amber-600 dark:text-amber-400 font-medium mb-4">Proyecto ANCAP a través de SONDA · 2018 – 2022</p>
-                  <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
-                    <li class="flex items-start gap-2">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Gestión de equipo de soporte técnico (13 personas)</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Coordinación con áreas técnicas para cierre de tickets críticos</span>
-                    </li>
+          <div class="lg:col-span-8">
+            <div class="timeline">
+              {experience.map((job, index) => (
+                <div
+                  class:list={["timeline-node relative pb-10 last:pb-0 reveal", job.current && "timeline-node--current"]}
+                  data-reveal-delay={index * 90}
+                >
+                  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                    <span class="label">{job.period}</span>
+                    {job.current && (
+                      <span class="label label-signal border border-signal px-2 py-0.5">Actual</span>
+                    )}
+                  </div>
+                  <h3 class="font-display text-2xl font-bold text-ink leading-tight">{job.title}</h3>
+                  <p class="text-sm font-medium text-pine mb-4">{job.org}</p>
+                  <ul class="space-y-2">
+                    {job.bullets.map((bullet) => (
+                      <li class="flex items-start gap-2.5 text-sm text-ink-soft leading-relaxed">
+                        <span class="mt-2 w-1 h-1 shrink-0 bg-line-strong"></span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SONDA Manager -->
-          <div class="relative" data-aos="fade-up" data-aos-delay="200">
-            <div class="flex flex-col sm:flex-row gap-6 items-start">
-              <div class="sm:w-1/2 sm:text-right sm:pr-12">
-                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow sm:ml-auto sm:mr-0 max-w-md">
-                  <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif mb-2">Manager</h3>
-                  <p class="text-amber-600 dark:text-amber-400 font-medium mb-4">SONDA Uruguay · 2009 – 2018</p>
-                  <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
-                    <li class="flex items-start gap-2 sm:justify-end">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Coordinación de proyectos técnicos a nivel nacional</span>
-                    </li>
-                    <li class="flex items-start gap-2 sm:justify-end">
-                      <span class="text-amber-500 mt-1">•</span>
-                      <span>Supervisión de implementación de soluciones empresariales</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- Timeline dot -->
-              <div class="absolute left-6 sm:left-1/2 top-6 w-5 h-5 bg-slate-400 rounded-full border-4 border-white dark:border-slate-900 sm:-translate-x-1/2 z-10"></div>
-              <div class="sm:w-1/2 sm:pl-12"></div>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- 04 — Projects -->
     <ProjectsSection />
 
-    <!-- GitHub Repos Section -->
-    <GitHubRepos />
-
-    <!-- Tech Stack - Modern 2025 Style -->
-    <section id="tecnologias" class="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-24" data-aos="fade-up">
+    <!-- ══════════════════════════════════════════════════════
+         05 — STACK
+         ══════════════════════════════════════════════════════ -->
+    <section id="tecnologias" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
       <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            04. Stack tecnológico
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100">
-            Tecnologías que domino
-          </h2>
+        <div class="eyebrow mb-10 reveal">
+          <span class="label label-pine">05 / Stack</span>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { group: "Frontend", icon: "code", items: ["React", "JavaScript", "HTML / CSS", "XAML"] },
-            { group: "Backend", icon: "server", items: ["C# .NET", "Java", "Spring Boot", "Node.js", "Go"] },
-            { group: "Datos", icon: "database", items: ["SQL Server", "PostgreSQL", "MongoDB"] },
-            { group: "Integraciones", icon: "link", items: ["REST APIs", "WCF", "ArcGIS", "LDAP", "Asterisk"] }
-          ].map((cat, index) => (
-            <div
-              class="group bg-white dark:bg-slate-900 rounded-3xl p-7 shadow-sm border border-slate-200/70 dark:border-slate-800 hover-lift scroll-fade-in"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
-              <div class="flex items-center gap-3 mb-5">
-                <span class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center">
-                  <Icon name={cat.icon} class="w-5 h-5" />
-                </span>
-                <h3 class="font-bold text-lg text-slate-900 dark:text-slate-100">{cat.group}</h3>
+        <h2 class="display-xl text-[clamp(2rem,4.5vw,3.25rem)] mb-14 max-w-2xl reveal">
+          Herramientas con las que trabajo a diario.
+        </h2>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line">
+          {stack.map((cat, index) => (
+            <div class="bg-paper p-7 reveal" data-reveal-delay={index * 60}>
+              <div class="flex items-center gap-3 mb-5 pb-4 border-b border-line">
+                <Icon name={cat.icon} class="w-[18px] h-[18px] text-pine" />
+                <h3 class="label label-pine">{cat.group}</h3>
               </div>
-              <ul class="flex flex-wrap gap-2">
+              <ul class="flex flex-wrap gap-x-4 gap-y-2.5">
                 {cat.items.map((item) => (
-                  <li class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300">
-                    {item}
-                  </li>
+                  <li class="text-sm font-medium text-ink-soft">{item}</li>
                 ))}
               </ul>
             </div>
@@ -539,642 +412,436 @@ const achievements = [
       </div>
     </section>
 
-    <!-- Tools & IDEs Section -->
-    <section class="py-24 bg-white dark:bg-slate-900" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium mb-4">
-            Herramientas
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            IDEs y Herramientas
+    <!-- 06 — Credentials -->
+    <CredentialsSection />
+
+    <!-- 07 — GitHub -->
+    <GitHubRepos />
+
+    <!-- ══════════════════════════════════════════════════════
+         08 — CONTACT
+         ══════════════════════════════════════════════════════ -->
+    <section id="contacto" class="relative py-20 sm:py-28 border-t border-line grain scroll-mt-20 overflow-hidden">
+      <div
+        class="absolute -bottom-40 -left-32 w-[34rem] h-[34rem] rounded-full pointer-events-none"
+        style="background: radial-gradient(circle, var(--c-signal-wash) 0%, transparent 68%);"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="eyebrow mb-10 reveal">
+          <span class="label label-signal">08 / Contacto</span>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-14">
+          <h2 class="lg:col-span-7 display-xl text-[clamp(2.25rem,5.5vw,4rem)] reveal">
+            ¿Buscás alguien que ya haya sostenido sistemas en producción?
           </h2>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {[
-            { name: "GoLand", icon: "terminal", desc: "IDE para Go" },
-            { name: "Visual Studio", icon: "window", desc: "IDE para .NET" },
-            { name: "VS Code", icon: "code", desc: "Editor de código" },
-            { name: "IntelliJ IDEA", icon: "spark", desc: "IDE para Java" },
-            { name: "Postman", icon: "rocket", desc: "API testing" },
-            { name: "Docker", icon: "cube", desc: "Contenedores" },
-            { name: "Git", icon: "branch", desc: "Control de versiones" },
-            { name: "SSMS", icon: "database", desc: "SQL Server Studio" }
-          ].map((tool, index) => (
-            <div
-              class="group bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200/70 dark:border-slate-700 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center"
-              data-aos="fade-up"
-              data-aos-delay={index * 50}
-            >
-              <div class="inline-flex w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
-                <Icon name={tool.icon} class="w-6 h-6" />
-              </div>
-              <p class="font-semibold text-slate-900 dark:text-slate-100">{tool.name}</p>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{tool.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Agile Methodologies Section -->
-    <section class="py-24 bg-slate-50 dark:bg-slate-950" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium mb-4">
-            Metodología
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Metodologías Ágiles
-          </h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {[
-            { icon: "sprint", title: "Scrum", desc: "Participación en ceremonias: Daily, Planning, Review y Retrospectiva." },
-            { icon: "board", title: "Kanban", desc: "Gestión visual del trabajo y optimización del flujo continuo." },
-            { icon: "cycle", title: "Prácticas Ágiles", desc: "CI/CD, TDD, Pair Programming y mejora continua." }
-          ].map((m, index) => (
-            <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200/70 dark:border-slate-800 shadow-sm hover-lift" data-aos="fade-up" data-aos-delay={index * 100}>
-              <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20 flex items-center justify-center mb-6">
-                <Icon name={m.icon} class="w-7 h-7" />
-              </div>
-              <h3 class="font-serif font-bold text-2xl mb-3 text-slate-900 dark:text-slate-100">{m.title}</h3>
-              <p class="text-slate-600 dark:text-slate-400 leading-relaxed">{m.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <CertificationsSection />
-
-    <!-- Languages Section -->
-    <LanguagesSection />
-
-    <!-- Education Section -->
-    <section id="formacion" class="py-24 bg-white dark:bg-slate-900 scroll-mt-24" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium mb-4">
-            Formación
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 font-serif">
-            Educación
-          </h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="md:col-span-1" data-aos="fade-up">
-            <div class="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-slate-900 rounded-3xl p-8 border-2 border-amber-200 dark:border-amber-800 h-full hover:shadow-xl transition-shadow">
-              <div class="flex items-center gap-3 mb-6">
-                <div class="relative">
-                  <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-red-700 rounded-lg blur opacity-20"></div>
-                  <img src={`${basePath}/ort_logo.png`} alt="ORT Uruguay" class="relative w-14 h-14 rounded-xl object-contain bg-white p-2 shadow-lg" />
-                </div>
-                <div>
-                  <p class="text-xs text-red-600 dark:text-red-400 font-medium">2024</p>
-                  <p class="text-xs text-slate-500 dark:text-slate-400">Egresado</p>
-                </div>
-              </div>
-              <h3 class="font-serif font-bold text-xl mb-3 text-slate-900 dark:text-slate-100">Analista Programador</h3>
-              <p class="text-amber-700 dark:text-amber-400 font-medium mb-4">Universidad ORT Uruguay</p>
-              <a href={`${basePath}/titulo.png`} target="_blank" class="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
-                <span>Ver título</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div class="md:col-span-2 grid sm:grid-cols-2 gap-6">
-            <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
-              <p class="text-amber-600 dark:text-amber-400 text-sm font-bold mb-2">2016</p>
-              <h3 class="font-serif font-bold text-lg mb-2 text-slate-900 dark:text-slate-100">Desarrollo Mobile Android</h3>
-              <p class="text-slate-600 dark:text-slate-400 text-sm">Instituto BIOS</p>
-            </div>
-
-            <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
-              <p class="text-amber-600 dark:text-amber-400 text-sm font-bold mb-2">2003</p>
-              <h3 class="font-serif font-bold text-lg mb-2 text-slate-900 dark:text-slate-100">Técnico en Hardware y Software</h3>
-              <p class="text-slate-600 dark:text-slate-400 text-sm">IAC Computación</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section - Modern 2025 Design -->
-    <section id="contacto" class="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 scroll-mt-24 noise-bg" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-medium mb-4 backdrop-blur-sm">
-            05. Contacto
-          </span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-slate-100 font-serif mb-4">
-            ¿Listo para el siguiente paso?
-          </h2>
-          <p class="text-lg text-slate-300 max-w-2xl mx-auto">
-            Estoy disponible para nuevos desafíos. Conectemos y llevemos tu proyecto al siguiente nivel.
+          <p class="lg:col-span-5 text-lg text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
+            Contame qué estás construyendo. Respondo en menos de 24 horas hábiles,
+            y si no soy la persona indicada para el puesto te lo digo de entrada.
           </p>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-12">
-          <!-- Contact Form -->
-          <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-amber-500/20 shadow-2xl relative overflow-hidden">
-            <!-- Subtle glow accent inside card -->
-            <div class="absolute -top-16 -right-16 w-36 h-36 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
-            
-            <form action={formAction} method="POST" class="space-y-6" novalidate>
-              <div>
-                <label for="name" class="block text-sm font-semibold text-amber-400 mb-2 tracking-wider uppercase">Nombre Completo</label>
-                <div class="relative">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    class="input-transition w-full px-4 py-3.5 bg-slate-950/40 border border-slate-700/60 focus:border-amber-500/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/25 transition-all text-sm font-medium"
-                    placeholder="Tu nombre"
-                  />
-                  <!-- Validation visual indicator -->
-                  <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
-                    <span class="text-xs" id="name-status"></span>
-                  </div>
-                </div>
-                <p id="name-tip" class="validation-tip">Por favor ingresa tu nombre (mínimo 2 letras)</p>
-              </div>
-              <div>
-                <label for="email" class="block text-sm font-semibold text-amber-400 mb-2 tracking-wider uppercase">Correo Electrónico</label>
-                <div class="relative">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    class="input-transition w-full px-4 py-3.5 bg-slate-950/40 border border-slate-700/60 focus:border-amber-500/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/25 transition-all text-sm font-medium"
-                    placeholder="tu@email.com"
-                  />
-                  <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
-                    <span class="text-xs" id="email-status"></span>
-                  </div>
-                </div>
-                <p id="email-tip" class="validation-tip">Por favor ingresa un correo electrónico válido</p>
-              </div>
-              <div>
-                <label for="message" class="block text-sm font-semibold text-amber-400 mb-2 tracking-wider uppercase">Tu Mensaje</label>
-                <div class="relative">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    required
-                    class="input-transition w-full px-4 py-3.5 bg-slate-950/40 border border-slate-700/60 focus:border-amber-500/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/25 transition-all text-sm font-medium resize-none"
-                    placeholder="Cuéntame sobre tu proyecto o consulta..."></textarea>
-                  <div class="absolute top-3 right-3 pointer-events-none text-slate-500">
-                    <span class="text-xs" id="message-status"></span>
-                  </div>
-                </div>
-                <p id="message-tip" class="validation-tip">Por favor escribe un mensaje (mínimo 10 caracteres)</p>
-              </div>
-              <button
-                type="submit"
-                id="submit-contact"
-                class="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 rounded-xl font-bold hover:from-amber-400 hover:to-yellow-400 transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer magnetic-hover"
+        <div class="grid lg:grid-cols-12 gap-px bg-line border border-line">
+
+          <!-- Direct channels -->
+          <div class="lg:col-span-5 bg-paper p-7 sm:p-9 reveal">
+            <p class="label mb-6">Canales directos</p>
+
+            <div class="space-y-px bg-line border border-line mb-8">
+              <a
+                href="https://wa.me/59899845879?text=Hola%20Marcos%2C%20te%20escribo%20por%20una%20oportunidad%20laboral."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center gap-4 p-4 bg-surface hover:bg-sunk transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                </svg>
-                <span>Enviar Mensaje</span>
-              </button>
-            </form>
-          </div>
+                <span class="shrink-0 w-10 h-10 flex items-center justify-center border border-line text-pine">
+                  <Icon name="whatsapp" class="w-5 h-5" />
+                </span>
+                <span class="flex-1 min-w-0">
+                  <span class="block text-sm font-semibold text-ink">WhatsApp</span>
+                  <span class="block label">+598 99 845 879</span>
+                </span>
+                <Icon name="arrow-right" class="w-4 h-4 text-ink-faint transition-transform group-hover:translate-x-1" strokeWidth={2} />
+              </a>
 
-          <!-- Glassmorphic Success/Error Modal (Asynchronous Feedback) -->
-          <div id="contact-modal" class="modal-backdrop fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-            <div class="modal-content-anim w-full max-w-md bg-white dark:bg-slate-900 rounded-[2.2rem] p-8 border border-slate-200/60 dark:border-slate-800 shadow-2xl relative overflow-hidden">
-              <!-- Radial gradients inside modal for dynamic reflections -->
-              <div class="absolute -top-20 -right-20 w-44 h-44 bg-amber-500/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
-              <div class="absolute -bottom-20 -left-20 w-44 h-44 bg-yellow-500/10 dark:bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+              <a
+                href="mailto:mrezk84@gmail.com"
+                class="group flex items-center gap-4 p-4 bg-surface hover:bg-sunk transition-colors"
+              >
+                <span class="shrink-0 w-10 h-10 flex items-center justify-center border border-line text-pine">
+                  <Icon name="mail" class="w-5 h-5" />
+                </span>
+                <span class="flex-1 min-w-0">
+                  <span class="block text-sm font-semibold text-ink">Email</span>
+                  <span class="block label truncate">mrezk84@gmail.com</span>
+                </span>
+                <Icon name="arrow-right" class="w-4 h-4 text-ink-faint transition-transform group-hover:translate-x-1" strokeWidth={2} />
+              </a>
 
-              <div class="flex flex-col items-center text-center">
-                <!-- Success icon with custom animation -->
-                <div id="modal-success-icon" class="mb-6 flex justify-center items-center">
-                  <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                  </svg>
-                </div>
-
-                <!-- Error icon in case of API failure -->
-                <div id="modal-error-icon" class="mb-6 hidden text-red-500 bg-red-100 dark:bg-red-950/20 p-4.5 rounded-full border border-red-500/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-12 h-12">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                  </svg>
-                </div>
-
-                <h3 id="modal-title" class="text-3xl font-serif font-bold text-slate-900 dark:text-slate-100 mb-3">
-                  ¡Mensaje Enviado!
-                </h3>
-                
-                <p id="modal-description" class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 px-2">
-                  Muchas gracias por contactarme. He recibido tu mensaje con éxito y te estaré respondiendo a la brevedad.
-                </p>
-
-                <button id="modal-close-btn" class="w-full py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-900 rounded-2xl font-bold hover:shadow-xl hover:shadow-amber-500/25 active:scale-[0.98] transition-all text-sm cursor-pointer shadow-md">
-                  Entendido
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quick Contact Options -->
-          <div class="space-y-5">
-            <!-- WhatsApp - Primary -->
-            <a
-              href="https://wa.me/59899845879?text=Hola%20Marcos,%20me%20gustaría%20contactarte%20para..."
-              target="_blank"
-              class="group flex items-center gap-4 p-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 rounded-2xl text-white transition-all hover-lift shadow-lg shadow-green-500/20"
-            >
-              <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
-                </svg>
-              </div>
-              <div class="flex-1">
-                <p class="text-xl font-bold">WhatsApp</p>
-                <p class="text-green-100 text-sm">+598 99 845 879</p>
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 group-hover:translate-x-1 transition-transform">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-
-            <!-- Email -->
-            <a
-              href="mailto:mrezk84@gmail.com"
-              class="group flex items-center gap-4 p-6 bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-2xl text-white transition-all hover-lift border border-amber-500/20"
-            >
-              <div class="w-14 h-14 bg-amber-500/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-amber-400">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                </svg>
-              </div>
-              <div class="flex-1">
-                <p class="text-xl font-bold">Email</p>
-                <p class="text-slate-300 text-sm">mrezk84@gmail.com</p>
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 group-hover:translate-x-1 transition-transform">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-
-            <!-- LinkedIn & GitHub -->
-            <div class="grid grid-cols-2 gap-4">
               <a
                 href="https://www.linkedin.com/in/marcos-rezk"
                 target="_blank"
-                class="group flex items-center justify-center gap-2 p-4 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-semibold transition-all hover-lift"
+                rel="noopener noreferrer"
+                class="group flex items-center gap-4 p-4 bg-surface hover:bg-sunk transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                </svg>
-                LinkedIn
+                <span class="shrink-0 w-10 h-10 flex items-center justify-center border border-line text-pine">
+                  <Icon name="linkedin" class="w-5 h-5" />
+                </span>
+                <span class="flex-1 min-w-0">
+                  <span class="block text-sm font-semibold text-ink">LinkedIn</span>
+                  <span class="block label">/in/marcos-rezk</span>
+                </span>
+                <Icon name="arrow-right" class="w-4 h-4 text-ink-faint transition-transform group-hover:translate-x-1" strokeWidth={2} />
+              </a>
+            </div>
+
+            <dl class="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-7">
+              {availability.map((item) => (
+                <div>
+                  <dt class="label mb-1.5">{item.label}</dt>
+                  <dd class="text-sm font-medium text-ink">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <!-- Form -->
+          <div class="lg:col-span-7 bg-paper p-7 sm:p-9 reveal" data-reveal-delay="100">
+            <p class="label mb-6">Escribime</p>
+
+            <form action={formAction} method="POST" class="space-y-5" novalidate data-live={String(formIsLive)}>
+              <div>
+                <label for="name" class="label block mb-2">Nombre completo</label>
+                <input type="text" id="name" name="name" required class="field" placeholder="Tu nombre" autocomplete="name" />
+                <p id="name-tip" class="field-tip">Ingresá tu nombre (mínimo 2 letras).</p>
+              </div>
+
+              <div>
+                <label for="email" class="label block mb-2">Correo electrónico</label>
+                <input type="email" id="email" name="email" required class="field" placeholder="tu@empresa.com" autocomplete="email" />
+                <p id="email-tip" class="field-tip">Ingresá un correo electrónico válido.</p>
+              </div>
+
+              <div>
+                <label for="message" class="label block mb-2">Mensaje</label>
+                <textarea id="message" name="message" rows="6" required class="field resize-y" placeholder="Rol, equipo, stack, modalidad… lo que tengas."></textarea>
+                <p id="message-tip" class="field-tip">Escribí un mensaje (mínimo 10 caracteres).</p>
+              </div>
+
+              <!-- Honeypot: bots fill it, humans never see it. -->
+              <div class="absolute w-px h-px -m-px overflow-hidden" aria-hidden="true">
+                <label for="company-website">No completar</label>
+                <input type="text" id="company-website" name="_gotcha" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <button type="submit" id="submit-contact" class="btn btn-signal w-full">
+                <Icon name="send" class="w-[18px] h-[18px]" strokeWidth={2} />
+                <span>Enviar mensaje</span>
+              </button>
+
+              <p class="text-xs text-ink-faint leading-relaxed">
+                Tus datos se usan únicamente para responderte. Sin listas, sin reenvíos.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         FOOTER
+         ══════════════════════════════════════════════════════ -->
+    <footer class="border-t border-line bg-surface">
+      <div class="max-w-6xl mx-auto px-6 py-14">
+        <div class="grid sm:grid-cols-2 gap-8 items-end">
+          <div>
+            <p class="font-display text-3xl font-bold text-ink leading-tight mb-2">
+              Disponible para nuevos proyectos.
+            </p>
+            <a href="#contacto" class="link-draw text-sm font-semibold">Escribime →</a>
+          </div>
+
+          <div class="sm:text-right">
+            <div class="flex sm:justify-end items-center gap-2 mb-4">
+              <a
+                href="https://www.linkedin.com/in/marcos-rezk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn de Marcos Rezk"
+                class="w-10 h-10 flex items-center justify-center border border-line text-ink-soft hover:text-on-pine hover:bg-pine hover:border-pine transition-colors"
+              >
+                <Icon name="linkedin" class="w-[18px] h-[18px]" />
               </a>
               <a
                 href="https://github.com/mrezk84"
                 target="_blank"
-                class="group flex items-center justify-center gap-2 p-4 bg-slate-700 hover:bg-slate-600 rounded-xl text-white font-semibold transition-all hover-lift"
+                rel="noopener noreferrer"
+                aria-label="GitHub de Marcos Rezk"
+                class="w-10 h-10 flex items-center justify-center border border-line text-ink-soft hover:text-on-pine hover:bg-pine hover:border-pine transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                </svg>
-                GitHub
+                <Icon name="github" class="w-[18px] h-[18px]" />
+              </a>
+              <a
+                href="mailto:mrezk84@gmail.com"
+                aria-label="Enviar un correo a Marcos Rezk"
+                class="w-10 h-10 flex items-center justify-center border border-line text-ink-soft hover:text-on-pine hover:bg-pine hover:border-pine transition-colors"
+              >
+                <Icon name="mail" class="w-[18px] h-[18px]" />
               </a>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA - Modern 2025 -->
-    <section class="py-20 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 relative overflow-hidden" data-aos="fade-up">
-      <!-- Animated background pattern -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 30px 30px;"></div>
-      </div>
-
-      <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-          Tu próximo proyecto merece un desarrollador comprometido
-        </h2>
-        <p class="text-lg text-slate-800 mb-8 max-w-xl mx-auto">
-          Hablemos de cómo puedo aportar valor a tu equipo desde el primer día.
-        </p>
-        <a
-          href="#contacto"
-          class="inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all hover-lift shadow-xl magnetic-hover"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-          </svg>
-          <span class="text-lg">Contáctame Hoy</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- Footer - Modern Minimal -->
-    <footer class="py-12 bg-slate-900 dark:bg-slate-950 border-t border-slate-800">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
-          <p class="text-slate-400 text-sm">
-            © {new Date().getFullYear()} {name} · Full Stack Developer
-          </p>
-          <div class="flex items-center gap-6">
-            <a href="https://www.linkedin.com/in/marcos-rezk" target="_blank" class="text-slate-400 hover:text-blue-500 transition-colors hover-lift">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-              </svg>
-            </a>
-            <a href="https://github.com/mrezk84" target="_blank" class="text-slate-400 hover:text-white transition-colors hover-lift">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-              </svg>
-            </a>
+            <p class="label">
+              © {new Date().getFullYear()} {name} · Montevideo, Uruguay
+            </p>
           </div>
         </div>
       </div>
     </footer>
   </main>
+
+  <!-- Success / error dialog -->
+  <div
+    id="contact-modal"
+    class="modal fixed inset-0 z-[100] flex items-center justify-center p-4"
+    style="background: rgb(11 17 16 / 0.72); backdrop-filter: blur(6px);"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="modal__panel w-full max-w-md bg-surface border border-line" style="box-shadow: var(--shadow-lg);">
+      <div class="flex items-center justify-between px-6 py-3 border-b border-line">
+        <span id="modal-eyebrow" class="label label-pine">Enviado</span>
+        <button id="modal-close-x" class="text-ink-faint hover:text-ink transition-colors" aria-label="Cerrar">
+          <Icon name="close" class="w-4 h-4" strokeWidth={2} />
+        </button>
+      </div>
+
+      <div class="p-8">
+        <div id="modal-icon" class="w-12 h-12 flex items-center justify-center border border-pine text-pine mb-6">
+          <Icon name="check" class="w-6 h-6" strokeWidth={2.5} />
+        </div>
+
+        <h3 id="modal-title" class="font-display text-2xl font-bold text-ink mb-3">Mensaje enviado</h3>
+        <p id="modal-description" class="text-sm text-ink-soft leading-relaxed mb-7">
+          Gracias por escribir. Recibí tu mensaje y te respondo a la brevedad.
+        </p>
+
+        <button id="modal-close-btn" class="btn btn-pine w-full">Entendido</button>
+      </div>
+    </div>
+  </div>
 </Layout>
 
-<style>
-  @keyframes gradient {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 4s ease infinite;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
-
 <script>
-  // Contact form elements
-  const form = document.querySelector('#contacto form') as HTMLFormElement;
-  const nameInput = document.getElementById('name') as HTMLInputElement;
-  const emailInput = document.getElementById('email') as HTMLInputElement;
-  const messageInput = document.getElementById('message') as HTMLTextAreaElement;
-  const submitBtn = document.getElementById('submit-contact') as HTMLButtonElement;
-  const submitText = submitBtn?.querySelector('span');
+  const form = document.querySelector<HTMLFormElement>('#contacto form');
+  const nameInput = document.getElementById('name') as HTMLInputElement | null;
+  const emailInput = document.getElementById('email') as HTMLInputElement | null;
+  const messageInput = document.getElementById('message') as HTMLTextAreaElement | null;
+  const submitBtn = document.getElementById('submit-contact') as HTMLButtonElement | null;
 
-  // Modal elements
   const modal = document.getElementById('contact-modal');
-  const modalSuccessIcon = document.getElementById('modal-success-icon');
-  const modalErrorIcon = document.getElementById('modal-error-icon');
+  const modalIcon = document.getElementById('modal-icon');
+  const modalEyebrow = document.getElementById('modal-eyebrow');
   const modalTitle = document.getElementById('modal-title');
   const modalDescription = document.getElementById('modal-description');
   const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalCloseX = document.getElementById('modal-close-x');
 
-  // Input status elements
-  const nameStatus = document.getElementById('name-status');
-  const emailStatus = document.getElementById('email-status');
-  const messageStatus = document.getElementById('message-status');
-
-  // Sanitization functions to prevent XSS
-  function sanitizeInput(val: string): string {
-    return val
+  /**
+   * Strips markup-ish characters before the value is sent onward. This is a
+   * courtesy filter for the inbox, not a security boundary — the real escaping
+   * happens wherever the message is finally rendered.
+   */
+  function sanitize(value: string): string {
+    return value
       .trim()
-      .replace(/[<>]/g, '') // Remove potential HTML tags
-      .replace(/javascript:/gi, '') // Remove javascript: protocol
-      .replace(/on\w+=/gi, '') // Remove event handlers like onclick=
-      .substring(0, 1000); // Limit length to prevent DoS
+      .replace(/[<>]/g, '')
+      .replace(/javascript:/gi, '')
+      .replace(/on\w+=/gi, '')
+      .slice(0, 5000);
   }
 
-  // Enhanced validation rules with security checks
-  function validateName(val: string): boolean {
-    const sanitized = sanitizeInput(val);
-    return sanitized.length >= 2 && sanitized.length <= 100 && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]+$/.test(sanitized);
-  }
+  const validators = {
+    name: (v: string) => {
+      const s = sanitize(v);
+      return s.length >= 2 && s.length <= 100 && /^[\p{L}\s'’-]+$/u.test(s);
+    },
+    email: (v: string) => {
+      const s = sanitize(v);
+      return s.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);
+    },
+    message: (v: string) => {
+      const s = sanitize(v);
+      return s.length >= 10 && s.length <= 5000;
+    }
+  };
 
-  function validateEmail(val: string): boolean {
-    const sanitized = sanitizeInput(val);
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(sanitized) && sanitized.length <= 254;
-  }
-
-  function validateMessage(val: string): boolean {
-    const sanitized = sanitizeInput(val);
-    return sanitized.length >= 10 && sanitized.length <= 5000;
-  }
-
-  // Rate limiting tracking (simple implementation)
-  let submitAttempts = 0;
+  // Throttle: at most `maxAttempts` sends per rolling cooldown window. The
+  // timestamps list is what makes this actually roll — the previous version
+  // captured a single start time in a const, so the window never moved.
   const maxAttempts = 3;
-  const lastSubmitTime = Date.now();
-  const cooldownPeriod = 60000; // 1 minute cooldown
+  const cooldownPeriod = 60_000;
+  let attemptTimestamps: number[] = [];
 
-  function checkRateLimit(): boolean {
+  function withinRateLimit(): boolean {
     const now = Date.now();
-    const timeSinceLastSubmit = now - lastSubmitTime;
-
-    if (timeSinceLastSubmit > cooldownPeriod) {
-      submitAttempts = 0; // Reset attempts after cooldown
-      return true;
-    }
-
-    if (submitAttempts >= maxAttempts) {
-      return false; // Rate limit exceeded
-    }
-
-    return true;
+    attemptTimestamps = attemptTimestamps.filter((t) => now - t < cooldownPeriod);
+    return attemptTimestamps.length < maxAttempts;
   }
 
-  // Update input visual styles and status indicators
-  function setInputStatus(
+  function setFieldState(
     input: HTMLInputElement | HTMLTextAreaElement,
-    statusEl: HTMLElement | null,
     isValid: boolean,
     isDirty: boolean
   ) {
     const tip = document.getElementById(`${input.id}-tip`);
+    input.classList.remove('is-valid', 'is-invalid');
+    input.removeAttribute('aria-invalid');
+    tip?.classList.remove('show');
 
-    if (!isDirty) {
-      input.classList.remove('input-valid', 'input-invalid');
-      if (statusEl) statusEl.innerHTML = '';
-      if (tip) tip.classList.remove('show');
-      return;
-    }
+    if (!isDirty) return;
 
     if (isValid) {
-      input.classList.remove('input-invalid');
-      input.classList.add('input-valid');
-      if (statusEl) {
-        statusEl.innerHTML = '<span class="text-green-500 font-bold text-sm bg-green-500/10 w-6 h-6 flex items-center justify-center rounded-full border border-green-500/20">✓</span>';
-      }
-      if (tip) tip.classList.remove('show');
+      input.classList.add('is-valid');
     } else {
-      input.classList.remove('input-valid');
-      input.classList.add('input-invalid');
-      if (statusEl) {
-        statusEl.innerHTML = '<span class="text-red-500 font-bold text-sm bg-red-500/10 w-6 h-6 flex items-center justify-center rounded-full border border-red-500/20">!</span>';
-      }
-      if (tip) tip.classList.add('show');
+      input.classList.add('is-invalid');
+      input.setAttribute('aria-invalid', 'true');
+      tip?.classList.add('show');
     }
   }
 
-  // Event Listeners for Live Validation
-  nameInput?.addEventListener('input', () => {
-    setInputStatus(nameInput, nameStatus, validateName(nameInput.value), nameInput.value.length > 0);
+  ([
+    [nameInput, validators.name],
+    [emailInput, validators.email],
+    [messageInput, validators.message]
+  ] as const).forEach(([input, validate]) => {
+    input?.addEventListener('input', () => {
+      setFieldState(input, validate(input.value), input.value.length > 0);
+    });
   });
 
-  emailInput?.addEventListener('input', () => {
-    setInputStatus(emailInput, emailStatus, validateEmail(emailInput.value), emailInput.value.length > 0);
-  });
+  let lastFocused: HTMLElement | null = null;
 
-  messageInput?.addEventListener('input', () => {
-    setInputStatus(messageInput, messageStatus, validateMessage(messageInput.value), messageInput.value.length > 0);
-  });
-
-  // Modal controls
-  function openModal(isSuccess: boolean, errorMsg?: string) {
+  function openModal(isSuccess: boolean, message?: string) {
     if (!modal) return;
-    
-    if (isSuccess) {
-      modalSuccessIcon?.classList.remove('hidden');
-      modalErrorIcon?.classList.add('hidden');
-      if (modalTitle) modalTitle.textContent = "¡Mensaje Enviado!";
-      if (modalDescription) {
-        modalDescription.textContent = "Muchas gracias por contactarme. He recibido tu mensaje con éxito y te estaré respondiendo a la brevedad.";
-      }
-    } else {
-      modalSuccessIcon?.classList.add('hidden');
-      modalErrorIcon?.classList.remove('hidden');
-      if (modalTitle) modalTitle.textContent = "Error al enviar";
-      if (modalDescription) {
-        modalDescription.textContent = errorMsg || "Hubo un inconveniente al enviar tu mensaje. Por favor, inténtalo de nuevo o contáctame directamente por WhatsApp/Email.";
-      }
+    lastFocused = document.activeElement as HTMLElement;
+
+    if (modalIcon) {
+      modalIcon.classList.toggle('border-pine', isSuccess);
+      modalIcon.classList.toggle('text-pine', isSuccess);
+      modalIcon.classList.toggle('border-signal', !isSuccess);
+      modalIcon.classList.toggle('text-signal', !isSuccess);
+    }
+    if (modalEyebrow) {
+      modalEyebrow.textContent = isSuccess ? 'Enviado' : 'Error';
+      modalEyebrow.classList.toggle('label-pine', isSuccess);
+      modalEyebrow.classList.toggle('label-signal', !isSuccess);
+    }
+    if (modalTitle) modalTitle.textContent = isSuccess ? 'Mensaje enviado' : 'No se pudo enviar';
+    if (modalDescription) {
+      modalDescription.textContent =
+        message ??
+        (isSuccess
+          ? 'Gracias por escribir. Recibí tu mensaje y te respondo a la brevedad.'
+          : 'Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp o email.');
     }
 
     modal.classList.add('show');
-    document.body.classList.add('overflow-hidden');
+    document.body.style.overflow = 'hidden';
+    modalCloseBtn?.focus();
   }
 
   function closeModal() {
     if (!modal) return;
     modal.classList.remove('show');
-    document.body.classList.remove('overflow-hidden');
+    document.body.style.overflow = '';
+    lastFocused?.focus();
   }
 
   modalCloseBtn?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
+  modalCloseX?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal?.classList.contains('show')) closeModal();
   });
 
-  // Form submission handling via AJAX with security enhancements
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  form?.addEventListener('submit', async (event) => {
+    if (!form || !nameInput || !emailInput || !messageInput || !submitBtn) return;
 
-    // Check rate limiting first
-    if (!checkRateLimit()) {
-      openModal(false, "Has excedido el límite de envíos. Por favor, espera unos minutos antes de intentar nuevamente.");
-      return;
-    }
+    const isNameValid = validators.name(nameInput.value);
+    const isEmailValid = validators.email(emailInput.value);
+    const isMessageValid = validators.message(messageInput.value);
 
-    const isNameValid = validateName(nameInput.value);
-    const isEmailValid = validateEmail(emailInput.value);
-    const isMessageValid = validateMessage(messageInput.value);
-
-    // Force validation alerts on submit
-    setInputStatus(nameInput, nameStatus, isNameValid, true);
-    setInputStatus(emailInput, emailStatus, isEmailValid, true);
-    setInputStatus(messageInput, messageStatus, isMessageValid, true);
+    setFieldState(nameInput, isNameValid, true);
+    setFieldState(emailInput, isEmailValid, true);
+    setFieldState(messageInput, isMessageValid, true);
 
     if (!isNameValid || !isEmailValid || !isMessageValid) {
-      if (!isNameValid) nameInput.focus();
-      else if (!isEmailValid) emailInput.focus();
-      else messageInput.focus();
+      event.preventDefault();
+      (!isNameValid ? nameInput : !isEmailValid ? emailInput : messageInput).focus();
       return;
     }
 
-    // Sanitize all inputs before submission
-    const sanitizedData = {
-      name: sanitizeInput(nameInput.value),
-      email: sanitizeInput(emailInput.value),
-      message: sanitizeInput(messageInput.value)
-    };
+    // Without a Formspree endpoint the action is a mailto: — let the browser
+    // hand off to the mail client instead of trying to fetch() it.
+    if (form.dataset.live !== 'true') return;
 
-    // Update form values with sanitized data
-    nameInput.value = sanitizedData.name;
-    emailInput.value = sanitizedData.email;
-    messageInput.value = sanitizedData.message;
+    event.preventDefault();
 
-    // Increment submit attempts for rate limiting
-    submitAttempts++;
-
-    // Set interactive loading state
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+    if (!withinRateLimit()) {
+      openModal(false, 'Enviaste varios mensajes seguidos. Esperá un minuto antes de reintentar.');
+      return;
     }
+    attemptTimestamps.push(Date.now());
+
+    nameInput.value = sanitize(nameInput.value);
+    emailInput.value = sanitize(emailInput.value);
+    messageInput.value = sanitize(messageInput.value);
 
     const originalBtnHTML = submitBtn.innerHTML;
-
-    submitBtn.innerHTML = `
-      <svg class="animate-spin-loader h-5 w-5 text-slate-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
-      <span>Enviando mensaje...</span>
-    `;
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+    submitBtn.innerHTML =
+      '<svg class="spin" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+      '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"/>' +
+      '<path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' +
+      '</svg><span>Enviando…</span>';
 
     try {
-      const formData = new FormData(form);
-      const action = form.getAttribute('action') || 'https://formspree.io/f/mrezk84@gmail.com';
-
-      const response = await fetch(action, {
+      const response = await fetch(form.action, {
         method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
       });
 
       if (response.ok) {
         openModal(true);
         form.reset();
-        setInputStatus(nameInput, nameStatus, false, false);
-        setInputStatus(emailInput, emailStatus, false, false);
-        setInputStatus(messageInput, messageStatus, false, false);
-        submitAttempts = 0; // Reset on successful submission
+        [nameInput, emailInput, messageInput].forEach((input) => setFieldState(input, false, false));
+        // The attempt stays on the record deliberately: clearing it on success
+        // would let an automated sender loop forever, since every one of its
+        // posts succeeds. The window rolls off on its own after the cooldown.
       } else {
-        let errorMsg = "Hubo un inconveniente al enviar tu mensaje. Por favor, asegúrate de que tu correo esté escrito correctamente.";
+        let errorMsg: string | undefined;
         try {
           const data = await response.json();
-          if (data.errors && data.errors.length > 0) {
-            errorMsg = data.errors.map((err: any) => err.message).join(', ');
+          if (Array.isArray(data?.errors) && data.errors.length) {
+            errorMsg = data.errors.map((e: { message?: string }) => e.message).filter(Boolean).join(', ');
           }
-        } catch (_) {}
+        } catch {
+          /* non-JSON error body — fall back to the generic message */
+        }
         openModal(false, errorMsg);
       }
-    } catch (err) {
-      console.error(err);
+    } catch {
       openModal(false);
     } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
-        submitBtn.innerHTML = originalBtnHTML;
-      }
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '';
+      submitBtn.innerHTML = originalBtnHTML;
     }
   });
 </script>
-
