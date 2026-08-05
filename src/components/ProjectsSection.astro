@@ -1,15 +1,18 @@
 ---
 import Icon from "./Icon.astro";
+import ProjectDiagram from "./ProjectDiagram.astro";
 
 /**
  * Professional work only. Personal repositories are rendered once, by
  * GitHubRepos.astro — this section used to duplicate them.
  *
- * These systems are client-owned and not publicly reachable, so each card
- * states the client, the year and the stack instead of linking to a demo.
+ * These systems are client-owned and not publicly reachable, so each entry
+ * carries an architecture diagram instead of a screenshot: it shows how the
+ * pieces talk without exposing anything that belongs to the client.
  */
 const projects = [
 	{
+		id: "denuncias" as const,
 		title: "Sistema de Denuncias",
 		client: "Ministerio del Interior",
 		year: "2024",
@@ -17,9 +20,13 @@ const projects = [
 		description:
 			"Aplicación full stack para la gestión de denuncias ciudadanas. Mapa interactivo con ArcGIS, autenticación LDAP contra el directorio del organismo y exportación de reportes en PDF.",
 		outcome: "40% de mejora en el tiempo de respuesta de las consultas",
+		diagramLabel:
+			"Arquitectura del sistema de denuncias: una SPA en React consulta una API en C# .NET que valida la sesión contra LDAP, persiste en SQL Server, geocodifica el hecho con ArcGIS y exporta reportes en PDF. El tramo optimizado es el de las consultas a SQL Server.",
+		caption: "El trabajo de optimización estuvo en el tramo API → SQL Server.",
 		technologies: ["React", "C# .NET", "SQL Server", "ArcGIS", "LDAP"]
 	},
 	{
+		id: "emergencias" as const,
 		title: "Centro de Emergencias 911",
 		client: "Ministerio del Interior",
 		year: "2023",
@@ -27,9 +34,13 @@ const projects = [
 		description:
 			"Sistema crítico de gestión de llamadas de emergencia: grabación de audio, geolocalización del incidente y distribución de despachos en tiempo real. Cliente XAML, servicios WCF e integración Asterisk para telefonía IP.",
 		outcome: "Operación 24/7 sobre infraestructura del Estado",
+		diagramLabel:
+			"Arquitectura del Centro de Emergencias 911: la llamada entra por Asterisk vía SIP, que emite un evento a los servicios WCF. Estos graban el audio, obtienen la ubicación con ArcGIS y arman la ficha que llega al operador en un cliente XAML, desde donde sale el despacho en tiempo real.",
+		caption: "Una llamada abre tres caminos en paralelo antes de llegar al operador.",
 		technologies: ["C# .NET", "WCF", "XAML", "ArcGIS", "Asterisk"]
 	},
 	{
+		id: "semm" as const,
 		title: "Gestión de Eventos SEMM",
 		client: "SEMM",
 		year: "2023",
@@ -37,6 +48,9 @@ const projects = [
 		description:
 			"Plataforma de gestión y monitoreo de eventos para un servicio de emergencia médica móvil, con tablero en tiempo real y módulo de estadísticas operativas.",
 		outcome: "Tablero en tiempo real para coordinación médica",
+		diagramLabel:
+			"Arquitectura de la plataforma SEMM: los eventos médicos se registran a través de una API en C# .NET que persiste en SQL Server; el tablero React lee ese histórico en vivo y alimenta las estadísticas operativas con Chart.js.",
+		caption: "El tablero lee el mismo histórico que alimenta las estadísticas.",
 		technologies: ["React", "C# .NET", "SQL Server", "Chart.js"]
 	}
 ];
@@ -48,49 +62,59 @@ const projects = [
 			<span class="label label-pine">04 / Proyectos</span>
 		</div>
 
-		<div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-14">
+		<div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
 			<h2 class="lg:col-span-7 display-xl text-[clamp(2rem,4.5vw,3.25rem)] reveal">
 				Sistemas en producción, con gente real dependiendo de ellos.
 			</h2>
 			<p class="lg:col-span-5 text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
 				Son sistemas del Estado uruguayo y de un servicio de emergencia médica:
-				no puedo publicar el código ni una demo, pero sí lo que hacen, con qué
-				están construidos y qué resolvieron.
+				no puedo publicar el código ni una demo. Sí puedo mostrarte cómo están
+				armados por dentro.
 			</p>
 		</div>
 
-		<div class="grid md:grid-cols-3 gap-px bg-line border border-line">
+		<div class="space-y-px bg-line border border-line">
 			{projects.map((project, index) => (
-				<article class="group bg-paper flex flex-col reveal" data-reveal-delay={index * 90}>
-					<!-- Card header doubles as a file tab: client + year -->
-					<div class="flex items-center justify-between px-6 py-3 border-b border-line">
+				<article class="bg-paper reveal" data-reveal-delay={index * 80}>
+					<!-- Cabecera a modo de pestaña de expediente -->
+					<div class="flex items-center justify-between gap-4 px-6 sm:px-8 py-3 border-b border-line">
 						<span class="label truncate">{project.client}</span>
-						<span class="label label-pine shrink-0 ml-3">{project.year}</span>
+						<span class="label label-pine shrink-0">{project.year}</span>
 					</div>
 
-					<div class="p-6 sm:p-7 flex flex-col flex-1">
-						<span class="w-11 h-11 flex items-center justify-center border border-line text-pine mb-5 transition-colors duration-300 group-hover:bg-pine group-hover:text-on-pine group-hover:border-pine">
-							<Icon name={project.icon} class="w-5 h-5" />
-						</span>
+					<div class="grid lg:grid-cols-12">
+						<!-- Ficha -->
+						<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col">
+							<span class="w-11 h-11 flex items-center justify-center border border-line text-pine mb-5">
+								<Icon name={project.icon} class="w-5 h-5" />
+							</span>
 
-						<h3 class="font-display text-2xl font-bold text-ink leading-tight mb-3">
-							{project.title}
-						</h3>
+							<h3 class="font-display text-2xl sm:text-3xl font-bold text-ink leading-tight mb-3">
+								{project.title}
+							</h3>
 
-						<p class="text-sm text-ink-soft leading-relaxed mb-6 flex-1">
-							{project.description}
-						</p>
+							<p class="text-sm text-ink-soft leading-relaxed mb-6 flex-1">
+								{project.description}
+							</p>
 
-						<div class="flex items-start gap-2.5 mb-6 pt-5 border-t border-line">
-							<Icon name="check" class="w-4 h-4 mt-0.5 shrink-0 text-signal" strokeWidth={2.5} />
-							<p class="text-sm font-medium text-ink leading-snug">{project.outcome}</p>
+							<div class="flex items-start gap-2.5 mb-6 pt-5 border-t border-line">
+								<Icon name="check" class="w-4 h-4 mt-0.5 shrink-0 text-signal" strokeWidth={2.5} />
+								<p class="text-sm font-medium text-ink leading-snug">{project.outcome}</p>
+							</div>
+
+							<ul class="flex flex-wrap gap-1.5">
+								{project.technologies.map((tech) => (
+									<li class="label px-2.5 py-1 bg-sunk border border-line">{tech}</li>
+								))}
+							</ul>
 						</div>
 
-						<ul class="flex flex-wrap gap-1.5">
-							{project.technologies.map((tech) => (
-								<li class="label px-2.5 py-1 bg-sunk border border-line">{tech}</li>
-							))}
-						</ul>
+						<!-- Diagrama -->
+						<div class="lg:col-span-7 p-6 sm:p-8 border-t lg:border-t-0 lg:border-l border-line bg-sunk/40">
+							<p class="label mb-5">Arquitectura</p>
+							<ProjectDiagram id={project.id} label={project.diagramLabel} />
+							<p class="text-xs text-ink-faint leading-relaxed mt-5">{project.caption}</p>
+						</div>
 					</div>
 				</article>
 			))}
