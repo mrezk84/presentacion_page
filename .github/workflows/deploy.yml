@@ -48,3 +48,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # El deployment se quedó en `deployment_queued` más de 10 minutos y
+          # la acción abortó con su timeout por defecto. Al cancelarse, el
+          # deployment queda marcado para ese SHA y ningún reintento sobre el
+          # mismo commit vuelve a levantar: el ID del deployment ES el SHA, así
+          # que todo re-run posterior muere al instante con "Deployment
+          # cancelled". Con 20 minutos la cola de Pages tiene margen para
+          # drenar antes de que abortemos y dejemos el commit inservible.
+          timeout: 1200000
