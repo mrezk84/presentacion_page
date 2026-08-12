@@ -53,7 +53,7 @@ const { id, label } = Astro.props;
 				<text class="n-title" x="320" y="146">API C# .NET</text>
 				<text class="n-sub" x="320" y="163">reglas</text>
 
-				<rect class="node node--key" x="465" y="122" width="150" height="56" />
+				<rect class="node" x="465" y="122" width="150" height="56" />
 				<text class="n-title" x="540" y="146">SQL Server</text>
 				<text class="n-sub" x="540" y="163">denuncias</text>
 
@@ -69,9 +69,8 @@ const { id, label } = Astro.props;
 				<line class="edge" x1="175" y1="150" x2="239" y2="150" marker-end={`url(#${id}-tip)`} />
 				<text class="e-label" x="207" y="141">REST</text>
 
-				<line class="edge edge--key" x1="395" y1="150" x2="459" y2="150" marker-end={`url(#${id}-tip-key)`} />
-				<text class="e-label e-label--key" x="427" y="141">consultas</text>
-				<text class="e-label e-label--key" x="427" y="171">−40 %</text>
+				<line class="edge" x1="395" y1="150" x2="459" y2="150" marker-end={`url(#${id}-tip)`} />
+				<text class="e-label" x="427" y="141">consulta</text>
 
 				<line class="edge" x1="320" y1="122" x2="320" y2="76" marker-end={`url(#${id}-tip)`} />
 				<text class="e-label" x="334" y="103" text-anchor="start">valida sesión</text>
@@ -104,11 +103,17 @@ const { id, label } = Astro.props;
 				<text class="n-title" x="540" y="154">ArcGIS</text>
 				<text class="n-sub" x="540" y="171">geolocalización</text>
 
+				{/* La persistencia faltaba en la primera versión de este diagrama:
+				    es justamente el tramo del que habla el caso técnico. */}
+				<rect class="node node--key" x="15" y="130" width="170" height="56" />
+				<text class="n-title" x="100" y="154">SQL Server</text>
+				<text class="n-sub" x="100" y="171">registro</text>
+
 				<rect class="node" x="15" y="246" width="170" height="56" />
 				<text class="n-title" x="100" y="270">Grabación</text>
 				<text class="n-sub" x="100" y="287">respaldo</text>
 
-				<rect class="node node--key" x="455" y="246" width="170" height="56" />
+				<rect class="node" x="455" y="246" width="170" height="56" />
 				<text class="n-title" x="540" y="270">Operador XAML</text>
 				<text class="n-sub" x="540" y="287">ficha y despacho</text>
 
@@ -118,8 +123,12 @@ const { id, label } = Astro.props;
 				<line class="edge" x1="320" y1="70" x2="320" y2="124" marker-end={`url(#${id}-tip)`} />
 				<text class="e-label" x="334" y="101" text-anchor="start">evento</text>
 
-				<polyline class="edge" points="235,158 100,158 100,240" marker-end={`url(#${id}-tip)`} />
-				<text class="e-label" x="114" y="202" text-anchor="start">graba</text>
+				<line class="edge edge--key" x1="235" y1="158" x2="191" y2="158" marker-end={`url(#${id}-tip-key)`} />
+				<text class="e-label e-label--key" x="210" y="149">guarda</text>
+				<text class="e-label e-label--key" x="210" y="178">8→5 s</text>
+
+				<polyline class="edge" points="320,186 320,210 100,210 100,240" marker-end={`url(#${id}-tip)`} />
+				<text class="e-label" x="210" y="202">graba</text>
 
 				<line class="edge" x1="405" y1="158" x2="449" y2="158" marker-end={`url(#${id}-tip)`} />
 				<text class="e-label" x="427" y="149">ubica</text>
@@ -127,8 +136,8 @@ const { id, label } = Astro.props;
 				<line class="edge" x1="540" y1="186" x2="540" y2="240" marker-end={`url(#${id}-tip)`} />
 				<text class="e-label" x="526" y="205" text-anchor="end">posición</text>
 
-				<polyline class="edge edge--key" points="320,186 320,216 490,216 490,240" marker-end={`url(#${id}-tip-key)`} />
-				<text class="e-label e-label--key" x="405" y="208">despacho en vivo</text>
+				<polyline class="edge" points="320,186 320,226 490,226 490,240" marker-end={`url(#${id}-tip)`} />
+				<text class="e-label" x="405" y="236">despacho en vivo</text>
 			</g>
 		)}
 
@@ -158,7 +167,7 @@ const { id, label } = Astro.props;
 				<text class="e-label" x="207" y="33">alta</text>
 
 				<line class="edge" x1="405" y1="42" x2="449" y2="42" marker-end={`url(#${id}-tip)`} />
-				<text class="e-label" x="427" y="33">guarda</text>
+				<text class="e-label" x="430" y="33">guarda</text>
 
 				<polyline class="edge edge--key" points="540,70 540,133 320,133 320,190" marker-end={`url(#${id}-tip-key)`} />
 				<text class="e-label e-label--key" x="430" y="125">lectura en vivo</text>
@@ -250,9 +259,11 @@ const { id, label } = Astro.props;
 		.n-title {
 			font-size: 15px;
 		}
-		.n-sub,
-		.e-label {
+		.n-sub {
 			font-size: 12px;
+		}
+		.e-label {
+			font-size: 11px;
 		}
 	}
 </style>
