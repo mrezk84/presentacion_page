@@ -22,6 +22,17 @@
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
 
+# Las variantes que emite astro:assets llevan hash de contenido en el nombre,
+# así que pueden cachearse para siempre igual que el CSS y las fuentes.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
 /*.jpg
   Cache-Control: public, max-age=604800
 
