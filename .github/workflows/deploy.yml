@@ -32,6 +32,11 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Sin este secret el formulario cae a mailto:, que es el respaldo
+          # previsto. Definirlo en Settings -> Secrets and variables ->
+          # Actions con el ID del formulario de Formspree lo activa.
+          VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
