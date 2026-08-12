@@ -124,8 +124,8 @@ const { id, label } = Astro.props;
 				<text class="e-label" x="334" y="101" text-anchor="start">evento</text>
 
 				<line class="edge edge--key" x1="235" y1="158" x2="191" y2="158" marker-end={`url(#${id}-tip-key)`} />
-				<text class="e-label e-label--key" x="213" y="149">guarda</text>
-				<text class="e-label e-label--key" x="213" y="178">−40 %</text>
+				<text class="e-label e-label--key" x="210" y="149">guarda</text>
+				<text class="e-label e-label--key" x="210" y="178">8→5 s</text>
 
 				<polyline class="edge" points="320,186 320,210 100,210 100,240" marker-end={`url(#${id}-tip)`} />
 				<text class="e-label" x="210" y="202">graba</text>
@@ -137,7 +137,7 @@ const { id, label } = Astro.props;
 				<text class="e-label" x="526" y="205" text-anchor="end">posición</text>
 
 				<polyline class="edge" points="320,186 320,226 490,226 490,240" marker-end={`url(#${id}-tip)`} />
-				<text class="e-label" x="405" y="242">despacho en vivo</text>
+				<text class="e-label" x="405" y="236">despacho en vivo</text>
 			</g>
 		)}
 
@@ -167,7 +167,7 @@ const { id, label } = Astro.props;
 				<text class="e-label" x="207" y="33">alta</text>
 
 				<line class="edge" x1="405" y1="42" x2="449" y2="42" marker-end={`url(#${id}-tip)`} />
-				<text class="e-label" x="427" y="33">guarda</text>
+				<text class="e-label" x="430" y="33">guarda</text>
 
 				<polyline class="edge edge--key" points="540,70 540,133 320,133 320,190" marker-end={`url(#${id}-tip-key)`} />
 				<text class="e-label e-label--key" x="430" y="125">lectura en vivo</text>
@@ -259,9 +259,11 @@ const { id, label } = Astro.props;
 		.n-title {
 			font-size: 15px;
 		}
-		.n-sub,
-		.e-label {
+		.n-sub {
 			font-size: 12px;
+		}
+		.e-label {
+			font-size: 11px;
 		}
 	}
 </style>

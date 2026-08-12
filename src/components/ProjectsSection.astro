@@ -39,10 +39,10 @@ const projects = [
 		 * concretos, planes de ejecución ni herramientas de medición.
 		 */
 		caseStudy:
-			"El cuello de botella no estaba en el código sino en la base: a la base principal le faltaban índices que acompañaran los patrones de consulta reales del sistema. Indexarla bajó un 40% el tiempo de respuesta, sin cambiar la lógica de la aplicación.",
-		outcome: "Reducción del 40% en el tiempo de respuesta, en operación 24/7",
+			"El cuello de botella no estaba en el código sino en la base: a la base principal le faltaban índices que acompañaran los patrones de consulta reales del sistema. Indexarla bajó el tiempo de respuesta de 8 a 5 segundos, sin cambiar la lógica de la aplicación.",
+		outcome: "Tiempo de respuesta de 8 a 5 segundos, en operación 24/7",
 		diagramLabel:
-			"Arquitectura del Centro de Emergencias 911: la llamada entra por Asterisk vía SIP, que emite un evento a los servicios WCF. Estos registran la llamada en SQL Server, graban el audio, obtienen la ubicación con ArcGIS y arman la ficha que llega al operador en un cliente XAML, desde donde sale el despacho. El tramo indexado es el de los servicios contra SQL Server.",
+			"Arquitectura del Centro de Emergencias 911: la llamada entra por Asterisk vía SIP, que emite un evento a los servicios WCF. Estos registran la llamada en SQL Server, graban el audio, obtienen la ubicación con ArcGIS y arman la ficha que llega al operador en un cliente XAML, desde donde sale el despacho. El tramo indexado es el de los servicios contra SQL Server, que bajó de 8 a 5 segundos.",
 		caption: "El trabajo de indexación estuvo en el tramo marcado, contra SQL Server.",
 		technologies: ["C# .NET", "WCF", "XAML", "ArcGIS", "Asterisk"]
 	},
