@@ -70,11 +70,39 @@ npm run dev
 
 ### Variables de entorno
 
-Copiá `.env.example` a `.env.local`. La única variable que afecta el
-comportamiento es `VITE_FORMSPREE_ENDPOINT`: debe ser el **ID del formulario**
-de Formspree (o la URL completa), no una dirección de correo. Si no está
-definida, el formulario cae a un enlace `mailto:` en lugar de fallar en
-silencio.
+La única variable que afecta el comportamiento es `VITE_FORMSPREE_ENDPOINT`:
+debe ser el **ID del formulario** de Formspree (o la URL completa), no una
+dirección de correo. Si no está definida, el formulario cae a un enlace
+`mailto:` en lugar de fallar en silencio.
+
+## Activar el formulario de contacto
+
+Sin esta variable el botón de enviar abre el cliente de correo del visitante.
+Funciona, pero mucha gente no tiene uno configurado en la computadora del
+trabajo, así que conviene definirla.
+
+**1. Obtener el ID.** Crear un formulario en [formspree.io](https://formspree.io)
+y copiar el ID del endpoint que muestra: en `https://formspree.io/f/xrgvabcd`
+el ID es `xrgvabcd`.
+
+**2. Cargarlo en los dos destinos.** Cada uno lee sus variables de un lugar
+distinto, así que hay que definirlo en ambos o el formulario queda activo en
+un sitio y en `mailto:` en el otro:
+
+| Destino | Dónde |
+|---|---|
+| GitHub Pages | Settings → Secrets and variables → Actions → New repository secret, con nombre `VITE_FORMSPREE_ENDPOINT` |
+| Vercel | Settings → Environment Variables del proyecto, mismo nombre, marcada para Production |
+
+**3. Volver a desplegar.** Las variables se leen en tiempo de build, así que un
+despliegue anterior no las toma: hay que disparar uno nuevo (un push a `main`,
+o *Run workflow* sobre `deploy.yml`).
+
+**Para probar en local:** copiar `.env.example` a `.env.local` y definirla ahí.
+
+**Cómo verificar que quedó activo:** en el HTML publicado, el `<form>` debe
+tener `action="https://formspree.io/f/..."` y `data-live="true"`. Si dice
+`action="mailto:..."` y `data-live="false"`, la variable no llegó al build.
 
 ## Deployment
 
