@@ -15,10 +15,16 @@ const isVercel = import.meta.env.VERCEL === '1';
 const isDevelopment = import.meta.env.DEV;
 const basePath = isVercel || isDevelopment ? '' : '/presentacion_page';
 
-// Formspree form ID, e.g. "xrgvabcd". Set VITE_FORMSPREE_ENDPOINT to a full
-// URL or a bare form ID. Without it the form falls back to a mailto: action
-// so the page never ships a silently broken submit button.
-const formspreeEndpoint = (import.meta.env.VITE_FORMSPREE_ENDPOINT ?? "").trim();
+// ID del formulario de Formspree. Va acá y no en un secret a propósito: el
+// ID viaja en el `action` del <form>, o sea que es público desde que la
+// página se sirve. Guardarlo cifrado no protegería nada y obligaría a
+// configurarlo en GitHub y en Vercel por separado, con el riesgo de que
+// quede activo en un destino y en mailto: en el otro.
+//
+// VITE_FORMSPREE_ENDPOINT sigue funcionando como override — útil para
+// apuntar a otro formulario en pruebas sin tocar el código.
+const FORMSPREE_FORM_ID = "xdengrob";
+const formspreeEndpoint = (import.meta.env.VITE_FORMSPREE_ENDPOINT || FORMSPREE_FORM_ID).trim();
 const formAction = formspreeEndpoint
   ? (formspreeEndpoint.startsWith("http")
       ? formspreeEndpoint
