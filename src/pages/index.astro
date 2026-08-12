@@ -37,7 +37,7 @@ const role = "Full Stack Developer";
 
 // Availability facts a hiring manager screens for in the first 10 seconds.
 const availability = [
-  { label: "Ubicación", value: "Montevideo, Uruguay" },
+  { label: "Ubicación", value: "Uruguay" },
   { label: "Modalidad", value: "Remoto · Híbrido · Presencial" },
   { label: "Zona horaria", value: "UTC−3 · solapa con LATAM y EE.UU." },
   { label: "Respuesta", value: "Menos de 24 h hábiles" }
@@ -51,9 +51,9 @@ const stats = [
 ];
 
 const marqueeItems = [
-  "React", "C# .NET", "SQL Server", "Java", "Spring Boot", "PostgreSQL",
-  "Node.js", "Go", "MongoDB", "XAML", "WCF", "REST APIs", "ArcGIS",
-  "LDAP", "Asterisk", "Docker", "Git", "Scrum"
+  "React", "TypeScript", "Next.js", "C# .NET", "ASP.NET Core", "SQL Server",
+  "T-SQL", "Dapper", "Material UI", "WCF", "SOAP", "REST", "WebSocket",
+  "ArcGIS", "LDAP", "Asterisk", "GitHub Actions", "Azure", "OWASP", "Scrum"
 ];
 
 const capabilities = [
@@ -61,29 +61,29 @@ const capabilities = [
     icon: "server",
     title: "Backend y APIs",
     lead: "Que tengan que funcionar, no impresionar.",
-    body: "APIs REST y SOAP en C# .NET, Java con Spring Boot y Node.js. Integraciones con directorios corporativos, servicios de mapas y telefonía IP.",
-    stack: ["C# .NET", "Java", "Spring Boot", "Node.js", "Go", "WCF"]
+    body: "Servicios REST, SOAP y WebSocket sobre C# .NET 6/8 y ASP.NET Core. Integraciones con directorios corporativos, servicios de mapas y telefonía IP.",
+    stack: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Go"]
   },
   {
     icon: "database",
     title: "Datos y rendimiento",
     lead: "Donde suele estar el cuello de botella.",
-    body: "Diseño de esquemas, índices y procedimientos almacenados. Indexación medida en producción sobre SQL Server: de 8 a 5 segundos de respuesta.",
-    stack: ["SQL Server", "PostgreSQL", "MongoDB"]
+    body: "Diseño de esquemas, índices y procedimientos almacenados en T-SQL, con acceso a datos vía Dapper. Indexación medida en producción sobre SQL Server: de 8 a 5 segundos de respuesta.",
+    stack: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL"]
   },
   {
     icon: "code",
     title: "Frontend de producto",
     lead: "Interfaces que la gente usa ocho horas por día.",
-    body: "Aplicaciones React y clientes de escritorio pensados para uso intensivo: flujos densos en información, accesibles y rápidos bajo carga.",
-    stack: ["React", "JavaScript", "HTML / CSS", "XAML"]
+    body: "Aplicaciones React con TypeScript y Next.js, y clientes de escritorio pensados para uso intensivo: flujos densos en información, accesibles y rápidos bajo carga.",
+    stack: ["React", "TypeScript", "Next.js", "Material UI", "XAML"]
   },
   {
     icon: "team",
     title: "Entrega y equipo",
     lead: "Vengo del otro lado de la mesa de soporte.",
-    body: "Scrum y Kanban, CI/CD, revisión de código y pair programming. Nueve años gestionando proyectos técnicos antes de desarrollarlos.",
-    stack: ["Scrum", "Kanban", "CI/CD", "Git", "Docker"]
+    body: "Scrum, CI/CD con GitHub Actions, revisión de código y prácticas de seguridad OWASP. Nueve años gestionando proyectos técnicos antes de desarrollarlos.",
+    stack: ["Scrum", "GitHub Actions", "OWASP", "Git", "Docker"]
   }
 ];
 
@@ -91,12 +91,13 @@ const experience = [
   {
     title: "Desarrollador Full Stack",
     org: "SONDA Uruguay",
-    period: "2022 — Presente",
-    current: true,
+    period: "Mayo 2022 — Julio 2026",
+    current: false,
     bullets: [
-      "Desarrollo full stack en React, C# .NET y XAML sobre sistemas de alta disponibilidad.",
-      "Sistema 911 con WCF, ArcGIS y Asterisk para telefonía IP.",
-      "Indexación de SQL Server en el 911: el tiempo de respuesta pasó de 8 a 5 segundos."
+      "Módulos frontend en React y TypeScript integrados con servicios backend en C# .NET.",
+      "Sistemas para el Ministerio del Interior (SIVVE), emergencias 911, SEMM y denuncias en línea.",
+      "Indexación de SQL Server en el 911: el tiempo de respuesta pasó de 8 a 5 segundos.",
+      "IA generativa aplicada al flujo de trabajo: diseño técnico, refactor y documentación."
     ]
   },
   {
@@ -105,8 +106,8 @@ const experience = [
     period: "2018 — 2022",
     current: false,
     bullets: [
-      "Gestión de un equipo de soporte técnico de 13 personas.",
-      "Coordinación con áreas técnicas para el cierre de tickets críticos."
+      "Lideré un equipo de 13 técnicos y reduje un 25% los tiempos de resolución.",
+      "Protocolos de escalamiento y capacitación que bajaron la recurrencia de tickets críticos."
     ]
   },
   {
@@ -122,18 +123,18 @@ const experience = [
 ];
 
 const stack = [
-  { group: "Frontend", icon: "code", items: ["React", "JavaScript", "HTML / CSS", "XAML"] },
-  { group: "Backend", icon: "server", items: ["C# .NET", "Java", "Spring Boot", "Node.js", "Go"] },
-  { group: "Datos", icon: "database", items: ["SQL Server", "PostgreSQL", "MongoDB"] },
-  { group: "Integraciones", icon: "link", items: ["REST APIs", "WCF", "ArcGIS", "LDAP", "Asterisk"] },
+  { group: "Frontend", icon: "code", items: ["React", "TypeScript", "Next.js", "Material UI", "JavaScript", "HTML / CSS", "XAML"] },
+  { group: "Backend", icon: "server", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Go"] },
+  { group: "Datos", icon: "database", items: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"] },
+  { group: "Integraciones", icon: "link", items: ["REST", "SOAP", "WebSocket", "ArcGIS", "LDAP", "Asterisk"] },
   { group: "Entorno", icon: "terminal", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
-  { group: "Entrega", icon: "cycle", items: ["Git", "Docker", "Postman", "Scrum", "Kanban", "CI/CD"] }
+  { group: "Entrega", icon: "cycle", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] }
 ];
 ---
 
 <Layout
   title="Marcos Rezk | Full Stack Developer — disponible para nuevos proyectos"
-  description="Full Stack Developer en Montevideo. React, C# .NET, SQL Server, Java y Spring Boot. Más de tres años construyendo aplicaciones web de punta a punta en entornos de alta disponibilidad. Disponible para nuevas oportunidades."
+  description="Full Stack Developer en Uruguay. React, TypeScript, C# .NET, ASP.NET Core y SQL Server. Más de tres años construyendo aplicaciones web de punta a punta en entornos de alta disponibilidad. Disponible para nuevas oportunidades."
 >
   <SkipLink />
   <Header />
@@ -170,7 +171,7 @@ const stack = [
             </h1>
 
             <p class="rise measure text-lg sm:text-xl text-ink-soft leading-relaxed mb-8" style="animation-delay: 280ms;">
-              Hola, soy <strong class="text-ink font-semibold">Marcos</strong>. Full Stack Developer, vivo en Montevideo. Me gusta trabajar de punta a punta: la interfaz en <strong class="text-ink font-semibold">React</strong>, la API en <strong class="text-ink font-semibold">C#&nbsp;.NET</strong> o <strong class="text-ink font-semibold">Java</strong>, y la base de datos que hay debajo. Vengo de sistemas donde no había margen para el error, y esa costumbre se me quedó.
+              Hola, soy <strong class="text-ink font-semibold">Marcos</strong>. Full Stack Developer en Uruguay. Me gusta trabajar de punta a punta: la interfaz en <strong class="text-ink font-semibold">React</strong> y <strong class="text-ink font-semibold">TypeScript</strong>, la API en <strong class="text-ink font-semibold">C#&nbsp;.NET</strong>, y la base de datos que hay debajo. Vengo de sistemas donde no había margen para el error, y esa costumbre se me quedó.
             </p>
 
             <div class="rise flex flex-col sm:flex-row gap-3 mb-12" style="animation-delay: 360ms;">
@@ -610,7 +611,7 @@ const stack = [
               </a>
             </div>
             <p class="label">
-              © {new Date().getFullYear()} {name} · Montevideo, Uruguay
+              © {new Date().getFullYear()} {name} · Uruguay
             </p>
           </div>
         </div>
