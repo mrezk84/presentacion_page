@@ -19,17 +19,10 @@ const projects = [
 		icon: "building",
 		description:
 			"Aplicación full stack para la gestión de denuncias ciudadanas. Mapa interactivo con ArcGIS, autenticación LDAP contra el directorio del organismo y exportación de reportes en PDF.",
-		/**
-		 * Sólo afirma lo que se puede sostener en una entrevista: dónde estaba
-		 * el cuello de botella, qué se hizo y qué se midió. Nada sobre índices
-		 * concretos, planes de ejecución ni herramientas de medición.
-		 */
-		caseStudy:
-			"El cuello de botella no estaba en el código sino en la base: a la base principal le faltaban índices que acompañaran los patrones de consulta reales del sistema. Indexarla bajó un 40% el tiempo de respuesta, sin cambiar la lógica de la aplicación.",
-		outcome: "Reducción del 40% en el tiempo de respuesta de las consultas",
+		outcome: "Denuncias georreferenciadas con autenticación del organismo",
 		diagramLabel:
-			"Arquitectura del sistema de denuncias: una SPA en React consulta una API en C# .NET que valida la sesión contra LDAP, persiste en SQL Server, geocodifica el hecho con ArcGIS y exporta reportes en PDF. El tramo optimizado es el de las consultas a SQL Server.",
-		caption: "El trabajo de optimización estuvo en el tramo API → SQL Server.",
+			"Arquitectura del sistema de denuncias: una SPA en React consulta una API en C# .NET que valida la sesión contra LDAP, persiste en SQL Server, geocodifica el hecho con ArcGIS y exporta reportes en PDF.",
+		caption: "El acceso al directorio es una puerta previa, no un paso del flujo de datos.",
 		technologies: ["React", "C# .NET", "SQL Server", "ArcGIS", "LDAP"]
 	},
 	{
@@ -40,10 +33,17 @@ const projects = [
 		icon: "phone",
 		description:
 			"Sistema crítico de gestión de llamadas de emergencia: grabación de audio, geolocalización del incidente y distribución de despachos en tiempo real. Cliente XAML, servicios WCF e integración Asterisk para telefonía IP.",
-		outcome: "Operación 24/7 sobre infraestructura del Estado",
+		/**
+		 * Sólo afirma lo que se puede sostener en una entrevista: dónde estaba
+		 * el cuello de botella, qué se hizo y qué se midió. Nada sobre índices
+		 * concretos, planes de ejecución ni herramientas de medición.
+		 */
+		caseStudy:
+			"El cuello de botella no estaba en el código sino en la base: a la base principal le faltaban índices que acompañaran los patrones de consulta reales del sistema. Indexarla bajó un 40% el tiempo de respuesta, sin cambiar la lógica de la aplicación.",
+		outcome: "Reducción del 40% en el tiempo de respuesta, en operación 24/7",
 		diagramLabel:
-			"Arquitectura del Centro de Emergencias 911: la llamada entra por Asterisk vía SIP, que emite un evento a los servicios WCF. Estos graban el audio, obtienen la ubicación con ArcGIS y arman la ficha que llega al operador en un cliente XAML, desde donde sale el despacho en tiempo real.",
-		caption: "Una llamada abre tres caminos en paralelo antes de llegar al operador.",
+			"Arquitectura del Centro de Emergencias 911: la llamada entra por Asterisk vía SIP, que emite un evento a los servicios WCF. Estos registran la llamada en SQL Server, graban el audio, obtienen la ubicación con ArcGIS y arman la ficha que llega al operador en un cliente XAML, desde donde sale el despacho. El tramo indexado es el de los servicios contra SQL Server.",
+		caption: "El trabajo de indexación estuvo en el tramo marcado, contra SQL Server.",
 		technologies: ["C# .NET", "WCF", "XAML", "ArcGIS", "Asterisk"]
 	},
 	{
