@@ -19,7 +19,14 @@ const projects = [
 		icon: "building",
 		description:
 			"Aplicación full stack para la gestión de denuncias ciudadanas. Mapa interactivo con ArcGIS, autenticación LDAP contra el directorio del organismo y exportación de reportes en PDF.",
-		outcome: "40% de mejora en el tiempo de respuesta de las consultas",
+		/**
+		 * Sólo afirma lo que se puede sostener en una entrevista: dónde estaba
+		 * el cuello de botella, qué se hizo y qué se midió. Nada sobre índices
+		 * concretos, planes de ejecución ni herramientas de medición.
+		 */
+		caseStudy:
+			"El cuello de botella no estaba en el código sino en la base: a la base principal le faltaban índices que acompañaran los patrones de consulta reales del sistema. Indexarla bajó un 40% el tiempo de respuesta, sin cambiar la lógica de la aplicación.",
+		outcome: "Reducción del 40% en el tiempo de respuesta de las consultas",
 		diagramLabel:
 			"Arquitectura del sistema de denuncias: una SPA en React consulta una API en C# .NET que valida la sesión contra LDAP, persiste en SQL Server, geocodifica el hecho con ArcGIS y exporta reportes en PDF. El tramo optimizado es el de las consultas a SQL Server.",
 		caption: "El trabajo de optimización estuvo en el tramo API → SQL Server.",
@@ -93,11 +100,20 @@ const projects = [
 								{project.title}
 							</h3>
 
-							<p class="text-sm text-ink-soft leading-relaxed mb-6 flex-1">
+							<p class="text-sm text-ink-soft leading-relaxed mb-6">
 								{project.description}
 							</p>
 
-							<div class="flex items-start gap-2.5 mb-6 pt-5 border-t border-line">
+							{project.caseStudy && (
+								/* Filete de señal a la izquierda: marca el párrafo como nota
+								   técnica sin abrir otra jerarquía de títulos. */
+								<div class="mb-6 pl-4 border-l-2 border-signal">
+									<p class="label label-signal mb-2">Cómo se resolvió</p>
+									<p class="text-sm text-ink-soft leading-relaxed">{project.caseStudy}</p>
+								</div>
+							)}
+
+							<div class="flex items-start gap-2.5 mb-6 pt-5 border-t border-line mt-auto">
 								<Icon name="check" class="w-4 h-4 mt-0.5 shrink-0 text-signal" strokeWidth={2.5} />
 								<p class="text-sm font-medium text-ink leading-snug">{project.outcome}</p>
 							</div>
