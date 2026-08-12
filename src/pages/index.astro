@@ -7,6 +7,8 @@ import ProjectsSection from "../components/ProjectsSection.astro";
 import GitHubRepos from "../components/GitHubRepos.astro";
 import CredentialsSection from "../components/CredentialsSection.astro";
 import Icon from "../components/Icon.astro";
+import { Picture } from "astro:assets";
+import perfil from "../assets/perfil.jpg";
 import "../styles/global.css";
 
 const isVercel = import.meta.env.VERCEL === '1';
@@ -201,11 +203,18 @@ const stack = [
 
               <div class="p-5">
                 <div class="relative mb-5 overflow-hidden">
-                  <img
-                    src={`${basePath}/perfil.jpg`}
+                  <!-- El original mide 288x288, así que no se piden anchos
+                       mayores: Astro no hace upscale y pedirlos sólo estiraría
+                       el mismo pixelado. Sin AVIF a propósito: a este tamaño
+                       sale en 10,5 KB contra 6,6 KB del WebP, y como el
+                       navegador elige por orden, ofrecerlo serviría la
+                       variante más pesada. -->
+                  <Picture
+                    src={perfil}
                     alt="Retrato de Marcos Rezk"
-                    width="440"
-                    height="440"
+                    formats={["webp"]}
+                    fallbackFormat="jpg"
+                    quality={82}
                     loading="eager"
                     fetchpriority="high"
                     class="w-full aspect-square object-cover"

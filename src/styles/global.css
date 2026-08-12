@@ -104,8 +104,8 @@
 	--color-on-pine: var(--c-on-pine);
 	--color-on-signal: var(--c-on-signal);
 
-	--font-display: "Bricolage Grotesque", "Georgia", serif;
-	--font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+	--font-display: "Bricolage Grotesque Variable", "Georgia", serif;
+	--font-sans: "IBM Plex Sans Variable", system-ui, -apple-system, sans-serif;
 	--font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 
 	--shadow-soft: var(--shadow-md);
@@ -138,8 +138,6 @@ h4 {
 	font-family: var(--font-display);
 	font-weight: 600;
 	letter-spacing: -0.02em;
-	/* Bricolage's optical size axis: larger text wants tighter, wider forms. */
-	font-variation-settings: "wdth" 100, "opsz" 24;
 }
 
 ::selection {
@@ -246,7 +244,6 @@ summary:focus-visible {
 	font-weight: 700;
 	line-height: 0.94;
 	letter-spacing: -0.035em;
-	font-variation-settings: "wdth" 100, "opsz" 48;
 }
 
 .measure {

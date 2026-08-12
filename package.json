@@ -16,6 +16,9 @@
     "test:security": "npm run security:audit && npm run security:check"
   },
   "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.4",
     "tailwindcss": "^4.3.2"

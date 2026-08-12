@@ -1,4 +1,17 @@
 ---
+// Tipografía self-hosted. Antes venía de fonts.googleapis.com, lo que costaba
+// dos DNS + dos handshakes TLS a terceros en el camino crítico, y le pasaba la
+// IP de cada visitante a Google. Ahora sale del mismo origen.
+//
+// Sólo el subset `latin` y sólo el eje de peso: `latin` ya cubre el español y
+// el signo menos de "UTC−3"; el archivo con todos los ejes de Bricolage pesa
+// 56 KB contra 20 KB del de peso, y los ejes opsz/wdth no compensan esa
+// diferencia. Las variables cubren 400–700 en un archivo por familia.
+import "@fontsource-variable/bricolage-grotesque/wght.css";
+import "@fontsource-variable/ibm-plex-sans/wght.css";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-500.css";
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -103,14 +116,6 @@ const fullCanonicalURL = `${baseURLClean}/`;
 			"description": "Desarrollador Full Stack con más de 3 años construyendo aplicaciones web de punta a punta con React, C# .NET, Java y SQL Server en entornos de alta disponibilidad."
 		})}>
 		</script>
-
-		<!-- Typography: Bricolage Grotesque (display) + IBM Plex Sans/Mono (engineering) -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-			rel="stylesheet"
-		/>
 
 		<!-- Runs before paint: sets the colour scheme and drops the no-js
 		     guard so reveal animations can take over from the static fallback. -->
