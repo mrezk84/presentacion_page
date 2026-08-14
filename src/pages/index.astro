@@ -44,10 +44,10 @@ const availability = [
 ];
 
 const stats = [
-  { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911" },
-  { value: "15", unit: "+", label: "Años sosteniendo software en producción", note: "Soporte, gestión y desarrollo" },
-  { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP" },
-  { value: "3", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server" }
+  { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911", icon: "sprint" },
+  { value: "15", unit: "+", label: "Años sosteniendo software en producción", note: "Soporte, gestión y desarrollo", icon: "pulse" },
+  { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP", icon: "team" },
+  { value: "3", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server", icon: "code" }
 ];
 
 const marqueeItems = [
@@ -123,13 +123,16 @@ const experience = [
   }
 ];
 
+// El stack se pinta como un stack.json, así que cada grupo entra por su
+// clave. Son palabras corrientes, de modo que un lector de pantalla lee
+// "frontend", "backend", "datos"… igual que se leería el rótulo.
 const stack = [
-  { group: "Frontend", icon: "code", items: ["React", "TypeScript", "Next.js", "Material UI", "JavaScript", "HTML / CSS", "XAML"] },
-  { group: "Backend", icon: "server", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Spring Boot", "Go"] },
-  { group: "Datos", icon: "database", items: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"] },
-  { group: "Integraciones", icon: "link", items: ["REST", "SOAP", "WebSocket", "ArcGIS", "LDAP", "Asterisk"] },
-  { group: "Entorno", icon: "terminal", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
-  { group: "Entrega", icon: "cycle", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] }
+  { key: "frontend", items: ["React", "TypeScript", "Next.js", "Material UI", "JavaScript", "HTML / CSS", "XAML"] },
+  { key: "backend", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Spring Boot", "Go"] },
+  { key: "datos", items: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"] },
+  { key: "integraciones", items: ["REST", "SOAP", "WebSocket", "ArcGIS", "LDAP", "Asterisk"] },
+  { key: "entorno", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
+  { key: "entrega", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] }
 ];
 ---
 
@@ -285,12 +288,13 @@ const stack = [
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
           {stats.map((stat, index) => (
-            <div class="bg-paper p-6 sm:p-7 reveal" data-reveal-delay={index * 70}>
-              <p class="font-display text-5xl sm:text-6xl font-bold text-pine leading-none mb-4 tracking-tight">
+            <div class="bento bg-paper p-6 sm:p-7 reveal" data-reveal-delay={index * 70}>
+              <Icon name={stat.icon} class="bento__ghost" strokeWidth={1.1} />
+              <p class="relative font-display text-5xl sm:text-6xl font-bold text-pine leading-none mb-4 tracking-tight">
                 {stat.value}<span class="text-3xl sm:text-4xl align-top">{stat.unit}</span>
               </p>
-              <p class="text-sm font-medium text-ink leading-snug mb-1.5">{stat.label}</p>
-              <p class="label">{stat.note}</p>
+              <p class="relative text-sm font-medium text-ink leading-snug mb-1.5">{stat.label}</p>
+              <p class="relative label">{stat.note}</p>
             </div>
           ))}
         </div>
@@ -320,8 +324,10 @@ const stack = [
 
         <div class="grid md:grid-cols-2 gap-px bg-line border border-line">
           {capabilities.map((cap, index) => (
-            <article class="group bg-paper p-7 sm:p-9 reveal" data-reveal-delay={index * 80}>
-              <div class="flex items-start gap-4 mb-5">
+            <article class="group bento bg-paper p-7 sm:p-9 reveal" data-reveal-delay={index * 80}>
+              <Icon name={cap.icon} class="bento__ghost" strokeWidth={1.1} />
+
+              <div class="relative flex items-start gap-4 mb-5">
                 <span class="shrink-0 w-11 h-11 flex items-center justify-center border border-line text-pine transition-colors duration-300 group-hover:bg-pine group-hover:text-on-pine group-hover:border-pine">
                   <Icon name={cap.icon} class="w-5 h-5" />
                 </span>
@@ -331,9 +337,9 @@ const stack = [
                 </div>
               </div>
 
-              <p class="text-sm text-ink-soft leading-relaxed mb-6">{cap.body}</p>
+              <p class="relative text-sm text-ink-soft leading-relaxed mb-6">{cap.body}</p>
 
-              <ul class="flex flex-wrap gap-1.5">
+              <ul class="relative flex flex-wrap gap-1.5">
                 {cap.stack.map((tech) => (
                   <li class="label px-2.5 py-1 bg-sunk border border-line">{tech}</li>
                 ))}
@@ -413,20 +419,39 @@ const stack = [
           Con esto trabajo todos los días.
         </h2>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line">
-          {stack.map((cat, index) => (
-            <div class="bg-paper p-7 reveal" data-reveal-delay={index * 60}>
-              <div class="flex items-center gap-3 mb-5 pb-4 border-b border-line">
-                <Icon name={cat.icon} class="w-[18px] h-[18px] text-pine" />
-                <h3 class="label label-pine">{cat.group}</h3>
-              </div>
-              <ul class="flex flex-wrap gap-x-4 gap-y-2.5">
-                {cat.items.map((item) => (
-                  <li class="text-sm font-medium text-ink-soft">{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div class="code-window reveal">
+          <div class="code-chrome">
+            <span class="code-tick" aria-hidden="true"></span>
+            <span class="code-tick" aria-hidden="true"></span>
+            <span class="code-tick" aria-hidden="true"></span>
+            <span class="label label-file ml-2">stack.json</span>
+          </div>
+
+          <ol class="code-body">
+            <li class="code-line">
+              <span class="code-content"><span class="code-punct" aria-hidden="true">&#123;</span></span>
+            </li>
+
+            {stack.map((cat, index) => (
+              <li class="code-line">
+                <span class="code-content code-content--nested">
+                  <span class="code-token">
+                    <span class="code-key">"{cat.key}"</span><span class="code-punct" aria-hidden="true">: [</span>
+                  </span>
+                  {cat.items.map((item, i) => (
+                    <span class="code-token">
+                      <span class="code-str">"{item}"</span>{i < cat.items.length - 1 && <span class="code-punct" aria-hidden="true">,</span>}
+                    </span>
+                  ))}
+                  <span class="code-punct" aria-hidden="true">]{index < stack.length - 1 ? "," : ""}</span>
+                </span>
+              </li>
+            ))}
+
+            <li class="code-line">
+              <span class="code-content"><span class="code-punct" aria-hidden="true">&#125;</span></span>
+            </li>
+          </ol>
         </div>
       </div>
     </section>

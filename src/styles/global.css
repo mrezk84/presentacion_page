@@ -225,6 +225,13 @@ summary:focus-visible {
 	color: var(--c-signal);
 }
 
+/* Un nombre de archivo no va en versalitas: `stack.json` se escribe
+   como se escribe. Sólo esta variante suelta el uppercase del rótulo. */
+.label-file {
+	text-transform: none;
+	letter-spacing: 0.06em;
+}
+
 /* Section eyebrow: index number + rule + name, like a spec sheet. */
 .eyebrow {
 	display: flex;
@@ -438,6 +445,173 @@ summary:focus-visible {
 		transform: scale(2.6);
 		opacity: 0;
 	}
+}
+
+/* ============================================================
+   CODE WINDOW — the stack, rendered as the file it would be.
+   ------------------------------------------------------------
+   The chrome is deliberately NOT the three coloured traffic
+   lights every mockup ships with: nothing else here is round or
+   uses colour decoratively, so they would read as a detail
+   borrowed from another system. Square ticks in line colour say
+   "window" just as clearly and stay inside the language.
+
+   The block is real markup, not a <pre>: an <ol> of lines whose
+   punctuation is aria-hidden. That way it wraps on narrow
+   screens instead of forcing a horizontal scroll, and a screen
+   reader hears the categories and the technologies rather than
+   a mouthful of braces and quotes.
+   ============================================================ */
+
+.code-window {
+	border: 1px solid var(--c-line);
+	background: var(--c-surface);
+	overflow: hidden;
+}
+
+.code-chrome {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1rem;
+	background: var(--c-surface-sunk);
+	border-bottom: 1px solid var(--c-line);
+}
+
+.code-tick {
+	width: 8px;
+	height: 8px;
+	flex-shrink: 0;
+	background: var(--c-line-strong);
+}
+
+.code-body {
+	counter-reset: codeline;
+	padding: 1.25rem 0;
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	line-height: 1.85;
+}
+
+.code-line {
+	counter-increment: codeline;
+	display: grid;
+	grid-template-columns: 3rem 1fr;
+	padding-right: 1.25rem;
+}
+
+.code-line::before {
+	content: counter(codeline);
+	text-align: right;
+	padding-right: 1.25rem;
+	color: var(--c-ink-faint);
+	opacity: 0.55;
+	user-select: none;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Hanging indent: wrapped values line up under the first one
+   instead of sliding back under the key. */
+.code-content {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 0.4rem;
+	min-width: 0;
+}
+
+.code-content--nested {
+	padding-left: 1.75rem;
+}
+
+.code-token {
+	white-space: nowrap;
+}
+
+.code-key {
+	color: var(--c-pine);
+	font-weight: 500;
+}
+
+.code-str {
+	color: var(--c-ink);
+}
+
+.code-punct {
+	color: var(--c-ink-faint);
+}
+
+@media (max-width: 640px) {
+	.code-body {
+		font-size: 0.75rem;
+	}
+
+	.code-line {
+		grid-template-columns: 2rem 1fr;
+		padding-right: 0.875rem;
+	}
+
+	.code-line::before {
+		padding-right: 0.75rem;
+	}
+
+	.code-content--nested {
+		padding-left: 0.875rem;
+	}
+}
+
+/* ============================================================
+   BENTO CELL — a stat or capability that reacts to the pointer.
+   The oversized glyph sits behind the number at low opacity so
+   the cell has a subject without competing with the figure.
+   ============================================================ */
+
+.bento {
+	position: relative;
+	overflow: hidden;
+	transition: background-color 0.35s var(--ease-out-expo);
+}
+
+.bento:hover {
+	background: var(--c-surface);
+}
+
+/* Abajo a la derecha, no arriba: la cifra ocupa el borde superior
+   y el glifo se le montaba encima. Acá queda detrás del rótulo, que
+   es texto corto, y el recorte contra la esquina hace el resto. */
+.bento__ghost {
+	position: absolute;
+	right: -1.25rem;
+	bottom: -1.5rem;
+	width: 8rem;
+	height: 8rem;
+	color: var(--c-pine);
+	opacity: 0.045;
+	pointer-events: none;
+	transition:
+		opacity 0.35s var(--ease-out-expo),
+		transform 0.5s var(--ease-out-expo);
+}
+
+.bento:hover .bento__ghost {
+	opacity: 0.09;
+	transform: scale(1.06) rotate(-4deg);
+}
+
+.dark .bento__ghost {
+	opacity: 0.07;
+}
+
+.dark .bento:hover .bento__ghost {
+	opacity: 0.13;
+}
+
+/* Tech tag tinted with the structural colour rather than left
+   grey — the projects section was the one place where the tags
+   carried no signal at all. */
+.tag-pine {
+	color: var(--c-pine);
+	background: var(--c-pine-wash);
+	border: 1px solid color-mix(in srgb, var(--c-pine) 28%, transparent);
 }
 
 /* Theme toggle: exactly one of the two glyphs is ever painted. These live in
