@@ -37,6 +37,11 @@ jobs:
           # previsto. Definirlo en Settings -> Secrets and variables ->
           # Actions con el ID del formulario de Formspree lo activa.
           VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
+          # Eleva el límite de la API de GitHub de 60 a 5000 peticiones por
+          # hora durante el build. Sin esto la IP compartida del runner se
+          # topaba con el 403 y la sección de repositorios salía vacía.
+          # Es el token efímero del propio workflow: sólo lee lo público.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -44,10 +44,10 @@ const availability = [
 ];
 
 const stats = [
-  { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911" },
-  { value: "15", unit: "+", label: "Años sosteniendo software en producción", note: "Soporte, gestión y desarrollo" },
-  { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP" },
-  { value: "3", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server" }
+  { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911", icon: "sprint" },
+  { value: "15", unit: "+", label: "Años sosteniendo software en producción", note: "Soporte, gestión y desarrollo", icon: "pulse" },
+  { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP", icon: "team" },
+  { value: "3", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server", icon: "code" }
 ];
 
 const marqueeItems = [
@@ -277,20 +277,21 @@ const stack = [
     <!-- ══════════════════════════════════════════════════════
          01 — NUMBERS
          ══════════════════════════════════════════════════════ -->
-    <section class="py-20 sm:py-24">
-      <div class="max-w-6xl mx-auto px-6">
+    <section class="relative py-20 sm:py-24 bg-sunk border-y border-line grain">
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-12 reveal">
           <span class="label label-pine">01 / En números</span>
         </div>
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
           {stats.map((stat, index) => (
-            <div class="bg-paper p-6 sm:p-7 reveal" data-reveal-delay={index * 70}>
-              <p class="font-display text-5xl sm:text-6xl font-bold text-pine leading-none mb-4 tracking-tight">
+            <div class="bento bg-paper p-6 sm:p-7 reveal" data-reveal-delay={index * 70}>
+              <Icon name={stat.icon} class="bento__ghost" strokeWidth={1.1} />
+              <p class="relative font-display text-5xl sm:text-6xl font-bold text-pine leading-none mb-4 tracking-tight">
                 {stat.value}<span class="text-3xl sm:text-4xl align-top">{stat.unit}</span>
               </p>
-              <p class="text-sm font-medium text-ink leading-snug mb-1.5">{stat.label}</p>
-              <p class="label">{stat.note}</p>
+              <p class="relative text-sm font-medium text-ink leading-snug mb-1.5">{stat.label}</p>
+              <p class="relative label">{stat.note}</p>
             </div>
           ))}
         </div>
@@ -320,8 +321,10 @@ const stack = [
 
         <div class="grid md:grid-cols-2 gap-px bg-line border border-line">
           {capabilities.map((cap, index) => (
-            <article class="group bg-paper p-7 sm:p-9 reveal" data-reveal-delay={index * 80}>
-              <div class="flex items-start gap-4 mb-5">
+            <article class="group bento bg-paper p-7 sm:p-9 reveal" data-reveal-delay={index * 80}>
+              <Icon name={cap.icon} class="bento__ghost" strokeWidth={1.1} />
+
+              <div class="relative flex items-start gap-4 mb-5">
                 <span class="shrink-0 w-11 h-11 flex items-center justify-center border border-line text-pine transition-colors duration-300 group-hover:bg-pine group-hover:text-on-pine group-hover:border-pine">
                   <Icon name={cap.icon} class="w-5 h-5" />
                 </span>
@@ -331,9 +334,9 @@ const stack = [
                 </div>
               </div>
 
-              <p class="text-sm text-ink-soft leading-relaxed mb-6">{cap.body}</p>
+              <p class="relative text-sm text-ink-soft leading-relaxed mb-6">{cap.body}</p>
 
-              <ul class="flex flex-wrap gap-1.5">
+              <ul class="relative flex flex-wrap gap-1.5">
                 {cap.stack.map((tech) => (
                   <li class="label px-2.5 py-1 bg-sunk border border-line">{tech}</li>
                 ))}
@@ -495,7 +498,7 @@ const stack = [
                 </span>
                 <span class="flex-1 min-w-0">
                   <span class="block text-sm font-semibold text-ink">Email</span>
-                  <span class="block label truncate">mrezk84@gmail.com</span>
+                  <span class="block label label-file truncate">mrezk84@gmail.com</span>
                 </span>
                 <Icon name="arrow-right" class="w-4 h-4 text-ink-faint transition-transform group-hover:translate-x-1" strokeWidth={2} />
               </a>
@@ -511,7 +514,7 @@ const stack = [
                 </span>
                 <span class="flex-1 min-w-0">
                   <span class="block text-sm font-semibold text-ink">LinkedIn</span>
-                  <span class="block label">/in/marcos-rezk</span>
+                  <span class="block label label-file">/in/marcos-rezk</span>
                 </span>
                 <Icon name="arrow-right" class="w-4 h-4 text-ink-faint transition-transform group-hover:translate-x-1" strokeWidth={2} />
               </a>

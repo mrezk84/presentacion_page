@@ -19,14 +19,41 @@ const githubApiUrl = `https://api.github.com/users/${githubUsername}/repos?sort=
  * Fetched at build time, so a slow or rate-limited GitHub delays the build
  * rather than the visitor. The timeout keeps a hanging API from stalling CI;
  * when the call fails the section still renders, just without the cards.
+ *
+ * Sin token, GitHub da 60 peticiones por hora y por IP — y las IP de los
+ * runners de Actions son compartidas, así que el 403 llegaba seguido y la
+ * sección se publicaba vacía. Con el GITHUB_TOKEN del propio workflow el
+ * límite pasa a 5000/hora.
+ *
+ * Se lee de process.env y NO de import.meta.env con prefijo VITE_: esa vía
+ * inyecta el valor en el bundle del cliente, o sea que publicaría el token.
+ * Acá el fetch corre en Node durante el build y el token nunca sale de ahí;
+ * al HTML sólo llegan los datos públicos de los repositorios.
  */
 let repos: Repo[] = [];
 
-try {
-	const response = await fetch(githubApiUrl, {
-		headers: { Accept: "application/vnd.github+json", "User-Agent": "marcos-rezk-portfolio" },
+const githubToken = process.env.GITHUB_TOKEN;
+
+const askGitHub = (token?: string) =>
+	fetch(githubApiUrl, {
+		headers: {
+			Accept: "application/vnd.github+json",
+			"User-Agent": "marcos-rezk-portfolio",
+			...(token ? { Authorization: `Bearer ${token}` } : {})
+		},
 		signal: AbortSignal.timeout(8000)
 	});
+
+try {
+	let response = await askGitHub(githubToken);
+
+	// Un token vencido o de otro ámbito devuelve 401/403. Sin este reintento
+	// el token roto sería PEOR que no tener ninguno, porque tumbaría una
+	// llamada anónima que habría funcionado. Así, autenticar sólo puede sumar.
+	if (githubToken && (response.status === 401 || response.status === 403)) {
+		console.warn(`[GitHubRepos] El token dio ${response.status}; reintento sin autenticar.`);
+		response = await askGitHub();
+	}
 
 	if (response.ok) {
 		const data: Repo[] = await response.json();
