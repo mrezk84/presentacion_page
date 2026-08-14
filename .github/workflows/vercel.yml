@@ -27,6 +27,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -34,8 +36,14 @@ jobs:
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
+      # El artefacto que termina publicado lo produce este paso, no el
+      # `npm run build` de arriba: si el token faltara acá, la sección de
+      # repositorios saldría vacía en producción aunque el build previo
+      # hubiera traído los datos.
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to Vercel (Production)
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
