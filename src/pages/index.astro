@@ -123,16 +123,13 @@ const experience = [
   }
 ];
 
-// El stack se pinta como un stack.json, así que cada grupo entra por su
-// clave. Son palabras corrientes, de modo que un lector de pantalla lee
-// "frontend", "backend", "datos"… igual que se leería el rótulo.
 const stack = [
-  { key: "frontend", items: ["React", "TypeScript", "Next.js", "Material UI", "JavaScript", "HTML / CSS", "XAML"] },
-  { key: "backend", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Spring Boot", "Go"] },
-  { key: "datos", items: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"] },
-  { key: "integraciones", items: ["REST", "SOAP", "WebSocket", "ArcGIS", "LDAP", "Asterisk"] },
-  { key: "entorno", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
-  { key: "entrega", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] }
+  { group: "Frontend", icon: "code", items: ["React", "TypeScript", "Next.js", "Material UI", "JavaScript", "HTML / CSS", "XAML"] },
+  { group: "Backend", icon: "server", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Spring Boot", "Go"] },
+  { group: "Datos", icon: "database", items: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"] },
+  { group: "Integraciones", icon: "link", items: ["REST", "SOAP", "WebSocket", "ArcGIS", "LDAP", "Asterisk"] },
+  { group: "Entorno", icon: "terminal", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
+  { group: "Entrega", icon: "cycle", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] }
 ];
 ---
 
@@ -419,39 +416,20 @@ const stack = [
           Con esto trabajo todos los días.
         </h2>
 
-        <div class="code-window reveal">
-          <div class="code-chrome">
-            <span class="code-tick" aria-hidden="true"></span>
-            <span class="code-tick" aria-hidden="true"></span>
-            <span class="code-tick" aria-hidden="true"></span>
-            <span class="label label-file ml-2">stack.json</span>
-          </div>
-
-          <ol class="code-body">
-            <li class="code-line">
-              <span class="code-content"><span class="code-punct" aria-hidden="true">&#123;</span></span>
-            </li>
-
-            {stack.map((cat, index) => (
-              <li class="code-line">
-                <span class="code-content code-content--nested">
-                  <span class="code-token">
-                    <span class="code-key">"{cat.key}"</span><span class="code-punct" aria-hidden="true">: [</span>
-                  </span>
-                  {cat.items.map((item, i) => (
-                    <span class="code-token">
-                      <span class="code-str">"{item}"</span>{i < cat.items.length - 1 && <span class="code-punct" aria-hidden="true">,</span>}
-                    </span>
-                  ))}
-                  <span class="code-punct" aria-hidden="true">]{index < stack.length - 1 ? "," : ""}</span>
-                </span>
-              </li>
-            ))}
-
-            <li class="code-line">
-              <span class="code-content"><span class="code-punct" aria-hidden="true">&#125;</span></span>
-            </li>
-          </ol>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line">
+          {stack.map((cat, index) => (
+            <div class="bg-paper p-7 reveal" data-reveal-delay={index * 60}>
+              <div class="flex items-center gap-3 mb-5 pb-4 border-b border-line">
+                <Icon name={cat.icon} class="w-[18px] h-[18px] text-pine" />
+                <h3 class="label label-pine">{cat.group}</h3>
+              </div>
+              <ul class="flex flex-wrap gap-x-4 gap-y-2.5">
+                {cat.items.map((item) => (
+                  <li class="text-sm font-medium text-ink-soft">{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>

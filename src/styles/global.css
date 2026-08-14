@@ -225,8 +225,9 @@ summary:focus-visible {
 	color: var(--c-signal);
 }
 
-/* Un nombre de archivo no va en versalitas: `stack.json` se escribe
-   como se escribe. Sólo esta variante suelta el uppercase del rótulo. */
+/* Un correo o una ruta de URL no van en versalitas: mrezk84@gmail.com y
+   /in/marcos-rezk se escriben como se escriben. Esta variante suelta el
+   uppercase del rótulo sin tocar su tipografía ni su color. */
 .label-file {
 	text-transform: none;
 	letter-spacing: 0.06em;
@@ -444,118 +445,6 @@ summary:focus-visible {
 	100% {
 		transform: scale(2.6);
 		opacity: 0;
-	}
-}
-
-/* ============================================================
-   CODE WINDOW — the stack, rendered as the file it would be.
-   ------------------------------------------------------------
-   The chrome is deliberately NOT the three coloured traffic
-   lights every mockup ships with: nothing else here is round or
-   uses colour decoratively, so they would read as a detail
-   borrowed from another system. Square ticks in line colour say
-   "window" just as clearly and stay inside the language.
-
-   The block is real markup, not a <pre>: an <ol> of lines whose
-   punctuation is aria-hidden. That way it wraps on narrow
-   screens instead of forcing a horizontal scroll, and a screen
-   reader hears the categories and the technologies rather than
-   a mouthful of braces and quotes.
-   ============================================================ */
-
-.code-window {
-	border: 1px solid var(--c-line);
-	background: var(--c-surface);
-	overflow: hidden;
-}
-
-.code-chrome {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	padding: 0.75rem 1rem;
-	background: var(--c-surface-sunk);
-	border-bottom: 1px solid var(--c-line);
-}
-
-.code-tick {
-	width: 8px;
-	height: 8px;
-	flex-shrink: 0;
-	background: var(--c-line-strong);
-}
-
-.code-body {
-	counter-reset: codeline;
-	padding: 1.25rem 0;
-	font-family: var(--font-mono);
-	font-size: 0.8125rem;
-	line-height: 1.85;
-}
-
-.code-line {
-	counter-increment: codeline;
-	display: grid;
-	grid-template-columns: 3rem 1fr;
-	padding-right: 1.25rem;
-}
-
-.code-line::before {
-	content: counter(codeline);
-	text-align: right;
-	padding-right: 1.25rem;
-	color: var(--c-ink-faint);
-	opacity: 0.55;
-	user-select: none;
-	font-variant-numeric: tabular-nums;
-}
-
-/* Hanging indent: wrapped values line up under the first one
-   instead of sliding back under the key. */
-.code-content {
-	display: flex;
-	flex-wrap: wrap;
-	column-gap: 0.4rem;
-	min-width: 0;
-}
-
-.code-content--nested {
-	padding-left: 1.75rem;
-}
-
-.code-token {
-	white-space: nowrap;
-}
-
-.code-key {
-	color: var(--c-pine);
-	font-weight: 500;
-}
-
-.code-str {
-	color: var(--c-ink);
-}
-
-.code-punct {
-	color: var(--c-ink-faint);
-}
-
-@media (max-width: 640px) {
-	.code-body {
-		font-size: 0.75rem;
-	}
-
-	.code-line {
-		grid-template-columns: 2rem 1fr;
-		padding-right: 0.875rem;
-	}
-
-	.code-line::before {
-		padding-right: 0.75rem;
-	}
-
-	.code-content--nested {
-		padding-left: 0.875rem;
 	}
 }
 
