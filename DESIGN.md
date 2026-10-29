@@ -234,6 +234,7 @@ Táctiles y directos: bloques rectos que suben al cursor.
 - **Señal (primario):** bermellón con texto claro y sombra `md`. En hover pasa a bermellón vivo, sube 2px y toma la sombra `lg`. Es la única acción principal por vista: contacto o envío.
 - **Outline (secundario):** transparente con borde `line-strong` y texto tinta. En hover, borde y texto pasan a pino y sube 2px. Se usa para descargar el CV y otras acciones de apoyo.
 - **Pino:** relleno pino para acciones estructurales que no son la conversión principal.
+- **Fantasma (terciario):** sin relleno ni borde, texto `ink-soft` que pasa a tinta en hover. Es la salida ("Cerrar") cuando arriba hay una acción más fuerte, como en el modal de error.
 - **Press / Focus:** al presionar escala a 0.985. El foco es un outline bermellón de 2px con 3px de offset.
 
 ### Tags
