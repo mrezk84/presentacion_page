@@ -384,11 +384,6 @@
         "name": "rise",
         "value": "0.9s, translateY(26px) → 0, escalonado 40–440ms",
         "purpose": "Entrada única del hero."
-      },
-      {
-        "name": "marquee",
-        "value": "42s linear infinite",
-        "purpose": "Cinta de tecnologías; se pausa en hover."
       }
     ],
     "breakpoints": [

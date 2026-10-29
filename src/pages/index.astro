@@ -4,7 +4,6 @@ import Header from "../components/Header.astro";
 import SkipLink from "../components/SkipLink.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
 import ProjectsSection from "../components/ProjectsSection.astro";
-import GitHubRepos from "../components/GitHubRepos.astro";
 import CredentialsSection from "../components/CredentialsSection.astro";
 import Icon from "../components/Icon.astro";
 import { Picture } from "astro:assets";
@@ -50,13 +49,6 @@ const stats = [
   { value: "4", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server", icon: "code" }
 ];
 
-const marqueeItems = [
-  "React", "TypeScript", "Next.js", "C# .NET", "ASP.NET Core", "SQL Server",
-  "T-SQL", "Dapper", "Material UI", "WCF", "SOAP", "REST", "WebSocket",
-  "ArcGIS", "LDAP", "Asterisk", "Java", "Spring Boot", "Go", "GitHub Actions",
-  "Azure", "OWASP", "Scrum"
-];
-
 const capabilities = [
   {
     icon: "server",
@@ -69,7 +61,7 @@ const capabilities = [
     icon: "database",
     title: "Datos y rendimiento",
     lead: "Donde suele estar el cuello de botella.",
-    body: "Diseño de esquemas, índices y procedimientos almacenados en T-SQL, con acceso a datos vía Dapper. Indexación medida en producción sobre SQL Server: de 8 a 5 segundos de respuesta.",
+    body: "Diseño de esquemas, índices y procedimientos almacenados en T-SQL, con acceso a datos vía Dapper.",
     stack: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL"]
   },
   {
@@ -257,24 +249,6 @@ const stack = [
     </section>
 
     <!-- ══════════════════════════════════════════════════════
-         TECHNOLOGY TICKER
-         ══════════════════════════════════════════════════════ -->
-    <div class="border-y border-line bg-surface py-4 overflow-hidden" aria-hidden="true">
-      <div class="marquee">
-        {[0, 1].map(() => (
-          <div class="marquee__track">
-            {marqueeItems.map((item) => (
-              <span class="label whitespace-nowrap flex items-center gap-3">
-                <span class="w-1 h-1 rounded-full bg-pine"></span>
-                {item}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════════════════
          01 — NUMBERS
          ══════════════════════════════════════════════════════ -->
     <section class="relative py-20 sm:py-24 bg-sunk border-y border-line grain">
@@ -298,54 +272,8 @@ const stack = [
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════
-         02 — CAPABILITIES
-         ══════════════════════════════════════════════════════ -->
-    <section id="about" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="eyebrow mb-10 reveal">
-          <span class="label label-pine">02 / Qué resuelvo</span>
-        </div>
-
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
-          <h2 class="lg:col-span-7 display-xl text-[clamp(2rem,4.5vw,3.25rem)] reveal">
-            Cuatro cosas que sé hacer bien.
-          </h2>
-          <p class="lg:col-span-5 text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
-            Me acostumbré a que un error no espere al martes siguiente. Eso me
-            cambió la forma de escribir código, de probarlo y de decidir cuándo
-            algo está terminado. La industria importa menos de lo que parece:
-            esa exigencia la llevo puesta.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-px bg-line border border-line">
-          {capabilities.map((cap, index) => (
-            <article class="group bento bg-paper p-7 sm:p-9 reveal" data-reveal-delay={index * 80}>
-              <Icon name={cap.icon} class="bento__ghost" strokeWidth={1.1} />
-
-              <div class="relative flex items-start gap-4 mb-5">
-                <span class="shrink-0 w-11 h-11 flex items-center justify-center border border-line text-pine transition-colors duration-300 group-hover:bg-pine group-hover:text-on-pine group-hover:border-pine">
-                  <Icon name={cap.icon} class="w-5 h-5" />
-                </span>
-                <div>
-                  <h3 class="font-display text-xl font-bold text-ink leading-tight">{cap.title}</h3>
-                  <p class="text-sm text-pine font-medium">{cap.lead}</p>
-                </div>
-              </div>
-
-              <p class="relative text-sm text-ink-soft leading-relaxed mb-6">{cap.body}</p>
-
-              <ul class="relative flex flex-wrap gap-1.5">
-                {cap.stack.map((tech) => (
-                  <li class="label px-2.5 py-1 bg-sunk border border-line">{tech}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <!-- 02 — Projects -->
+    <ProjectsSection />
 
     <!-- ══════════════════════════════════════════════════════
          03 — EXPERIENCE
@@ -400,8 +328,54 @@ const stack = [
       </div>
     </section>
 
-    <!-- 04 — Projects -->
-    <ProjectsSection />
+    <!-- ══════════════════════════════════════════════════════
+         04 — CAPABILITIES
+         ══════════════════════════════════════════════════════ -->
+    <section id="about" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="eyebrow mb-10 reveal">
+          <span class="label label-pine">04 / Qué resuelvo</span>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
+          <h2 class="lg:col-span-7 display-xl text-[clamp(2rem,4.5vw,3.25rem)] reveal">
+            Cuatro cosas que sé hacer bien.
+          </h2>
+          <p class="lg:col-span-5 text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
+            Me acostumbré a que un error no espere al martes siguiente. Eso me
+            cambió la forma de escribir código, de probarlo y de decidir cuándo
+            algo está terminado. La industria importa menos de lo que parece:
+            esa exigencia la llevo puesta.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-px bg-line border border-line">
+          {capabilities.map((cap, index) => (
+            <article class="group bento bg-paper p-7 sm:p-9 reveal" data-reveal-delay={index * 80}>
+              <Icon name={cap.icon} class="bento__ghost" strokeWidth={1.1} />
+
+              <div class="relative flex items-start gap-4 mb-5">
+                <span class="shrink-0 w-11 h-11 flex items-center justify-center border border-line text-pine transition-colors duration-300 group-hover:bg-pine group-hover:text-on-pine group-hover:border-pine">
+                  <Icon name={cap.icon} class="w-5 h-5" />
+                </span>
+                <div>
+                  <h3 class="font-display text-xl font-bold text-ink leading-tight">{cap.title}</h3>
+                  <p class="text-sm text-pine font-medium">{cap.lead}</p>
+                </div>
+              </div>
+
+              <p class="relative text-sm text-ink-soft leading-relaxed mb-6">{cap.body}</p>
+
+              <ul class="relative flex flex-wrap gap-1.5">
+                {cap.stack.map((tech) => (
+                  <li class="label px-2.5 py-1 bg-sunk border border-line">{tech}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
 
     <!-- ══════════════════════════════════════════════════════
          05 — STACK
@@ -437,11 +411,8 @@ const stack = [
     <!-- 06 — Credentials -->
     <CredentialsSection />
 
-    <!-- 07 — GitHub -->
-    <GitHubRepos />
-
     <!-- ══════════════════════════════════════════════════════
-         08 — CONTACT
+         07 — CONTACT
          ══════════════════════════════════════════════════════ -->
     <section id="contacto" class="relative py-20 sm:py-28 border-t border-line grain scroll-mt-20 overflow-hidden">
       <div
@@ -452,7 +423,7 @@ const stack = [
 
       <div class="relative z-10 max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
-          <span class="label label-signal">08 / Contacto</span>
+          <span class="label label-signal">07 / Contacto</span>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-14">

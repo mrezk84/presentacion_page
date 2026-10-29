@@ -10,7 +10,7 @@ web
 
 Primary: reclutadores, equipos de RR.HH. y hiring managers que evalúan a Marcos Rezk para un puesto en relación de dependencia, tanto en Uruguay como en remoto para empresas de LATAM y EE.UU. Llegan desde LinkedIn, una postulación o el CV, con poco tiempo, y filtran rápido: rol y stack, experiencia real, disponibilidad, modalidad, zona horaria e inglés. Después deciden si contactan o descargan el CV.
 
-Secundario: perfiles técnicos (tech leads) que, en una segunda instancia, revisan los casos de proyecto, los diagramas de arquitectura y los repositorios de GitHub.
+Secundario: perfiles técnicos (tech leads) que, en una segunda instancia, revisan los casos de proyecto y los diagramas de arquitectura. El perfil de GitHub queda enlazado en el header y el pie, pero la página no lista repositorios: los públicos son ejercicios de curso y restaban frente a los casos reales.
 
 No es un objetivo: la captación de clientes freelance.
 
@@ -33,7 +33,6 @@ Más de 15 años sosteniendo software en producción dentro de SONDA Uruguay (Ma
 - Sitio estático en Astro 7 + Tailwind CSS 4, con fuentes alojadas en el propio sitio (`@fontsource`). No usa Google Fonts.
 - Deploy dual: GitHub Pages (`/presentacion_page`, sitio real: https://mrezk84.github.io/presentacion_page/) y Vercel (`/`). Las rutas de assets dependen de `basePath`.
 - Formulario de contacto activo vía Formspree (ID público `xdengrob`, con override `VITE_FORMSPREE_ENDPOINT`). Si no hay ID, cae a `mailto:`.
-- Los repositorios de GitHub se obtienen en tiempo de build con `GITHUB_TOKEN` en CI.
 - Los proyectos incluyen diagramas de arquitectura (`ProjectDiagram.astro`).
 - Modo oscuro, skip link, sitemap y JSON-LD.
 - Flujo de trabajo: los cambios entran por PR a `main`, y el workflow publica en GitHub Pages.

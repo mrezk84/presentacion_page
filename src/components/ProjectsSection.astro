@@ -3,8 +3,8 @@ import Icon from "./Icon.astro";
 import ProjectDiagram from "./ProjectDiagram.astro";
 
 /**
- * Professional work only. Personal repositories are rendered once, by
- * GitHubRepos.astro — this section used to duplicate them.
+ * Professional work only. Personal repositories are not listed on the page:
+ * they were course exercises and read weaker than this evidence.
  *
  * These systems are client-owned and not publicly reachable, so each entry
  * carries an architecture diagram instead of a screenshot: it shows how the
@@ -63,10 +63,10 @@ const projects = [
 ];
 ---
 
-<section id="proyectos" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+<section id="proyectos" class="py-20 sm:py-24 scroll-mt-20">
 	<div class="max-w-6xl mx-auto px-6">
 		<div class="eyebrow mb-10 reveal">
-			<span class="label label-pine">04 / Proyectos</span>
+			<span class="label label-pine">02 / Proyectos</span>
 		</div>
 
 		<div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
