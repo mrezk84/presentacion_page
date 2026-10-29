@@ -46,7 +46,7 @@ const stats = [
   { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911", icon: "sprint" },
   { value: "15", unit: "+", label: "Años sosteniendo software en producción", note: "Soporte, gestión y desarrollo", icon: "pulse" },
   { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP", icon: "team" },
-  { value: "4", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server", icon: "code" }
+  { value: "4", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server — sumando Java y Go", icon: "code" }
 ];
 
 const capabilities = [
@@ -117,11 +117,13 @@ const experience = [
 
 const stack = [
   { group: "Frontend", icon: "code", items: ["React", "TypeScript", "Next.js", "Material UI", "JavaScript", "HTML / CSS", "XAML"] },
-  { group: "Backend", icon: "server", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Spring Boot", "Go"] },
+  { group: "Backend", icon: "server", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js"] },
   { group: "Datos", icon: "database", items: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"] },
   { group: "Integraciones", icon: "link", items: ["REST", "SOAP", "WebSocket", "ArcGIS", "LDAP", "Asterisk"] },
   { group: "Entorno", icon: "terminal", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
-  { group: "Entrega", icon: "cycle", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] }
+  { group: "Entrega", icon: "cycle", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] },
+  // Learning, not daily stack: kept apart so the section title stays true.
+  { group: "Sumando ahora · JVM y Go", icon: "rocket", items: ["Java", "Spring Boot", "Go"], wide: true }
 ];
 ---
 
@@ -164,7 +166,7 @@ const stack = [
             </h1>
 
             <p class="rise measure text-lg sm:text-xl text-ink-soft leading-relaxed mb-8" style="animation-delay: 280ms;">
-              Hola, soy <strong class="text-ink font-semibold">Marcos</strong>. Full Stack Developer en Uruguay. Me gusta trabajar de punta a punta: la interfaz en <strong class="text-ink font-semibold">React</strong> y <strong class="text-ink font-semibold">TypeScript</strong>, la API en <strong class="text-ink font-semibold">C#&nbsp;.NET</strong>, y la base de datos que hay debajo. Vengo de sistemas donde no había margen para el error, y esa costumbre se me quedó.
+              Hola, soy <strong class="text-ink font-semibold">Marcos</strong>. Full Stack Developer en Uruguay. Me gusta trabajar de punta a punta: la interfaz en <strong class="text-ink font-semibold">React</strong> y <strong class="text-ink font-semibold">TypeScript</strong>, la API en <strong class="text-ink font-semibold">C#&nbsp;.NET</strong>, y la base de datos que hay debajo. Hoy estoy sumando <strong class="text-ink font-semibold">Java</strong> con <strong class="text-ink font-semibold">Spring&nbsp;Boot</strong> y <strong class="text-ink font-semibold">Go</strong>. Vengo de sistemas donde no había margen para el error, y esa costumbre se me quedó.
             </p>
 
             <div class="rise flex flex-col sm:flex-row gap-3 mb-12" style="animation-delay: 360ms;">
@@ -230,7 +232,8 @@ const stack = [
 
                 <ul class="space-y-2.5 border-t border-line pt-5">
                   {[
-                    "Full stack: React, C# .NET, Java y SQL Server",
+                    "Full stack: React, C# .NET y SQL Server",
+                    "Sumando ahora: Java con Spring Boot y Go",
                     "Integraciones: REST, SOAP, LDAP, mapas y telefonía IP",
                     "Sistemas 24/7 para el Estado y para salud",
                     "Analista Programador — Universidad ORT"
@@ -392,7 +395,7 @@ const stack = [
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line">
           {stack.map((cat, index) => (
-            <div class="bg-paper p-7 reveal" data-reveal-delay={index * 60}>
+            <div class:list={["bg-paper p-7 reveal", cat.wide && "sm:col-span-2 lg:col-span-3"]} data-reveal-delay={index * 60}>
               <div class="flex items-center gap-3 mb-5 pb-4 border-b border-line">
                 <Icon name={cat.icon} class="w-[18px] h-[18px] text-pine" />
                 <h3 class="label label-pine">{cat.group}</h3>
