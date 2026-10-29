@@ -2,11 +2,12 @@
 import Icon from "./Icon.astro";
 
 const links = [
-    { name: "Proyectos", href: "#proyectos" },
-    { name: "Trayectoria", href: "#experiencia" },
-    { name: "Perfil", href: "#about" },
-    { name: "Stack", href: "#tecnologias" },
-    { name: "Credenciales", href: "#credenciales" },
+    // `num` mirrors each section's eyebrow, so the mobile menu and the page agree.
+    { name: "Proyectos", href: "#proyectos", num: "02" },
+    { name: "Trayectoria", href: "#experiencia", num: "03" },
+    { name: "Qué resuelvo", href: "#about", num: "04" },
+    { name: "Stack", href: "#tecnologias", num: "05" },
+    { name: "Credenciales", href: "#credenciales", num: "06" },
 ];
 ---
 
@@ -51,7 +52,7 @@ const links = [
                 </button>
 
                 <a href="#contacto" class="btn btn-signal ml-2 !py-2.5 !px-5 !text-sm">
-                    Contratarme
+                    Hablemos del puesto
                 </a>
             </div>
 
@@ -91,19 +92,19 @@ const links = [
             <p class="label mb-5">Navegación</p>
 
             <nav class="flex flex-col border-t border-line mb-8">
-                {links.map((link, index) => (
+                {links.map((link) => (
                     <a
                         href={link.href}
                         class="mobile-link flex items-baseline gap-4 py-4 border-b border-line text-xl font-display font-bold text-ink"
                     >
-                        <span class="label w-6">{String(index + 1).padStart(2, "0")}</span>
+                        <span class="label w-6">{link.num}</span>
                         {link.name}
                     </a>
                 ))}
             </nav>
 
             <a href="#contacto" class="mobile-link btn btn-signal w-full mb-4">
-                Contratarme
+                Hablemos del puesto
             </a>
 
             <div class="flex items-center gap-2">
