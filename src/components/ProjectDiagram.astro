@@ -201,10 +201,12 @@ const { id, label } = Astro.props;
 		stroke-width: 1;
 	}
 
+	/* El tramo clave va en tinta plena y trazo más grueso: se distingue del
+	   pino por valor y peso, sin gastar el bermellón, que es solo de acción. */
 	.node--key {
-		stroke: var(--c-signal);
+		stroke: var(--c-ink);
 		stroke-opacity: 1;
-		stroke-width: 1.5;
+		stroke-width: 2;
 	}
 
 	.n-title {
@@ -230,7 +232,8 @@ const { id, label } = Astro.props;
 	}
 
 	.edge--key {
-		stroke: var(--c-signal);
+		stroke: var(--c-ink);
+		stroke-width: 2;
 	}
 
 	.tip {
@@ -238,7 +241,7 @@ const { id, label } = Astro.props;
 	}
 
 	.tip-key {
-		fill: var(--c-signal);
+		fill: var(--c-ink);
 	}
 
 	.e-label {
@@ -260,7 +263,8 @@ const { id, label } = Astro.props;
 	}
 
 	.e-label--key {
-		fill: var(--c-signal);
+		fill: var(--c-ink);
+		font-weight: 600;
 	}
 
 	@media (max-width: 640px) {

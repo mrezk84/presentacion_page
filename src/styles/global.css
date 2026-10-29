@@ -28,12 +28,12 @@
 		/* Pine — structure, links, section identity */
 		--c-pine: #0b5d4e;
 		--c-pine-deep: #073e34;
-		--c-pine-bright: #12856f;
+		--c-pine-bright: #0f7a64; /* hover of .btn-pine: 4.67:1 under on-pine */
 		--c-pine-wash: #0b5d4e14;
 
 		/* Vermilion — reserved for calls to action and live state */
 		--c-signal: #b93b26;
-		--c-signal-bright: #d94e33;
+		--c-signal-bright: #c4432b; /* hover of .btn-signal: 4.94:1 under on-signal */
 		--c-signal-wash: #b93b2614;
 
 		/* On-colour text */
