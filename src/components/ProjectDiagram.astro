@@ -19,6 +19,10 @@ const { id, label } = Astro.props;
 ---
 
 <figure class="diagram">
+	<!-- En teléfono el diagrama no se achica hasta ser ilegible: mantiene un
+	     ancho de lectura y se recorre de costado. tabindex para que también
+	     se pueda desplazar con el teclado. -->
+	<div class="diagram__scroll" tabindex="0" role="region" aria-label="Diagrama de arquitectura, desplazable de costado">
 	<svg
 		viewBox="0 0 640 320"
 		role="img"
@@ -177,6 +181,8 @@ const { id, label } = Astro.props;
 			</g>
 		)}
 	</svg>
+	</div>
+	<p class="diagram__hint label" aria-hidden="true">Deslizá para ver todo →</p>
 </figure>
 
 <style>
@@ -267,9 +273,38 @@ const { id, label } = Astro.props;
 		font-weight: 600;
 	}
 
-	@media (max-width: 640px) {
-		/* A ancho de teléfono el SVG se reduce demasiado para leer 10px:
-		   subimos el tipo dentro del propio sistema de coordenadas. */
+	.diagram__hint {
+		display: none;
+	}
+
+	.diagram__scroll:focus-visible {
+		outline: 2px solid var(--c-signal);
+		outline-offset: 3px;
+	}
+
+	@media (max-width: 639px) {
+		/* Ancho fijo de lectura y scroll lateral; el contenedor sangra hasta
+		   el borde de la tarjeta (su padding es 1.5rem por debajo de sm). */
+		.diagram__scroll {
+			overflow-x: auto;
+			overscroll-behavior-x: contain;
+			margin-inline: -1.5rem;
+			padding-inline: 1.5rem;
+			scrollbar-width: thin;
+		}
+
+		.diagram svg {
+			width: 600px;
+			max-width: none;
+		}
+
+		.diagram__hint {
+			display: block;
+			margin-top: 0.75rem;
+		}
+
+		/* Con 600px de ancho el SVG queda casi a escala 1: el tipo sube un
+		   punto para leerse cómodo en pantalla chica. */
 		.n-title {
 			font-size: 15px;
 		}
