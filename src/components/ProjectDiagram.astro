@@ -249,6 +249,16 @@ const { id, label } = Astro.props;
 		text-anchor: middle;
 	}
 
+	/* CSS gana sobre el atributo de presentación: sin esto, las etiquetas de
+	   las flechas verticales quedan centradas encima de su propia línea. */
+	.e-label[text-anchor="start"] {
+		text-anchor: start;
+	}
+
+	.e-label[text-anchor="end"] {
+		text-anchor: end;
+	}
+
 	.e-label--key {
 		fill: var(--c-signal);
 	}
