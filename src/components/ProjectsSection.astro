@@ -126,16 +126,16 @@ const ownProjects = [
 							</p>
 
 							{project.caseStudy && (
-								/* Filete de señal a la izquierda: marca el párrafo como nota
-								   técnica sin abrir otra jerarquía de títulos. */
-								<div class="mb-6 pl-4 border-l-2 border-signal">
-									<p class="label label-signal mb-2">Cómo se resolvió</p>
+								/* Nota técnica en un pozo hundido: se separa del resumen sin
+								   abrir otra jerarquía de títulos ni gastar el bermellón. */
+								<div class="mb-6 p-4 bg-sunk">
+									<p class="label label-pine mb-2">Cómo se resolvió</p>
 									<p class="text-sm text-ink-soft leading-relaxed">{project.caseStudy}</p>
 								</div>
 							)}
 
 							<div class="flex items-start gap-2.5 mb-6 pt-5 border-t border-line mt-auto">
-								<Icon name="check" class="w-4 h-4 mt-0.5 shrink-0 text-signal" strokeWidth={2.5} />
+								<Icon name="check" class="w-4 h-4 mt-0.5 shrink-0 text-pine" strokeWidth={2.5} />
 								<p class="text-sm font-medium text-ink leading-snug">{project.outcome}</p>
 							</div>
 

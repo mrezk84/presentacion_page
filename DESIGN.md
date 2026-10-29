@@ -12,10 +12,10 @@ colors:
   ink-faint: "#5a6663"
   pine: "#0b5d4e"
   pine-deep: "#073e34"
-  pine-bright: "#12856f"
+  pine-bright: "#0f7a64"
   pine-wash: "#0b5d4e14"
   signal: "#b93b26"
-  signal-bright: "#d94e33"
+  signal-bright: "#c4432b"
   signal-wash: "#b93b2614"
   on-pine: "#f4f1ea"
   on-signal: "#fffdf8"
@@ -157,7 +157,7 @@ Papel cálido y tinta fría, con un verde pino que ordena y un bermellón que ll
 
 ### Secondary
 - **Bermellón Señal** (signal): reservado a la acción y al estado vivo. Botón principal, punto "disponible" pulsante, nodo actual de la línea de tiempo, anillo de foco y estado de error en campos.
-- **Bermellón Vivo** (signal-bright): hover del botón señal.
+- **Bermellón Vivo** (signal-bright): hover del botón señal. Un paso más claro que la señal, sin bajar de 4,5:1 bajo el texto del botón.
 - **Lavado de Señal** (signal-wash): halo del nodo actual y del campo inválido.
 
 ### Neutral
@@ -171,7 +171,7 @@ Papel cálido y tinta fría, con un verde pino que ordena y un bermellón que ll
 - **Modo oscuro:** papel `night-paper`, superficie `night-surface`, tinta `night-ink`. El pino se vuelve un menta luminoso (`night-pine`) y la señal un coral (`night-signal`). El texto sobre pino y sobre señal se oscurece.
 
 ### Named Rules
-**La Regla de las Dos Voces.** El pino ordena y el bermellón llama a actuar; nunca intercambian roles. Si algo no es una acción, un estado vivo o un error, no es bermellón.
+**La Regla de las Dos Voces.** El pino ordena y el bermellón llama a actuar; nunca intercambian roles. Si algo no es una acción, un estado vivo o un error, no es bermellón. El énfasis que no es acción (el tramo clave de un diagrama, una nota técnica) va en tinta plena o en papel hundido, no en bermellón.
 
 **La Regla del Token Semántico.** Todo color sale de `--c-*` mediante las utilidades `bg-paper`, `text-ink`, `border-line`, etc. Un hex suelto o una variante `dark:` en el marcado es un error.
 
