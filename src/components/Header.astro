@@ -24,7 +24,7 @@ const links = [
                 </span>
                 <span class="hidden sm:flex flex-col leading-none">
                     <span class="font-display text-[0.9375rem] font-bold text-ink">Marcos Rezk</span>
-                    <span class="label text-[0.625rem]">Full Stack Developer</span>
+                    <span class="label">Full Stack Developer</span>
                 </span>
             </a>
 
@@ -85,6 +85,7 @@ const links = [
         id="mobile-menu"
         class="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-paper border-t border-line translate-x-full transition-transform duration-300 ease-out overflow-y-auto"
         aria-hidden="true"
+        inert
     >
         <div class="px-6 py-8">
             <p class="label mb-5">Navegación</p>
@@ -160,6 +161,8 @@ const links = [
         menuOpen = open;
         mobileMenu?.classList.toggle("translate-x-full", !open);
         mobileMenu?.setAttribute("aria-hidden", String(!open));
+        // Off-screen links must not take keyboard focus while the menu is closed.
+        mobileMenu?.toggleAttribute("inert", !open);
         menuIconOpen?.classList.toggle("hidden", open);
         menuIconClose?.classList.toggle("hidden", !open);
         menuToggle?.setAttribute("aria-expanded", String(open));
