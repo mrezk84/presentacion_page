@@ -1,0 +1,538 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T01:00:22+00:00",
+  "title": "Design System: Marcos Rezk · Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Superficie",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "surface-sunk": {
+        "role": "neutral",
+        "displayName": "Papel Hundido",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Línea",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Línea Firme",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Tinta Suave",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Tinta Tenue",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "pine": {
+        "role": "primary",
+        "displayName": "Pino",
+        "tonalRamp": [
+          "#03231d",
+          "#073e34",
+          "#0b5d4e",
+          "#12856f",
+          "#2fa78c",
+          "#6cc8b0",
+          "#b5e5d8",
+          "#eaf7f3"
+        ]
+      },
+      "pine-deep": {
+        "role": "primary",
+        "displayName": "Pino Profundo",
+        "tonalRamp": [
+          "#03231d",
+          "#073e34",
+          "#0b5d4e",
+          "#12856f",
+          "#2fa78c",
+          "#6cc8b0",
+          "#b5e5d8",
+          "#eaf7f3"
+        ]
+      },
+      "pine-bright": {
+        "role": "primary",
+        "displayName": "Pino Vivo",
+        "tonalRamp": [
+          "#03231d",
+          "#073e34",
+          "#0b5d4e",
+          "#12856f",
+          "#2fa78c",
+          "#6cc8b0",
+          "#b5e5d8",
+          "#eaf7f3"
+        ]
+      },
+      "pine-wash": {
+        "role": "primary",
+        "displayName": "Lavado de Pino",
+        "tonalRamp": [
+          "#03231d",
+          "#073e34",
+          "#0b5d4e",
+          "#12856f",
+          "#2fa78c",
+          "#6cc8b0",
+          "#b5e5d8",
+          "#eaf7f3"
+        ]
+      },
+      "signal": {
+        "role": "secondary",
+        "displayName": "Bermellón Señal",
+        "tonalRamp": [
+          "#3d120b",
+          "#6e2014",
+          "#b93b26",
+          "#d94e33",
+          "#e9785f",
+          "#f3a693",
+          "#f9d3c9",
+          "#fdf0ec"
+        ]
+      },
+      "signal-bright": {
+        "role": "secondary",
+        "displayName": "Bermellón Vivo",
+        "tonalRamp": [
+          "#3d120b",
+          "#6e2014",
+          "#b93b26",
+          "#d94e33",
+          "#e9785f",
+          "#f3a693",
+          "#f9d3c9",
+          "#fdf0ec"
+        ]
+      },
+      "signal-wash": {
+        "role": "secondary",
+        "displayName": "Lavado de Señal",
+        "tonalRamp": [
+          "#3d120b",
+          "#6e2014",
+          "#b93b26",
+          "#d94e33",
+          "#e9785f",
+          "#f3a693",
+          "#f9d3c9",
+          "#fdf0ec"
+        ]
+      },
+      "on-pine": {
+        "role": "neutral",
+        "displayName": "Sobre Pino",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "on-signal": {
+        "role": "neutral",
+        "displayName": "Sobre Señal",
+        "tonalRamp": [
+          "#111716",
+          "#2a3331",
+          "#4c5754",
+          "#5a6663",
+          "#8a918a",
+          "#c6bdaa",
+          "#ddd6c8",
+          "#f4f1ea"
+        ]
+      },
+      "night-paper": {
+        "role": "neutral",
+        "displayName": "Papel Nocturno",
+        "tonalRamp": [
+          "#06100d",
+          "#0b1110",
+          "#0f1615",
+          "#131b19",
+          "#24302d",
+          "#33423e",
+          "#a3b0ab",
+          "#ece7dc"
+        ]
+      },
+      "night-surface": {
+        "role": "neutral",
+        "displayName": "Superficie Nocturna",
+        "tonalRamp": [
+          "#06100d",
+          "#0b1110",
+          "#0f1615",
+          "#131b19",
+          "#24302d",
+          "#33423e",
+          "#a3b0ab",
+          "#ece7dc"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Tinta Nocturna",
+        "tonalRamp": [
+          "#06100d",
+          "#0b1110",
+          "#0f1615",
+          "#131b19",
+          "#24302d",
+          "#33423e",
+          "#a3b0ab",
+          "#ece7dc"
+        ]
+      },
+      "night-pine": {
+        "role": "primary",
+        "displayName": "Menta Nocturna",
+        "tonalRamp": [
+          "#03231d",
+          "#073e34",
+          "#0b5d4e",
+          "#12856f",
+          "#2fa78c",
+          "#6cc8b0",
+          "#b5e5d8",
+          "#eaf7f3"
+        ]
+      },
+      "night-signal": {
+        "role": "secondary",
+        "displayName": "Coral Nocturno",
+        "tonalRamp": [
+          "#3d120b",
+          "#6e2014",
+          "#b93b26",
+          "#d94e33",
+          "#e9785f",
+          "#f3a693",
+          "#f9d3c9",
+          "#fdf0ec"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Solo el claim del hero."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de sección."
+      },
+      "stat": {
+        "displayName": "Stat",
+        "purpose": "Cifras del bento, en pino."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de capacidad, puesto y proyecto."
+      },
+      "body-lead": {
+        "displayName": "Body Lead",
+        "purpose": "Párrafo del hero y entradillas, máx. 62ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descripciones en tarjetas y viñetas."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Texto de botones."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Rótulos de sección, períodos, unidades y metadatos."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sm",
+        "value": "0 1px 2px rgb(17 23 22 / 0.05)",
+        "purpose": "Contacto mínimo."
+      },
+      {
+        "name": "md",
+        "value": "0 2px 4px rgb(17 23 22 / 0.04), 0 8px 20px -8px rgb(17 23 22 / 0.1)",
+        "purpose": "Botón señal en reposo; botón pino en hover."
+      },
+      {
+        "name": "lg",
+        "value": "0 4px 8px rgb(17 23 22 / 0.05), 0 24px 48px -20px rgb(17 23 22 / 0.18)",
+        "purpose": "Tarjeta y botón señal en hover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Curva por defecto: hover, reveal, rise."
+      },
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(0.34, 1.4, 0.64, 1)",
+        "purpose": "Solo la entrada del panel del modal."
+      },
+      {
+        "name": "reveal",
+        "value": "0.7s, translateY(22px) → 0",
+        "purpose": "Entrada de secciones al hacer scroll; visible sin JS."
+      },
+      {
+        "name": "rise",
+        "value": "0.9s, translateY(26px) → 0, escalonado 40–440ms",
+        "purpose": "Entrada única del hero."
+      },
+      {
+        "name": "marquee",
+        "value": "42s linear infinite",
+        "purpose": "Cinta de tecnologías; se pausa en hover."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón señal",
+      "kind": "button",
+      "refersTo": "button-signal",
+      "description": "Acción principal única por vista: contacto o envío.",
+      "html": "<a class=\"ds-btn-signal\" href=\"#\"><svg width=\"18\" height=\"18\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\"/><path d=\"m3 7 9 6 9-6\"/></svg>Hablemos</a>",
+      "css": ".ds-btn-signal{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;padding:.9375rem 1.75rem;font-family:'IBM Plex Sans Variable',system-ui,sans-serif;font-weight:600;font-size:.9375rem;line-height:1;border:1px solid transparent;border-radius:0;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s cubic-bezier(.16,1,.3,1),background-color .2s ease,color .2s ease,border-color .2s ease;background:var(--c-signal,#b93b26);color:var(--c-on-signal,#fffdf8);box-shadow:var(--shadow-md,0 2px 4px rgb(17 23 22/.04),0 8px 20px -8px rgb(17 23 22/.1))}.ds-btn-signal:hover{background:var(--c-signal-bright,#d94e33);transform:translateY(-2px);box-shadow:var(--shadow-lg,0 4px 8px rgb(17 23 22/.05),0 24px 48px -20px rgb(17 23 22/.18))}.ds-btn-signal:active{transform:scale(.985)}.ds-btn-signal:focus-visible{outline:2px solid var(--c-signal,#b93b26);outline-offset:3px;border-radius:2px}"
+    },
+    {
+      "name": "Botón outline",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Acción de apoyo: descargar CV.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\"><svg width=\"18\" height=\"18\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v12m0 0-4-4m4 4 4-4M4 21h16\"/></svg>Descargar CV</a>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;padding:.9375rem 1.75rem;font-family:'IBM Plex Sans Variable',system-ui,sans-serif;font-weight:600;font-size:.9375rem;line-height:1;border:1px solid transparent;border-radius:0;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s cubic-bezier(.16,1,.3,1),background-color .2s ease,color .2s ease,border-color .2s ease;background:transparent;color:var(--c-ink,#111716);border-color:var(--c-line-strong,#c6bdaa)}.ds-btn-outline:hover{border-color:var(--c-pine,#0b5d4e);color:var(--c-pine,#0b5d4e);transform:translateY(-2px)}.ds-btn-outline:active{transform:scale(.985)}.ds-btn-outline:focus-visible{outline:2px solid var(--c-signal,#b93b26);outline-offset:3px;border-radius:2px}"
+    },
+    {
+      "name": "Botón pino",
+      "kind": "button",
+      "refersTo": "button-pine",
+      "description": "Acción estructural que no es la conversión principal.",
+      "html": "<a class=\"ds-btn-pine\" href=\"#\">Ver en GitHub</a>",
+      "css": ".ds-btn-pine{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;padding:.9375rem 1.75rem;font-family:'IBM Plex Sans Variable',system-ui,sans-serif;font-weight:600;font-size:.9375rem;line-height:1;border:1px solid transparent;border-radius:0;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s cubic-bezier(.16,1,.3,1),background-color .2s ease,color .2s ease,border-color .2s ease;background:var(--c-pine,#0b5d4e);color:var(--c-on-pine,#f4f1ea)}.ds-btn-pine:hover{background:var(--c-pine-bright,#12856f);transform:translateY(-2px);box-shadow:var(--shadow-md,0 2px 4px rgb(17 23 22/.04),0 8px 20px -8px rgb(17 23 22/.1))}.ds-btn-pine:focus-visible{outline:2px solid var(--c-signal,#b93b26);outline-offset:3px;border-radius:2px}"
+    },
+    {
+      "name": "Rótulo de sección",
+      "kind": "custom",
+      "refersTo": "label-section",
+      "description": "Número mono + nombre + línea de cota que abre cada sección.",
+      "html": "<div class=\"ds-eyebrow\"><span class=\"ds-label\">05 / Stack</span></div>",
+      "css": ".ds-eyebrow{display:flex;align-items:center;gap:.875rem;min-width:18rem}.ds-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--c-line-strong,#c6bdaa),transparent)}.ds-label{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--c-pine,#0b5d4e)}"
+    },
+    {
+      "name": "Tag pino",
+      "kind": "chip",
+      "refersTo": "tag-pine",
+      "description": "Tecnología dentro de proyectos y capacidades.",
+      "html": "<span class=\"ds-tag\">C# .NET</span> <span class=\"ds-tag\">SQL Server</span>",
+      "css": ".ds-tag{display:inline-block;padding:.25rem .5rem;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.6875rem;font-weight:500;color:var(--c-pine,#0b5d4e);background:var(--c-pine-wash,#0b5d4e14);border:1px solid color-mix(in srgb,var(--c-pine,#0b5d4e) 28%,transparent)}"
+    },
+    {
+      "name": "Tarjeta con marcas de registro",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Superficie interactiva: se eleva, toma borde pino y muestra escuadras.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-card-label\">2023 · Ministerio del Interior</span><h3 class=\"ds-card-title\">Centro de Emergencias 911</h3><p class=\"ds-card-body\">Indexación de SQL Server medida en producción: de 8 a 5 segundos.</p></article>",
+      "css": ".ds-card{position:relative;max-width:22rem;padding:1.75rem;background:var(--c-surface,#fffdf8);border:1px solid var(--c-line,#ddd6c8);transition:border-color .3s cubic-bezier(.16,1,.3,1),box-shadow .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)}.ds-card::before,.ds-card::after{content:'';position:absolute;width:9px;height:9px;border-color:var(--c-pine,#0b5d4e);opacity:0;transition:opacity .35s cubic-bezier(.16,1,.3,1)}.ds-card::before{top:-1px;left:-1px;border-top:2px solid;border-left:2px solid}.ds-card::after{bottom:-1px;right:-1px;border-bottom:2px solid;border-right:2px solid}.ds-card:hover{border-color:var(--c-pine,#0b5d4e);box-shadow:var(--shadow-lg,0 4px 8px rgb(17 23 22/.05),0 24px 48px -20px rgb(17 23 22/.18));transform:translateY(-3px)}.ds-card:hover::before,.ds-card:hover::after{opacity:1}.ds-card-label{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--c-ink-faint,#5a6663)}.ds-card-title{margin:.75rem 0 .5rem;font-family:'Bricolage Grotesque Variable',Georgia,serif;font-size:1.5rem;font-weight:600;letter-spacing:-.02em;color:var(--c-ink,#111716)}.ds-card-body{margin:0;font-family:'IBM Plex Sans Variable',system-ui,sans-serif;font-size:.875rem;line-height:1.625;color:var(--c-ink-soft,#4c5754)}"
+    },
+    {
+      "name": "Celda de métrica",
+      "kind": "custom",
+      "refersTo": "bento-cell",
+      "description": "Cifra medida en pino con rótulo y nota, en grilla con filete.",
+      "html": "<div class=\"ds-bento\"><div class=\"ds-bento-cell\"><p class=\"ds-stat\">8→5<span>s</span></p><p class=\"ds-stat-label\">Tiempo de respuesta tras indexar SQL Server</p><p class=\"ds-stat-note\">Centro de Emergencias 911</p></div><div class=\"ds-bento-cell\"><p class=\"ds-stat\">13</p><p class=\"ds-stat-label\">Personas coordinadas en mesa de ayuda</p><p class=\"ds-stat-note\">Proyecto ANCAP</p></div></div>",
+      "css": ".ds-bento{display:grid;grid-template-columns:repeat(2,minmax(0,12rem));gap:1px;background:var(--c-line,#ddd6c8);border:1px solid var(--c-line,#ddd6c8)}.ds-bento-cell{padding:1.75rem;background:var(--c-paper,#f4f1ea);transition:background-color .35s cubic-bezier(.16,1,.3,1)}.ds-bento-cell:hover{background:var(--c-surface,#fffdf8)}.ds-stat{margin:0 0 1rem;font-family:'Bricolage Grotesque Variable',Georgia,serif;font-size:3rem;font-weight:700;line-height:1;letter-spacing:-.025em;color:var(--c-pine,#0b5d4e)}.ds-stat span{font-size:1.875rem;vertical-align:top}.ds-stat-label{margin:0 0 .375rem;font-family:'IBM Plex Sans Variable',system-ui,sans-serif;font-size:.875rem;font-weight:500;line-height:1.375;color:var(--c-ink,#111716)}.ds-stat-note{margin:0;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--c-ink-faint,#5a6663)}"
+    },
+    {
+      "name": "Campo de formulario",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Campo en papel hundido; foco pino, error bermellón.",
+      "html": "<div><label class=\"ds-field-label\" for=\"ds-name\">Nombre</label><input class=\"ds-field\" id=\"ds-name\" placeholder=\"Tu nombre\"></div>",
+      "css": ".ds-field-label{display:block;margin-bottom:.5rem;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--c-ink-faint,#5a6663)}.ds-field{width:20rem;max-width:100%;box-sizing:border-box;padding:.8125rem 1rem;font-family:'IBM Plex Sans Variable',system-ui,sans-serif;font-size:.9375rem;color:var(--c-ink,#111716);background:var(--c-surface-sunk,#ebe6db);border:1px solid var(--c-line,#ddd6c8);border-radius:0;transition:border-color .25s ease,box-shadow .25s ease,background-color .25s ease}.ds-field::placeholder{color:var(--c-ink-faint,#5a6663)}.ds-field:focus{outline:none;background:var(--c-surface,#fffdf8);border-color:var(--c-pine,#0b5d4e);box-shadow:0 0 0 3px var(--c-pine-wash,#0b5d4e14)}"
+    },
+    {
+      "name": "Navegación",
+      "kind": "nav",
+      "refersTo": "label-section",
+      "description": "Header con scroll: papel traslúcido, logotipo MR recto, enlaces que pasan a pino.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-logo\" href=\"#\">MR</a><span class=\"ds-nav-name\">Marcos Rezk</span><a class=\"ds-nav-link\" href=\"#\">Experiencia</a><a class=\"ds-nav-link\" href=\"#\">Proyectos</a><a class=\"ds-nav-link\" href=\"#\">Contacto</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:.25rem;padding:.75rem 1rem;background:color-mix(in srgb,var(--c-paper,#f4f1ea) 85%,transparent);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--c-line,#ddd6c8)}.ds-nav-logo{width:2.25rem;height:2.25rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--c-line-strong,#c6bdaa);color:var(--c-pine,#0b5d4e);font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-decoration:none;transition:background-color .2s,color .2s}.ds-nav-logo:hover{background:var(--c-pine,#0b5d4e);color:var(--c-on-pine,#f4f1ea)}.ds-nav-name{margin:0 1rem 0 .75rem;font-family:'Bricolage Grotesque Variable',Georgia,serif;font-size:.9375rem;font-weight:700;color:var(--c-ink,#111716)}.ds-nav-link{padding:.5rem .75rem;font-family:'IBM Plex Sans Variable',system-ui,sans-serif;font-size:.875rem;font-weight:500;color:var(--c-ink-soft,#4c5754);text-decoration:none;transition:color .2s}.ds-nav-link:hover{color:var(--c-pine,#0b5d4e)}.ds-nav-logo:focus-visible,.ds-nav-link:focus-visible{outline:2px solid var(--c-signal,#b93b26);outline-offset:3px;border-radius:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Expediente Técnico",
+    "overview": "La página se presenta como un dossier impreso de ingeniería, no como una landing. El fondo es papel hueso con un grano casi imperceptible, el texto va en tinta verde-negra y cada sección se abre con un rótulo mono numerado y una línea de cota. La grilla de plano técnico asoma detrás del hero. Las tarjetas muestran marcas de registro en las esquinas al pasar el cursor, como las de una prueba de imprenta. Todo dice \"esto se diseñó y se midió\", que es justo lo que el contenido afirma del trabajo de Marcos.\n\nEl color tiene dos voces con funciones separadas. El **pino** es la estructura: rótulos de sección, enlaces, cifras, la línea de tiempo y el borde en hover. El **bermellón** es la señal: la acción principal, el estado \"disponible\", el foco y los errores. Los componentes son táctiles y directos: bloques de esquinas rectas que responden al cursor elevándose, cambiando de borde o revelando sus marcas. No hay radios en ningún lugar salvo los puntos de estado.\n\nLa densidad es de documento: cifras grandes en Bricolage Grotesque apretado, texto en IBM Plex Sans con medida de 62ch y metadatos en IBM Plex Mono de 11px en versalitas espaciadas. El modo oscuro no se agrega por encima: cada color es un token semántico que se invierte con `.dark`, y el marcado no lleva variantes `dark:`.",
+    "keyCharacteristics": [
+      "Papel, tinta y dos acentos con roles estrictos: pino = estructura, bermellón = acción.",
+      "Esquinas rectas en todo: botones, tarjetas, campos, tags y modal.",
+      "Micro-rótulos mono numerados (\"01 / En números\") como tejido conectivo.",
+      "Grano de papel y grilla técnica como únicas texturas.",
+      "Hover táctil: elevación de 2–3px, borde pino y marcas de registro.",
+      "Tokens semánticos `--c-*` que se invierten en oscuro; nada de `dark:` en el marcado."
+    ],
+    "rules": [
+      {
+        "name": "La Regla de las Dos Voces",
+        "body": "El pino ordena y el bermellón llama a actuar; nunca intercambian roles. Si algo no es una acción, un estado vivo o un error, no es bermellón.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Token Semántico",
+        "body": "Todo color sale de `--c-*` mediante las utilidades `bg-paper`, `text-ink`, `border-line`, etc. Un hex suelto o una variante `dark:` en el marcado es un error.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Rótulo",
+        "body": "Toda pieza de metadato (sección, período, unidad, ubicación, estado) va en el label mono. No se inventan tamaños intermedios de \"texto chico\" en Plex Sans para ese rol.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de lo Literal",
+        "body": "Los correos, las URLs y los handles nunca van en versalitas: se escriben como se escriben (`label-file`).",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Bloque que Responde",
+        "body": "Una superficie interactiva se eleva entre 2 y 3px, cambia su borde a pino y sube a la sombra `lg`, siempre con `--ease-out-expo`. Lo que no es interactivo no se eleva.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** abrir cada sección con el `.eyebrow`: label pino numerado (\"05 / Stack\") y la línea de cota.",
+      "**Do** usar solo utilidades semánticas (`bg-paper`, `bg-surface`, `bg-sunk`, `text-ink`, `text-ink-soft`, `border-line`, `text-pine`, `bg-signal`).",
+      "**Do** mantener las esquinas rectas en todo componente nuevo.",
+      "**Do** hacer que lo interactivo responda con elevación de 2–3px, borde pino y `--ease-out-expo`.",
+      "**Do** usar el label mono para todo metadato, y `label-file` para correos y URLs.",
+      "**Do** dejar el contenido visible si fallan las animaciones (`.reveal` tiene fallback sin JS y respeta `prefers-reduced-motion`)."
+    ],
+    "donts": [
+      "**Don't** usar bermellón para decorar, titular o resaltar algo que no sea una acción, un estado vivo o un error.",
+      "**Don't** agregar `border-radius` a botones, tarjetas, campos o tags.",
+      "**Don't** escribir variantes `dark:` ni hex sueltos en el marcado.",
+      "**Don't** usar sombras gris neutro: la sombra se tiñe con la tinta.",
+      "**Don't** separar secciones con fondos de colores: se separan con filetes. El papel hundido queda solo para la banda de métricas y los pozos.",
+      "**Don't** cargar fuentes desde CDNs externos: todo se aloja en el sitio."
+    ]
+  }
+}
