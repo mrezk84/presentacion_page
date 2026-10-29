@@ -577,36 +577,6 @@ summary:focus-visible {
 }
 
 /* ============================================================
-   MARQUEE — the technology ticker under the hero
-   ============================================================ */
-
-.marquee {
-	display: flex;
-	overflow: hidden;
-	user-select: none;
-	mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-
-.marquee__track {
-	display: flex;
-	flex-shrink: 0;
-	align-items: center;
-	gap: 3rem;
-	padding-right: 3rem;
-	animation: scroll-x 42s linear infinite;
-}
-
-.marquee:hover .marquee__track {
-	animation-play-state: paused;
-}
-
-@keyframes scroll-x {
-	to {
-		transform: translateX(-100%);
-	}
-}
-
-/* ============================================================
    TIMELINE
    ============================================================ */
 

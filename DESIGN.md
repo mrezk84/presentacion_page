@@ -206,7 +206,7 @@ Una columna de secciones apiladas en un contenedor `max-w-6xl` (72rem) con un gu
 - **Rótulo de sección:** número mono + nombre + línea de cota que se desvanece (`.eyebrow`), siempre alineado a la izquierda y a 3rem del contenido.
 - **Encabezados asimétricos:** en desktop, el título ocupa 7 columnas y la entradilla 5, alineada abajo (`lg:col-span-7` / `lg:col-span-5`).
 - **Bento de grilla con filete:** las celdas se separan con `gap-px` sobre un fondo `bg-line`, de modo que el filete de 1px es la propia grilla. Va en 2 columnas en mobile y 4 en `lg`.
-- **Hero:** el claim y los datos de disponibilidad (`<dl>` de ubicación, modalidad, zona horaria y respuesta) van a la izquierda; el retrato, a la derecha. Debajo corre una marquesina de tecnologías.
+- **Hero:** el claim y los datos de disponibilidad (`<dl>` de ubicación, modalidad, zona horaria y respuesta) van a la izquierda; el retrato, a la derecha. Debajo sigue directamente la banda de métricas.
 - **Breakpoints:** los de Tailwind (`sm` 640, `md` 768, `lg` 1024). La navegación de escritorio aparece en `lg`.
 
 ## Elevation & Depth
@@ -263,9 +263,6 @@ Es la celda de métrica o capacidad dentro de la grilla con filete: papel que pa
 
 ### Línea de tiempo (Signature)
 Un eje vertical de 1px que se desvanece de pino a línea. Cada puesto tiene un nodo de 11px en papel con borde `line-strong`; el puesto actual lleva un nodo bermellón con halo de lavado de señal. El período va en label, el título en display 600 y las viñetas en body.
-
-### Marquesina (Signature)
-Es la cinta de tecnologías bajo el hero: recorre en 42s lineales, se desvanece en los bordes con una máscara y se pausa en hover.
 
 ## Do's and Don'ts
 
