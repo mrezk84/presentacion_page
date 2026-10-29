@@ -616,21 +616,19 @@ const stack = [
       </div>
     </footer>
 
-  <!-- Success / error dialog -->
-  <div
+  <!-- Success / error dialog. Native <dialog> opened with showModal(): the
+       browser traps focus, makes the page behind it inert and handles Esc. -->
+  <dialog
     id="contact-modal"
-    class="modal fixed inset-0 z-[100] flex items-center justify-center p-4"
-    style="background: rgb(11 17 16 / 0.72); backdrop-filter: blur(6px);"
-    role="dialog"
-    aria-modal="true"
+    class="modal"
     aria-labelledby="modal-title"
     aria-describedby="modal-description"
   >
     <div class="modal__panel w-full max-w-md bg-surface border border-line" style="box-shadow: var(--shadow-lg);">
       <div class="flex items-center justify-between px-6 py-3 border-b border-line">
         <span id="modal-eyebrow" class="label label-pine">Enviado</span>
-        <button id="modal-close-x" class="text-ink-faint hover:text-ink transition-colors" aria-label="Cerrar">
-          <Icon name="close" class="w-4 h-4" strokeWidth={2} />
+        <button id="modal-close-x" type="button" class="w-11 h-11 -my-2 -mr-3 flex items-center justify-center text-ink-faint hover:text-ink transition-colors" aria-label="Cerrar">
+          <Icon name="close" class="w-5 h-5" strokeWidth={2} />
         </button>
       </div>
 
@@ -644,10 +642,10 @@ const stack = [
           Gracias por escribir. Recibí tu mensaje y te respondo en menos de 24 horas hábiles.
         </p>
 
-        <button id="modal-close-btn" class="btn btn-pine w-full">Cerrar</button>
+        <button id="modal-close-btn" type="button" class="btn btn-pine w-full">Cerrar</button>
       </div>
     </div>
-  </div>
+  </dialog>
 </Layout>
 
 <script>
@@ -657,7 +655,7 @@ const stack = [
   const messageInput = document.getElementById('message') as HTMLTextAreaElement | null;
   const submitBtn = document.getElementById('submit-contact') as HTMLButtonElement | null;
 
-  const modal = document.getElementById('contact-modal');
+  const modal = document.getElementById('contact-modal') as HTMLDialogElement | null;
   const modalIcon = document.getElementById('modal-icon');
   const modalEyebrow = document.getElementById('modal-eyebrow');
   const modalTitle = document.getElementById('modal-title');
@@ -742,7 +740,10 @@ const stack = [
 
   function openModal(isSuccess: boolean, message?: string) {
     if (!modal) return;
-    lastFocused = document.activeElement as HTMLElement;
+    // The submit button is disabled while sending, which drops focus to <body>;
+    // in that case send focus back to the button once the dialog closes.
+    const active = document.activeElement as HTMLElement | null;
+    lastFocused = active && active !== document.body ? active : submitBtn;
 
     if (modalIcon) {
       modalIcon.classList.toggle('border-pine', isSuccess);
@@ -764,25 +765,37 @@ const stack = [
           : 'Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp o email.');
     }
 
-    modal.classList.add('show');
+    if (!modal.open) modal.showModal();
     document.body.style.overflow = 'hidden';
     modalCloseBtn?.focus();
+    // Next frame, so the entry transition runs from the closed styles.
+    requestAnimationFrame(() => modal.classList.add('show'));
   }
 
   function closeModal() {
-    if (!modal) return;
+    if (!modal?.open) return;
     modal.classList.remove('show');
     document.body.style.overflow = '';
-    lastFocused?.focus();
+    const finish = () => {
+      if (!modal.classList.contains('show')) modal.close();
+      lastFocused?.focus();
+    };
+    // Wait for the fade; the timeout covers reduced motion and missed events.
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.setTimeout(finish, reduced ? 0 : 360);
   }
 
   modalCloseBtn?.addEventListener('click', closeModal);
   modalCloseX?.addEventListener('click', closeModal);
+  // The dialog box fills the viewport, so a click on it (not the panel) is a
+  // click on the backdrop.
   modal?.addEventListener('click', (event) => {
     if (event.target === modal) closeModal();
   });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal?.classList.contains('show')) closeModal();
+  // Esc: run the same animated close instead of the browser's instant one.
+  modal?.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeModal();
   });
 
   form?.addEventListener('submit', async (event) => {
@@ -827,11 +840,16 @@ const stack = [
       '<path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' +
       '</svg><span>Enviando…</span>';
 
+    // A stalled connection would otherwise leave the button spinning forever.
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15_000);
+
     try {
       const response = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
-        headers: { Accept: 'application/json' }
+        headers: { Accept: 'application/json' },
+        signal: controller.signal
       });
 
       if (response.ok) {
@@ -853,9 +871,18 @@ const stack = [
         }
         openModal(false, errorMsg);
       }
-    } catch {
-      openModal(false);
+    } catch (error) {
+      // Nothing was sent, so the attempt should not count against the limit.
+      attemptTimestamps.pop();
+      if (!navigator.onLine) {
+        openModal(false, 'Parece que no tenés conexión. Tu mensaje sigue en el formulario: probá de nuevo cuando vuelva la red.');
+      } else if (error instanceof DOMException && error.name === 'AbortError') {
+        openModal(false, 'El envío tardó demasiado. Tu mensaje sigue en el formulario: probá de nuevo o escribime a mrezk84@gmail.com.');
+      } else {
+        openModal(false);
+      }
     } finally {
+      window.clearTimeout(timeout);
       submitBtn.disabled = false;
       submitBtn.style.opacity = '';
       submitBtn.innerHTML = originalBtnHTML;
