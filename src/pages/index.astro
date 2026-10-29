@@ -522,7 +522,7 @@ const stack = [
               <div>
                 <label for="name" class="label block mb-2">Nombre completo</label>
                 <input type="text" id="name" name="name" required class="field" placeholder="Tu nombre" autocomplete="name" aria-describedby="name-tip" />
-                <p id="name-tip" class="field-tip">Ingresá tu nombre, sin números (mínimo 2 letras).</p>
+                <p id="name-tip" class="field-tip">Ingresá tu nombre (mínimo 2 letras).</p>
               </div>
 
               <div>
@@ -551,6 +551,7 @@ const stack = [
               <p class="text-xs text-ink-faint leading-relaxed">
                 Tus datos se usan únicamente para responderte. Sin listas, sin reenvíos.
               </p>
+              <p id="form-status" class="sr-only" role="status" aria-live="polite"></p>
             </form>
           </div>
         </div>
@@ -629,13 +630,27 @@ const stack = [
 
       <div class="p-8">
         <div id="modal-icon" class="w-12 h-12 flex items-center justify-center border border-pine text-pine mb-6">
-          <Icon name="check" class="w-6 h-6" strokeWidth={2.5} />
+          <span data-icon="success"><Icon name="check" class="w-6 h-6" strokeWidth={2.5} /></span>
+          <span data-icon="error" hidden><Icon name="alert" class="w-6 h-6" strokeWidth={2} /></span>
         </div>
 
         <h3 id="modal-title" class="font-display text-2xl font-bold text-ink mb-3">Mensaje enviado</h3>
         <p id="modal-description" class="text-sm text-ink-soft leading-relaxed mb-7">
           Gracias por escribir. Recibí tu mensaje y te respondo en menos de 24 horas hábiles.
         </p>
+
+        <!-- When sending fails the visitor still has a way to reach me
+             right here, with what they wrote, instead of only "Cerrar". -->
+        <div id="modal-error-actions" class="grid gap-3 mb-3" hidden>
+          <a id="modal-whatsapp" href="https://wa.me/59899845879" target="_blank" rel="noopener noreferrer" class="btn btn-signal w-full">
+            <Icon name="whatsapp" class="w-[18px] h-[18px]" />
+            Enviarlo por WhatsApp
+          </a>
+          <button id="modal-copy-email" type="button" class="btn btn-outline w-full">
+            <Icon name="copy" class="w-[18px] h-[18px]" strokeWidth={2} />
+            <span>Copiar mrezk84@gmail.com</span>
+          </button>
+        </div>
 
         <button id="modal-close-btn" type="button" class="btn btn-pine w-full">Cerrar</button>
       </div>
@@ -657,6 +672,11 @@ const stack = [
   const modalDescription = document.getElementById('modal-description');
   const modalCloseBtn = document.getElementById('modal-close-btn');
   const modalCloseX = document.getElementById('modal-close-x');
+  const modalErrorActions = document.getElementById('modal-error-actions');
+  const modalWhatsapp = document.getElementById('modal-whatsapp') as HTMLAnchorElement | null;
+  const modalCopyEmail = document.getElementById('modal-copy-email');
+  const formStatus = document.getElementById('form-status');
+  const contactEmail = 'mrezk84@gmail.com';
 
   /**
    * Strips markup-ish characters before the value is sent onward. This is a
@@ -675,7 +695,13 @@ const stack = [
   const validators = {
     name: (v: string) => {
       const s = sanitize(v);
-      return s.length >= 2 && s.length <= 100 && /^[\p{L}\s'’.-]+$/u.test(s);
+      // Names come with titles, teams and roles ("Ana (RR.HH.)", "Talent
+      // Team 2"): accept them, as long as there are at least two letters.
+      return (
+        s.length <= 100 &&
+        /^[\p{L}\p{N}\s'’.,&()\/-]+$/u.test(s) &&
+        (s.match(/\p{L}/gu)?.length ?? 0) >= 2
+      );
     },
     email: (v: string) => {
       const s = sanitize(v);
@@ -741,6 +767,8 @@ const stack = [
     lastFocused = active && active !== document.body ? active : submitBtn;
 
     if (modalIcon) {
+      modalIcon.querySelector<HTMLElement>('[data-icon="success"]')!.hidden = !isSuccess;
+      modalIcon.querySelector<HTMLElement>('[data-icon="error"]')!.hidden = isSuccess;
       modalIcon.classList.toggle('border-pine', isSuccess);
       modalIcon.classList.toggle('text-pine', isSuccess);
       modalIcon.classList.toggle('border-signal', !isSuccess);
@@ -757,12 +785,28 @@ const stack = [
         message ??
         (isSuccess
           ? 'Gracias por escribir. Recibí tu mensaje y te respondo en menos de 24 horas hábiles.'
-          : 'Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp o email.');
+          : 'No es tu culpa: el envío falló de mi lado. Tu mensaje sigue en el formulario, y podés mandármelo directo desde acá.');
     }
+
+    if (modalErrorActions) modalErrorActions.hidden = isSuccess;
+    modalCloseBtn?.classList.toggle('btn-pine', isSuccess);
+    modalCloseBtn?.classList.toggle('btn-ghost', !isSuccess);
+    if (!isSuccess && modalWhatsapp) {
+      // Carry over what they wrote, so the fallback costs them nothing.
+      const who = nameInput?.value.trim();
+      const body = messageInput?.value.trim();
+      const text = [who ? `Hola Marcos, soy ${who}.` : 'Hola Marcos.', body].filter(Boolean).join(' ').slice(0, 1500);
+      modalWhatsapp.href = `https://wa.me/59899845879?text=${encodeURIComponent(text)}`;
+    }
+
+    const copyLabel = modalCopyEmail?.querySelector('span');
+    if (copyLabel) copyLabel.textContent = `Copiar ${contactEmail}`;
+    if (formStatus) formStatus.textContent = '';
 
     if (!modal.open) modal.showModal();
     document.body.style.overflow = 'hidden';
-    modalCloseBtn?.focus();
+    // On failure, start on the way to still get the message through.
+    (isSuccess ? modalCloseBtn : modalWhatsapp)?.focus();
     // Next frame, so the entry transition runs from the closed styles.
     requestAnimationFrame(() => modal.classList.add('show'));
   }
@@ -779,6 +823,17 @@ const stack = [
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.setTimeout(finish, reduced ? 0 : 360);
   }
+
+  modalCopyEmail?.addEventListener('click', async () => {
+    const label = modalCopyEmail.querySelector('span');
+    try {
+      await navigator.clipboard.writeText(contactEmail);
+      if (label) label.textContent = 'Copiado. Pegalo en tu correo';
+    } catch {
+      // Clipboard blocked (insecure context, permissions): open the mail app.
+      window.location.href = `mailto:${contactEmail}`;
+    }
+  });
 
   modalCloseBtn?.addEventListener('click', closeModal);
   modalCloseX?.addEventListener('click', closeModal);
@@ -817,7 +872,7 @@ const stack = [
     event.preventDefault();
 
     if (!withinRateLimit()) {
-      openModal(false, 'Enviaste varios mensajes seguidos. Esperá un minuto y probá de nuevo, o escribime a mrezk84@gmail.com.');
+      openModal(false, 'Ya me mandaste varios mensajes en el último minuto. Si querés agregar algo, mandámelo directo desde acá.');
       return;
     }
     attemptTimestamps.push(Date.now());
@@ -834,6 +889,7 @@ const stack = [
       '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"/>' +
       '<path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' +
       '</svg><span>Enviando…</span>';
+    if (formStatus) formStatus.textContent = 'Enviando mensaje…';
 
     // A stalled connection would otherwise leave the button spinning forever.
     const controller = new AbortController();
@@ -855,14 +911,21 @@ const stack = [
         // would let an automated sender loop forever, since every one of its
         // posts succeeds. The window rolls off on its own after the cooldown.
       } else {
+        // Formspree answers in English; the visitor gets a Spanish reason
+        // they can act on, never the raw service text.
         let errorMsg: string | undefined;
-        try {
-          const data = await response.json();
-          if (Array.isArray(data?.errors) && data.errors.length) {
-            errorMsg = data.errors.map((e: { message?: string }) => e.message).filter(Boolean).join(', ');
+        if (response.status === 429) {
+          errorMsg = 'Llegaron muchos mensajes seguidos y el servicio frenó el envío. Mandámelo directo desde acá.';
+        } else {
+          try {
+            const data = await response.json();
+            const errors: { field?: string; code?: string }[] = Array.isArray(data?.errors) ? data.errors : [];
+            if (errors.some((e) => e.field === 'email' || e.code?.includes('EMAIL'))) {
+              errorMsg = 'El servicio de envío no aceptó el correo. Revisalo y probá de nuevo, o mandámelo directo desde acá.';
+            }
+          } catch {
+            /* non-JSON error body — fall back to the generic message */
           }
-        } catch {
-          /* non-JSON error body — fall back to the generic message */
         }
         openModal(false, errorMsg);
       }
@@ -872,7 +935,7 @@ const stack = [
       if (!navigator.onLine) {
         openModal(false, 'Parece que no tenés conexión. Tu mensaje sigue en el formulario: probá de nuevo cuando vuelva la red.');
       } else if (error instanceof DOMException && error.name === 'AbortError') {
-        openModal(false, 'El envío tardó demasiado. Tu mensaje sigue en el formulario: probá de nuevo o escribime a mrezk84@gmail.com.');
+        openModal(false, 'El envío tardó demasiado. Tu mensaje sigue en el formulario: probá de nuevo o mandámelo directo desde acá.');
       } else {
         openModal(false);
       }

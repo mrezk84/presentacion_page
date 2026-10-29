@@ -47,7 +47,6 @@
 
 		/* Motion */
 		--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-		--ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
 	}
 
 	.dark {
@@ -378,6 +377,16 @@ summary:focus-visible {
 	transform: translateY(-2px);
 }
 
+/* Tertiary: the way out when a stronger action sits above it. */
+.btn-ghost {
+	background: transparent;
+	color: var(--c-ink-soft);
+}
+
+.btn-ghost:hover {
+	color: var(--c-ink);
+}
+
 .btn-pine {
 	background: var(--c-pine);
 	color: var(--c-on-pine);
@@ -701,7 +710,9 @@ summary:focus-visible {
 .modal__panel {
 	transform: scale(0.94) translateY(16px);
 	opacity: 0;
-	transition: all 0.45s var(--ease-spring);
+	transition:
+		transform 0.45s var(--ease-out-expo),
+		opacity 0.45s var(--ease-out-expo);
 }
 
 .modal.show .modal__panel {
