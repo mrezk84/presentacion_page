@@ -46,7 +46,7 @@ const stats = [
   { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911", icon: "sprint" },
   { value: "17", unit: "", label: "Años de trayectoria en tecnología", note: "Soporte, gestión y desarrollo", icon: "pulse" },
   { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP", icon: "team" },
-  { value: "4", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server — sumando Java y Go", icon: "code" }
+  { value: "4", unit: "+", label: "Años desarrollando full stack", note: "SONDA Uruguay, desde 2022", icon: "code" }
 ];
 
 const capabilities = [
@@ -228,12 +228,10 @@ const stack = [
                 </div>
 
                 <p class="font-display text-2xl font-bold text-ink leading-tight">{name}</p>
-                <p class="text-sm text-ink-soft mb-5">{role} · Analista Programador</p>
+                <p class="text-sm text-ink-soft mb-5">{role}</p>
 
                 <ul class="space-y-2.5 border-t border-line pt-5">
                   {[
-                    "Full stack: React, C# .NET y SQL Server",
-                    "Sumando ahora: Java con Spring Boot y Go",
                     "Integraciones: REST, SOAP, LDAP, mapas y telefonía IP",
                     "Sistemas 24/7 para el Estado y para salud",
                     "Analista Programador — Universidad ORT"
@@ -504,8 +502,10 @@ const stack = [
               </a>
             </div>
 
+            <!-- English is answered in the hero and in Idiomas; repeating it a
+                 third time here gave it more weight than the rest. -->
             <dl class="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-7">
-              {availability.map((item) => (
+              {availability.filter((item) => item.label !== "Inglés").map((item) => (
                 <div>
                   <dt class="label mb-1.5">{item.label}</dt>
                   <dd class="text-sm font-medium text-ink">{item.value}</dd>
