@@ -47,7 +47,7 @@ const stats = [
   { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911", icon: "sprint" },
   { value: "15", unit: "+", label: "Años sosteniendo software en producción", note: "Soporte, gestión y desarrollo", icon: "pulse" },
   { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP", icon: "team" },
-  { value: "3", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server", icon: "code" }
+  { value: "4", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server", icon: "code" }
 ];
 
 const marqueeItems = [
@@ -134,8 +134,8 @@ const stack = [
 ---
 
 <Layout
-  title="Marcos Rezk | Full Stack Developer — disponible para nuevos proyectos"
-  description="Full Stack Developer en Uruguay. React, TypeScript, C# .NET, ASP.NET Core y SQL Server. Más de tres años construyendo aplicaciones web de punta a punta en entornos de alta disponibilidad. Disponible para nuevas oportunidades."
+  title="Marcos Rezk | Full Stack Developer — disponible para incorporarse ya"
+  description="Full Stack Developer en Uruguay. React, TypeScript, C# .NET, ASP.NET Core y SQL Server. Más de cuatro años construyendo aplicaciones web de punta a punta en entornos de alta disponibilidad. Disponible para nuevas oportunidades."
 >
   <SkipLink />
   <Header />
@@ -163,7 +163,7 @@ const stack = [
           <div class="lg:col-span-7">
             <div class="rise flex items-center gap-3 mb-8" style="animation-delay: 40ms;">
               <span class="pulse-dot"></span>
-              <span class="label label-signal">Disponible para nuevos proyectos</span>
+              <span class="label label-signal">Disponible para incorporarme ya</span>
             </div>
 
             <h1 class="display-xl text-[clamp(2.75rem,7.5vw,5rem)] mb-7">
@@ -178,7 +178,7 @@ const stack = [
             <div class="rise flex flex-col sm:flex-row gap-3 mb-12" style="animation-delay: 360ms;">
               <a href="#contacto" class="btn btn-signal">
                 <Icon name="mail" class="w-[18px] h-[18px]" strokeWidth={2} />
-                Hablemos de tu proyecto
+                Hablemos del puesto
               </a>
               <a
                 href={`${basePath}/Marcos_Rezk_CV.pdf`}
@@ -544,7 +544,7 @@ const stack = [
               <div>
                 <label for="email" class="label block mb-2">Correo electrónico</label>
                 <input type="email" id="email" name="email" required class="field" placeholder="tu@empresa.com" autocomplete="email" />
-                <p id="email-tip" class="field-tip">Ingresá un correo electrónico válido.</p>
+                <p id="email-tip" class="field-tip">Ingresá un correo válido, por ejemplo nombre@empresa.com.</p>
               </div>
 
               <div>
@@ -581,7 +581,7 @@ const stack = [
         <div class="grid sm:grid-cols-2 gap-8 items-end">
           <div>
             <p class="font-display text-3xl font-bold text-ink leading-tight mb-2">
-              Disponible para nuevos proyectos.
+              Disponible para incorporarme ya.
             </p>
             <a href="#contacto" class="link-draw text-sm font-semibold">Escribime →</a>
           </div>
@@ -647,10 +647,10 @@ const stack = [
 
         <h3 id="modal-title" class="font-display text-2xl font-bold text-ink mb-3">Mensaje enviado</h3>
         <p id="modal-description" class="text-sm text-ink-soft leading-relaxed mb-7">
-          Gracias por escribir. Recibí tu mensaje y te respondo a la brevedad.
+          Gracias por escribir. Recibí tu mensaje y te respondo en menos de 24 horas hábiles.
         </p>
 
-        <button id="modal-close-btn" class="btn btn-pine w-full">Entendido</button>
+        <button id="modal-close-btn" class="btn btn-pine w-full">Cerrar</button>
       </div>
     </div>
   </div>
@@ -766,7 +766,7 @@ const stack = [
       modalDescription.textContent =
         message ??
         (isSuccess
-          ? 'Gracias por escribir. Recibí tu mensaje y te respondo a la brevedad.'
+          ? 'Gracias por escribir. Recibí tu mensaje y te respondo en menos de 24 horas hábiles.'
           : 'Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp o email.');
     }
 
@@ -815,7 +815,7 @@ const stack = [
     event.preventDefault();
 
     if (!withinRateLimit()) {
-      openModal(false, 'Enviaste varios mensajes seguidos. Esperá un minuto antes de reintentar.');
+      openModal(false, 'Enviaste varios mensajes seguidos. Esperá un minuto y probá de nuevo, o escribime a mrezk84@gmail.com.');
       return;
     }
     attemptTimestamps.push(Date.now());
