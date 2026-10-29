@@ -204,31 +204,35 @@ const stack = [
               </div>
 
               <div class="p-5">
-                <div class="relative mb-5 overflow-hidden">
-                  <!-- El original mide 288x288, así que no se piden anchos
-                       mayores: Astro no hace upscale y pedirlos sólo estiraría
-                       el mismo pixelado. Sin AVIF a propósito: a este tamaño
-                       sale en 10,5 KB contra 6,6 KB del WebP, y como el
-                       navegador elige por orden, ofrecerlo serviría la
-                       variante más pesada. -->
+                <!-- Foto carnet: el original mide 288x288, así que se muestra
+                     chica (128 a 176 px) para que no se vea blanda en
+                     pantallas de alta densidad. Sin AVIF a propósito: a este
+                     tamaño pesa más que el WebP y el navegador lo elegiría
+                     primero. -->
+                <div class="flex items-start gap-5 mb-5">
                   <Picture
                     src={perfil}
                     alt="Retrato de Marcos Rezk"
                     formats={["webp"]}
                     fallbackFormat="jpg"
+                    widths={[176, 288]}
+                    sizes="(min-width: 1024px) 176px, 128px"
                     quality={82}
                     loading="eager"
                     fetchpriority="high"
-                    class="w-full aspect-square object-cover"
+                    class="w-32 lg:w-44 shrink-0 aspect-square object-cover border border-line"
                   />
-                  <div class="absolute bottom-0 inset-x-0 flex items-center gap-2 px-3 py-2 bg-signal text-on-signal">
-                    <span class="pulse-dot" style="background: currentColor;"></span>
-                    <span class="label" style="color: currentColor;">Disponible</span>
+
+                  <div class="min-w-0 pt-1">
+                    <p class="font-display text-2xl font-bold text-ink leading-tight text-balance">{name}</p>
+                    <p class="text-sm text-ink-soft mb-4">{role}</p>
+                    <!-- Sello de estado: el bermellón queda para lo vivo. -->
+                    <span class="inline-flex items-center gap-2 border border-signal px-2.5 py-1.5">
+                      <span class="pulse-dot"></span>
+                      <span class="label label-signal">Disponible</span>
+                    </span>
                   </div>
                 </div>
-
-                <p class="font-display text-2xl font-bold text-ink leading-tight">{name}</p>
-                <p class="text-sm text-ink-soft mb-5">{role}</p>
 
                 <ul class="space-y-2.5 border-t border-line pt-5">
                   {[
