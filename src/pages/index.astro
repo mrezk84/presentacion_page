@@ -36,9 +36,9 @@ const role = "Full Stack Developer";
 
 // Availability facts a hiring manager screens for in the first 10 seconds.
 const availability = [
-  { label: "Ubicación", value: "Uruguay" },
+  { label: "Ubicación", value: "Uruguay · UTC−3, solapa con LATAM y EE.UU." },
   { label: "Modalidad", value: "Remoto · Híbrido · Presencial" },
-  { label: "Zona horaria", value: "UTC−3 · solapa con LATAM y EE.UU." },
+  { label: "Inglés", value: "Intermedio-avanzado · reuniones y docs" },
   { label: "Respuesta", value: "Menos de 24 h hábiles" }
 ];
 
@@ -55,7 +55,7 @@ const capabilities = [
     title: "Backend y APIs",
     lead: "Que tengan que funcionar, no impresionar.",
     body: "Servicios REST, SOAP y WebSocket sobre C# .NET 6/8 y ASP.NET Core. Integraciones con directorios corporativos, servicios de mapas y telefonía IP.",
-    stack: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js", "Java", "Spring Boot", "Go"]
+    stack: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js"]
   },
   {
     icon: "database",
@@ -160,13 +160,13 @@ const stack = [
               <span class="label label-signal">Disponible para incorporarme ya</span>
             </div>
 
-            <h1 class="display-xl text-[clamp(2.75rem,7.5vw,5rem)] mb-7">
-              <span class="rise block" style="animation-delay: 120ms;">Construyo software</span>
-              <span class="rise block text-pine" style="animation-delay: 200ms;">que aguanta producción.</span>
+            <h1 class="display-xl text-[clamp(2rem,4.2vw,3.75rem)] mb-7">
+              <span class="rise block" style="animation-delay: 120ms;">Full Stack .NET + React</span>{" "}
+              <span class="rise block text-pine" style="animation-delay: 200ms;">15 años en sistemas&nbsp;24/7.</span>
             </h1>
 
             <p class="rise measure text-lg sm:text-xl text-ink-soft leading-relaxed mb-8" style="animation-delay: 280ms;">
-              Hola, soy <strong class="text-ink font-semibold">Marcos</strong>. Full Stack Developer en Uruguay. Me gusta trabajar de punta a punta: la interfaz en <strong class="text-ink font-semibold">React</strong> y <strong class="text-ink font-semibold">TypeScript</strong>, la API en <strong class="text-ink font-semibold">C#&nbsp;.NET</strong>, y la base de datos que hay debajo. Hoy estoy sumando <strong class="text-ink font-semibold">Java</strong> con <strong class="text-ink font-semibold">Spring&nbsp;Boot</strong> y <strong class="text-ink font-semibold">Go</strong>. Vengo de sistemas donde no había margen para el error, y esa costumbre se me quedó.
+              Hola, soy <strong class="text-ink font-semibold">Marcos</strong>, desde Uruguay. Construyo software que aguanta producción, de punta a punta: la interfaz en <strong class="text-ink font-semibold">React</strong> y <strong class="text-ink font-semibold">TypeScript</strong>, la API en <strong class="text-ink font-semibold">C#&nbsp;.NET</strong>, y la base de datos que hay debajo. Hoy estoy sumando <strong class="text-ink font-semibold">Java</strong> con <strong class="text-ink font-semibold">Spring&nbsp;Boot</strong> y <strong class="text-ink font-semibold">Go</strong>. Vengo de sistemas donde no había margen para el error, y esa costumbre se me quedó.
             </p>
 
             <div class="rise flex flex-col sm:flex-row gap-3 mb-12" style="animation-delay: 360ms;">
@@ -223,7 +223,7 @@ const stack = [
                   />
                   <div class="absolute bottom-0 inset-x-0 flex items-center gap-2 px-3 py-2 bg-signal text-on-signal">
                     <span class="pulse-dot" style="background: currentColor;"></span>
-                    <span class="label" style="color: currentColor;">Open to work</span>
+                    <span class="label" style="color: currentColor;">Disponible</span>
                   </div>
                 </div>
 
@@ -434,7 +434,7 @@ const stack = [
             Si llegaste hasta acá, hablemos.
           </h2>
           <p class="lg:col-span-5 text-lg text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
-            Contame qué estás construyendo. Te respondo en menos de 24 horas
+            Contame del puesto: rol, equipo y modalidad. Te respondo en menos de 24 horas
             hábiles, y si no soy la persona indicada para el puesto, te lo digo
             de entrada.
           </p>
@@ -512,7 +512,7 @@ const stack = [
               <div>
                 <label for="name" class="label block mb-2">Nombre completo</label>
                 <input type="text" id="name" name="name" required class="field" placeholder="Tu nombre" autocomplete="name" aria-describedby="name-tip" />
-                <p id="name-tip" class="field-tip">Ingresá tu nombre (mínimo 2 letras).</p>
+                <p id="name-tip" class="field-tip">Ingresá tu nombre, sin números (mínimo 2 letras).</p>
               </div>
 
               <div>
@@ -557,7 +557,7 @@ const stack = [
             <p class="font-display text-3xl font-bold text-ink leading-tight mb-2">
               Disponible para incorporarme ya.
             </p>
-            <a href="#contacto" class="link-draw text-sm font-semibold">Escribime →</a>
+            <a href="#contacto" class="link-draw text-sm font-semibold">Hablemos del puesto →</a>
           </div>
 
           <div class="sm:text-right">
@@ -663,7 +663,7 @@ const stack = [
   const validators = {
     name: (v: string) => {
       const s = sanitize(v);
-      return s.length >= 2 && s.length <= 100 && /^[\p{L}\s'’-]+$/u.test(s);
+      return s.length >= 2 && s.length <= 100 && /^[\p{L}\s'’.-]+$/u.test(s);
     },
     email: (v: string) => {
       const s = sanitize(v);

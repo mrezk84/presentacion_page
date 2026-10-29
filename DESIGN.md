@@ -27,7 +27,7 @@ colors:
 typography:
   display:
     fontFamily: "Bricolage Grotesque Variable, Georgia, serif"
-    fontSize: "clamp(2.75rem, 7.5vw, 5rem)"
+    fontSize: "clamp(2rem, 4.2vw, 3.75rem)"
     fontWeight: 700
     lineHeight: 0.94
     letterSpacing: "-0.035em"
@@ -186,7 +186,7 @@ Papel cálido y tinta fría, con un verde pino que ordena y un bermellón que ll
 Todas las fuentes se alojan en el propio sitio con `@fontsource`, y las de la primera pantalla se precargan.
 
 ### Hierarchy
-- **Display** (700, clamp(2.75rem, 7.5vw, 5rem), line-height 0.94, -0.035em): solo el claim del hero ("Construyo software / que aguanta producción.").
+- **Display** (700, clamp(2rem, 4.2vw, 3.75rem), line-height 0.94, -0.035em): solo el titular del hero, puesto + dato duro en dos líneas ("Full Stack .NET + React" / "15 años en sistemas 24/7." en pino). Cada línea debe entrar entera en desktop: si el texto crece, baja el tamaño antes que dejar una palabra sola.
 - **Headline** (700, clamp(2rem, 4.5vw, 3.25rem), 0.94, -0.035em): títulos de sección. El contacto sube hasta 4rem.
 - **Stat** (700, 3rem–3.75rem, 1, ajustado): cifras del bento en pino, con la unidad en un tamaño menor alineada arriba.
 - **Title** (600, 1.25–1.5rem, -0.02em): títulos de capacidad, de puesto y de proyecto. Todos los `h1`–`h4` heredan la display a 600.
