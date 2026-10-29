@@ -206,7 +206,7 @@ Una columna de secciones apiladas en un contenedor `max-w-6xl` (72rem) con un gu
 - **Rótulo de sección:** número mono + nombre + línea de cota que se desvanece (`.eyebrow`), siempre alineado a la izquierda y a 3rem del contenido.
 - **Encabezados asimétricos:** en desktop, el título ocupa 7 columnas y la entradilla 5, alineada abajo (`lg:col-span-7` / `lg:col-span-5`).
 - **Bento de grilla con filete:** las celdas se separan con `gap-px` sobre un fondo `bg-line`, de modo que el filete de 1px es la propia grilla. Va en 2 columnas en mobile y 4 en `lg`.
-- **Hero:** el claim y los datos de disponibilidad (`<dl>` de ubicación, modalidad, zona horaria y respuesta) van a la izquierda; el retrato, a la derecha. Debajo sigue directamente la banda de métricas.
+- **Hero:** el claim y los datos de disponibilidad (`<dl>` de ubicación, modalidad, zona horaria y respuesta) van a la izquierda; a la derecha, una ficha con foto carnet (128 px en móvil, 176 px en escritorio), nombre, rol y un sello "Disponible" con borde bermellón. Debajo sigue directamente la banda de métricas.
 - **Breakpoints:** los de Tailwind (`sm` 640, `md` 768, `lg` 1024). La navegación de escritorio aparece en `lg`.
 
 ## Elevation & Depth
