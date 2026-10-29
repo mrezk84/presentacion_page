@@ -209,8 +209,14 @@ const links = [
     onScroll();
 
     // Theme. 'system' follows the OS until the user overrides it explicitly.
+    // Storage can throw (blocked site data, some private modes); the theme
+    // then just falls back to the OS and the rest of this script keeps running.
     function currentTheme() {
-        return localStorage.getItem("theme") || "system";
+        try {
+            return localStorage.getItem("theme") || "system";
+        } catch {
+            return "system";
+        }
     }
 
     function applyTheme(theme: string) {
@@ -225,7 +231,11 @@ const links = [
         // Toggling back to the OS preference is a no-op the user can't see, so
         // always store the explicit opposite of what's on screen.
         const next = isDark ? "light" : "dark";
-        localStorage.setItem("theme", next === (prefersDark ? "dark" : "light") ? "system" : next);
+        try {
+            localStorage.setItem("theme", next === (prefersDark ? "dark" : "light") ? "system" : next);
+        } catch {
+            /* not persisted; the toggle still applies for this visit */
+        }
         applyTheme(next);
     }
 
