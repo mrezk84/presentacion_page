@@ -137,6 +137,25 @@ h4 {
 	font-family: var(--font-display);
 	font-weight: 600;
 	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+/* No single word stranded on the last line of a paragraph. */
+p,
+li,
+dd {
+	text-wrap: pretty;
+}
+
+/* A 17–20px text link keeps its look but gets a 44px-tall hit area. */
+.tap-y {
+	position: relative;
+}
+
+.tap-y::before {
+	content: "";
+	position: absolute;
+	inset: -0.875rem 0;
 }
 
 ::selection {
