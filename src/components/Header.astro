@@ -1,6 +1,9 @@
 ---
 import Icon from "./Icon.astro";
 
+const isVercel = import.meta.env.VERCEL === "1";
+const basePath = isVercel || import.meta.env.DEV ? "" : "/presentacion_page";
+
 const links = [
     // `num` mirrors each section's eyebrow, so the mobile menu and the page agree.
     { name: "Proyectos", href: "#proyectos", num: "02" },
@@ -23,7 +26,7 @@ const links = [
                 <span class="w-9 h-9 flex items-center justify-center border border-line-strong text-pine font-mono text-xs font-semibold tracking-widest transition-colors group-hover:bg-pine group-hover:text-on-pine group-hover:border-pine">
                     MR
                 </span>
-                <span class="hidden sm:flex flex-col leading-none">
+                <span class="hidden sm:flex lg:hidden xl:flex flex-col leading-none">
                     <span class="font-display text-[0.9375rem] font-bold text-ink">Marcos Rezk</span>
                     <span class="label">Full Stack Developer</span>
                 </span>
@@ -34,7 +37,7 @@ const links = [
                 {links.map((link) => (
                     <a
                         href={link.href}
-                        class="px-3 py-2 text-sm font-medium text-ink-soft hover:text-pine transition-colors"
+                        class="px-3 py-2 text-sm font-medium whitespace-nowrap text-ink-soft hover:text-pine transition-colors"
                     >
                         {link.name}
                     </a>
@@ -51,7 +54,11 @@ const links = [
                     <Icon name="moon" class="theme-icon-moon w-[18px] h-[18px]" strokeWidth={1.8} />
                 </button>
 
-                <a href="#contacto" class="btn btn-signal ml-2 !py-2.5 !px-5 !text-sm">
+                <a href={`${basePath}/Marcos_Rezk_CV.pdf`} download class="btn btn-outline ml-2 !py-2.5 !px-3 xl:!px-4 !text-sm" aria-label="Descargar CV en PDF">
+                    <Icon name="download" class="w-4 h-4" strokeWidth={2} />
+                    <span class="hidden xl:inline">CV</span>
+                </a>
+                <a href="#contacto" class="btn btn-signal ml-2 !py-2.5 !px-5 !text-sm whitespace-nowrap">
                     Hablemos del puesto
                 </a>
             </div>
@@ -103,8 +110,12 @@ const links = [
                 ))}
             </nav>
 
-            <a href="#contacto" class="mobile-link btn btn-signal w-full mb-4">
+            <a href="#contacto" class="mobile-link btn btn-signal w-full mb-3">
                 Hablemos del puesto
+            </a>
+            <a href={`${basePath}/Marcos_Rezk_CV.pdf`} download class="mobile-link btn btn-outline w-full mb-4">
+                <Icon name="download" class="w-[18px] h-[18px]" strokeWidth={2} />
+                Descargar CV (PDF)
             </a>
 
             <div class="flex items-center gap-2">

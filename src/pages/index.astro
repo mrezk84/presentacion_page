@@ -38,13 +38,13 @@ const role = "Full Stack Developer";
 const availability = [
   { label: "Ubicación", value: "Uruguay · UTC−3, solapa con LATAM y EE.UU." },
   { label: "Modalidad", value: "Remoto · Híbrido · Presencial" },
-  { label: "Inglés", value: "Intermedio-avanzado · reuniones y docs" },
+  { label: "Inglés", value: "Lectura técnica fluida · conversación básica-intermedia" },
   { label: "Respuesta", value: "Menos de 24 h hábiles" }
 ];
 
 const stats = [
   { value: "8→5", unit: "s", label: "Tiempo de respuesta tras indexar SQL Server", note: "Centro de Emergencias 911", icon: "sprint" },
-  { value: "15", unit: "+", label: "Años sosteniendo software en producción", note: "Soporte, gestión y desarrollo", icon: "pulse" },
+  { value: "17", unit: "", label: "Años de trayectoria en tecnología", note: "Soporte, gestión y desarrollo", icon: "pulse" },
   { value: "13", unit: "", label: "Personas coordinadas en mesa de ayuda", note: "Proyecto ANCAP", icon: "team" },
   { value: "4", unit: "+", label: "Años desarrollando full stack", note: "React · C# .NET · SQL Server — sumando Java y Go", icon: "code" }
 ];
@@ -87,10 +87,11 @@ const experience = [
     period: "Mayo 2022 — Julio 2026",
     current: false,
     bullets: [
-      "Módulos frontend en React y TypeScript integrados con servicios backend en C# .NET.",
-      "Sistemas para el Ministerio del Interior (SIVVE), emergencias 911, SEMM y denuncias en línea.",
+      "Módulos frontend en React y TypeScript integrados con servicios backend en C# .NET, para el Ministerio del Interior, Fiscalía, emergencias 911, SEMM y denuncias en línea.",
+      "SIEV, extracción de videos para Fiscalía y Policía: en producción en 3 meses, con .NET y React, para 100 usuarios.",
       "Indexación de SQL Server en el 911: el tiempo de respuesta pasó de 8 a 5 segundos.",
-      "IA generativa aplicada al flujo de trabajo: diseño técnico, refactor y documentación."
+      "Integraciones WCF, SOAP y REST con sistemas externos en el 911 y SEMM: un 70% menos de incidentes críticos.",
+      "GitHub Copilot, ChatGPT y Claude Code en refactor, análisis de errores y documentación: al menos un 30% más rápido en entregas e incidencias."
     ]
   },
   {
@@ -100,17 +101,16 @@ const experience = [
     current: false,
     bullets: [
       "Lideré un equipo de 13 técnicos y reduje un 25% los tiempos de resolución.",
-      "Protocolos de escalamiento y capacitación que bajaron la recurrencia de tickets críticos."
+      "Protocolos de escalamiento y capacitación que bajaron al menos un 30% la recurrencia de tickets críticos."
     ]
   },
   {
-    title: "Manager",
+    title: "Coordinación y Gestión de Proyectos",
     org: "SONDA Uruguay",
     period: "2009 — 2018",
     current: false,
     bullets: [
-      "Coordinación de proyectos técnicos a nivel nacional.",
-      "Supervisión de la implementación de soluciones empresariales."
+      "Proyectos de infraestructura tecnológica a nivel nacional para 3 clientes de los sectores público y privado."
     ]
   }
 ];
@@ -135,7 +135,7 @@ const stack = [
   <Header />
   <ScrollToTop />
 
-  <main id="main-content" role="main">
+  <main id="main-content">
 
     <!-- ══════════════════════════════════════════════════════
          HERO
@@ -162,7 +162,7 @@ const stack = [
 
             <h1 class="display-xl text-[clamp(2rem,4.2vw,3.75rem)] mb-7">
               <span class="rise block" style="animation-delay: 120ms;">Full Stack .NET + React</span>{" "}
-              <span class="rise block text-pine" style="animation-delay: 200ms;">15 años en sistemas&nbsp;24/7.</span>
+              <span class="rise block text-pine" style="animation-delay: 200ms;">17 años en tecnología.</span>
             </h1>
 
             <p class="rise measure text-lg sm:text-xl text-ink-soft leading-relaxed mb-8" style="animation-delay: 280ms;">
@@ -290,7 +290,7 @@ const stack = [
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <div class="lg:col-span-4">
             <h2 class="display-xl text-[clamp(2rem,4.5vw,3rem)] mb-5 reveal">
-              Quince años cerca de los mismos problemas.
+              Diecisiete años cerca de los mismos problemas.
             </h2>
             <p class="text-ink-soft leading-relaxed reveal" data-reveal-delay="100">
               Empecé del lado del soporte, apagando incendios ajenos. Hoy
@@ -448,6 +448,21 @@ const stack = [
 
             <div class="space-y-px bg-line border border-line mb-8">
               <a
+                href={`${basePath}/Marcos_Rezk_CV.pdf`}
+                download
+                class="group flex items-center gap-4 p-4 bg-surface hover:bg-sunk transition-colors"
+              >
+                <span class="shrink-0 w-10 h-10 flex items-center justify-center border border-line text-pine">
+                  <Icon name="download" class="w-5 h-5" />
+                </span>
+                <span class="flex-1 min-w-0">
+                  <span class="block text-sm font-semibold text-ink">CV en PDF</span>
+                  <span class="block label label-file">Marcos_Rezk_CV.pdf · 1 página</span>
+                </span>
+                <Icon name="arrow-right" class="w-4 h-4 text-ink-faint transition-transform group-hover:translate-x-1" strokeWidth={2} />
+              </a>
+
+              <a
                 href="https://wa.me/59899845879?text=Hola%20Marcos%2C%20te%20escribo%20por%20una%20oportunidad%20laboral."
                 target="_blank"
                 rel="noopener noreferrer"
@@ -550,6 +565,8 @@ const stack = [
     <!-- ══════════════════════════════════════════════════════
          FOOTER
          ══════════════════════════════════════════════════════ -->
+  </main>
+
     <footer class="border-t border-line bg-surface">
       <div class="max-w-6xl mx-auto px-6 py-14">
         <div class="grid sm:grid-cols-2 gap-8 items-end">
@@ -557,7 +574,10 @@ const stack = [
             <p class="font-display text-3xl font-bold text-ink leading-tight mb-2">
               Disponible para incorporarme ya.
             </p>
-            <a href="#contacto" class="link-draw text-sm font-semibold">Hablemos del puesto →</a>
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <a href="#contacto" class="link-draw text-sm font-semibold">Hablemos del puesto →</a>
+              <a href={`${basePath}/Marcos_Rezk_CV.pdf`} download class="link-draw text-sm font-semibold">Descargar CV (PDF)</a>
+            </div>
           </div>
 
           <div class="sm:text-right">
@@ -595,7 +615,6 @@ const stack = [
         </div>
       </div>
     </footer>
-  </main>
 
   <!-- Success / error dialog -->
   <div
