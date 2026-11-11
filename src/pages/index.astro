@@ -542,7 +542,8 @@ const stack = [
               <div>
                 <label for="message" class="label block mb-2">Mensaje</label>
                 <textarea id="message" name="message" rows="6" required aria-describedby="message-tip" class="field resize-y" placeholder="Rol, equipo, stack, modalidad… lo que tengas."></textarea>
-                <p id="message-tip" class="field-tip">Escribí un mensaje (mínimo 10 caracteres).</p>
+                <p id="message-tip" class="field-tip">Escribí un mensaje de entre 10 y 5.000 caracteres.</p>
+                <p id="message-count" class="mt-1.5 text-xs text-ink-faint" hidden></p>
               </div>
 
               <!-- Honeypot: bots fill it, humans never see it. -->
@@ -578,7 +579,7 @@ const stack = [
             <p class="font-display text-3xl font-bold text-ink leading-tight mb-2">
               Si el perfil encaja, escribime.
             </p>
-            <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-7">
               <a href="#contacto" class="link-draw tap-y text-sm font-semibold">Hablemos del puesto →</a>
               <a href={`${basePath}/Marcos_Rezk_CV.pdf`} download class="link-draw tap-y text-sm font-semibold">Descargar CV (PDF)</a>
             </div>
@@ -686,18 +687,18 @@ const stack = [
   const formStatus = document.getElementById('form-status');
   const contactEmail = 'mrezk84@gmail.com';
 
+  const MESSAGE_MAX = 5000;
+
   /**
-   * Strips markup-ish characters before the value is sent onward. This is a
-   * courtesy filter for the inbox, not a security boundary — the real escaping
-   * happens wherever the message is finally rendered.
+   * Trims and drops control characters, nothing else. It used to strip `<>`,
+   * `javascript:` and `on…=` and cut at 5000, which rewrote what people typed
+   * ("C# <-> SQL", "condition=true" became "ctrue") without telling them. The
+   * site never renders this text as HTML, and the service that receives it
+   * escapes it, so the message goes out as written. Length is validated, not
+   * truncated.
    */
   function sanitize(value: string): string {
-    return value
-      .trim()
-      .replace(/[<>]/g, '')
-      .replace(/javascript:/gi, '')
-      .replace(/on\w+=/gi, '')
-      .slice(0, 5000);
+    return value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim();
   }
 
   const validators = {
@@ -717,7 +718,7 @@ const stack = [
     },
     message: (v: string) => {
       const s = sanitize(v);
-      return s.length >= 10 && s.length <= 5000;
+      return s.length >= 10 && s.length <= MESSAGE_MAX;
     }
   };
 
@@ -763,6 +764,16 @@ const stack = [
     input?.addEventListener('input', () => {
       setFieldState(input, validate(input.value), input.value.length > 0);
     });
+  });
+
+  // Counter only near the limit, so it never nags during a normal message.
+  const messageCount = document.getElementById('message-count');
+  messageInput?.addEventListener('input', () => {
+    if (!messageCount || !messageInput) return;
+    const length = sanitize(messageInput.value).length;
+    const near = length >= MESSAGE_MAX - 500;
+    messageCount.hidden = !near;
+    messageCount.textContent = `${length.toLocaleString('es-UY')} de ${MESSAGE_MAX.toLocaleString('es-UY')} caracteres`;
   });
 
   let lastFocused: HTMLElement | null = null;
@@ -891,7 +902,7 @@ const stack = [
 
     const originalBtnHTML = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
+    submitBtn.style.cursor = 'progress';
     submitBtn.innerHTML =
       '<svg class="spin" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
       '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"/>' +
@@ -915,6 +926,7 @@ const stack = [
         openModal(true);
         form.reset();
         [nameInput, emailInput, messageInput].forEach((input) => setFieldState(input, false, false));
+        if (messageCount) messageCount.hidden = true;
         // The attempt stays on the record deliberately: clearing it on success
         // would let an automated sender loop forever, since every one of its
         // posts succeeds. The window rolls off on its own after the cooldown.
@@ -950,7 +962,7 @@ const stack = [
     } finally {
       window.clearTimeout(timeout);
       submitBtn.disabled = false;
-      submitBtn.style.opacity = '';
+      submitBtn.style.cursor = '';
       submitBtn.innerHTML = originalBtnHTML;
     }
   });
