@@ -65,21 +65,21 @@ const capabilities = [
     title: "Datos y rendimiento",
     lead: "Donde suele estar el cuello de botella.",
     body: "Diseño de esquemas, índices y procedimientos almacenados en T-SQL, con acceso a datos vía Dapper.",
-    stack: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL"]
+    stack: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"]
   },
   {
     icon: "code",
     title: "Frontend de producto",
     lead: "Interfaces que la gente usa ocho horas por día.",
     body: "Aplicaciones React con TypeScript y Next.js, y clientes de escritorio pensados para uso intensivo: flujos densos en información, accesibles y rápidos bajo carga.",
-    stack: ["React", "TypeScript", "Next.js", "Material UI", "XAML"]
+    stack: ["React", "TypeScript", "JavaScript", "Next.js", "Material UI", "HTML / CSS", "XAML"]
   },
   {
     icon: "team",
     title: "Entrega y equipo",
     lead: "Vengo del otro lado de la mesa de soporte.",
     body: "Scrum, CI/CD con GitHub Actions, revisión de código y prácticas de seguridad OWASP. Nueve años gestionando proyectos técnicos antes de desarrollarlos.",
-    stack: ["Scrum", "GitHub Actions", "OWASP", "Git", "Docker"]
+    stack: ["Scrum", "GitHub Actions", "OWASP", "Git", "Docker", "Azure"]
   }
 ];
 
@@ -118,15 +118,12 @@ const experience = [
   }
 ];
 
-const stack = [
-  { group: "Frontend", icon: "code", items: ["React", "TypeScript", "Next.js", "Material UI", "JavaScript", "HTML / CSS", "XAML"] },
-  { group: "Backend", icon: "server", items: ["C# .NET 6/8", "ASP.NET Core", "WCF", "Node.js"] },
-  { group: "Datos", icon: "database", items: ["SQL Server", "T-SQL", "Dapper", "PostgreSQL", "MongoDB"] },
+// Two cells that close the capabilities grid. The rest of the toolbox lives in
+// the tags of the four capabilities above, so the page says each thing once.
+const alsoUse = [
   { group: "Integraciones", icon: "link", items: ["REST", "SOAP", "WebSocket", "ArcGIS", "LDAP", "Asterisk"] },
-  { group: "Entorno", icon: "terminal", items: ["Visual Studio", "VS Code", "IntelliJ IDEA", "GoLand", "SSMS"] },
-  { group: "Entrega", icon: "cycle", items: ["Git", "GitHub Actions", "Docker", "Azure", "Scrum", "OWASP"] },
   // Learning, not daily stack: kept apart so the section title stays true.
-  { group: "Sumando ahora · JVM y Go", icon: "rocket", items: ["Java", "Spring Boot", "Go"], wide: true }
+  { group: "Sumando ahora", icon: "rocket", items: ["Java", "Spring Boot", "Go"], note: "En aprendizaje." }
 ];
 ---
 
@@ -338,12 +335,12 @@ const stack = [
     </section>
 
     <!-- ══════════════════════════════════════════════════════
-         04 — CAPABILITIES
+         04 — CAPABILITIES AND STACK
          ══════════════════════════════════════════════════════ -->
-    <section id="que-resuelvo" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+    <section id="capacidades" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
       <div class="max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
-          <span class="label label-pine">04 / Qué resuelvo</span>
+          <span class="label label-pine">04 / Capacidades y stack</span>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
@@ -382,33 +379,17 @@ const stack = [
               </ul>
             </article>
           ))}
-        </div>
-      </div>
-    </section>
 
-    <!-- ══════════════════════════════════════════════════════
-         05 — STACK
-         ══════════════════════════════════════════════════════ -->
-    <section id="tecnologias" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="eyebrow mb-10 reveal">
-          <span class="label label-pine">05 / Stack</span>
-        </div>
-
-        <h2 class="display-xl text-[clamp(2rem,4.5vw,3.25rem)] mb-14 max-w-2xl reveal">
-          Con esto trabajo todos los días.
-        </h2>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line">
-          {stack.map((cat, index) => (
-            <div class:list={["bg-paper p-7 reveal", cat.wide && "sm:col-span-2 lg:col-span-3"]} data-reveal-delay={index * 60}>
+          {alsoUse.map((cell, index) => (
+            <div class="bg-paper p-7 sm:p-9 reveal" data-reveal-delay={(capabilities.length + index) * 80}>
               <div class="flex items-center gap-3 mb-5 pb-4 border-b border-line">
-                <Icon name={cat.icon} class="w-[18px] h-[18px] text-pine" />
-                <h3 class="label label-pine">{cat.group}</h3>
+                <Icon name={cell.icon} class="w-[18px] h-[18px] text-pine" />
+                <h3 class="label label-pine">{cell.group}</h3>
+                {cell.note && <span class="label ml-auto">{cell.note}</span>}
               </div>
-              <ul class="flex flex-wrap gap-x-4 gap-y-2.5">
-                {cat.items.map((item) => (
-                  <li class="text-sm font-medium text-ink-soft">{item}</li>
+              <ul class="flex flex-wrap gap-1.5">
+                {cell.items.map((item) => (
+                  <li class="label px-2.5 py-1 bg-sunk border border-line">{item}</li>
                 ))}
               </ul>
             </div>
@@ -417,17 +398,17 @@ const stack = [
       </div>
     </section>
 
-    <!-- 06 — Credentials -->
+    <!-- 05 — Credentials -->
     <CredentialsSection />
 
     <!-- ══════════════════════════════════════════════════════
-         07 — CONTACT
+         06 — CONTACT
          ══════════════════════════════════════════════════════ -->
     <section id="contacto" class="relative py-20 sm:py-28 border-t border-line grain scroll-mt-20 overflow-hidden">
 
       <div class="relative z-10 max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
-          <span class="label label-pine">07 / Contacto</span>
+          <span class="label label-pine">06 / Contacto</span>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-14">

@@ -270,7 +270,7 @@ Un eje vertical de 1px que se desvanece de pino a línea. Cada puesto tiene un n
 ## Do's and Don'ts
 
 ### Do:
-- **Do** abrir cada sección con el `.eyebrow`: label pino numerado ("05 / Stack") y la línea de cota.
+- **Do** abrir cada sección con el `.eyebrow`: label pino numerado ("05 / Credenciales") y la línea de cota.
 - **Do** usar solo utilidades semánticas (`bg-paper`, `bg-surface`, `bg-sunk`, `text-ink`, `text-ink-soft`, `border-line`, `text-pine`, `bg-signal`).
 - **Do** mantener las esquinas rectas en todo componente nuevo.
 - **Do** hacer que lo interactivo responda con elevación de 2–3px, borde pino y `--ease-out-expo`.
