@@ -678,6 +678,42 @@ summary:focus-visible {
 	box-shadow: 0 0 0 3px var(--c-signal-wash);
 }
 
+/* Segmented choice (two radios). The native input stays in the tab order
+   under .sr-only; the label is the visible control. */
+.choice {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.75rem;
+	padding: 0.5rem 0.5rem;
+	text-align: center;
+	background: var(--c-paper);
+	color: var(--c-ink-soft);
+	font-size: 0.875rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.choice:hover {
+	color: var(--c-ink);
+}
+
+.choice:has(:checked) {
+	background: var(--c-pine-wash);
+	color: var(--c-pine);
+	font-weight: 600;
+	box-shadow: inset 0 0 0 1px var(--c-pine);
+}
+
+.choice:has(:focus-visible) {
+	outline: 2px solid var(--c-signal);
+	outline-offset: 3px;
+}
+
 .field-tip {
 	display: none;
 	margin-top: 0.4375rem;
