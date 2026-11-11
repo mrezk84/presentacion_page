@@ -156,7 +156,7 @@ Papel cálido y tinta fría, con un verde pino que ordena y un bermellón que ll
 - **Lavado de Pino** (pine-wash): fondo de tags y halo de foco de los campos.
 
 ### Secondary
-- **Bermellón Señal** (signal): reservado a la acción y al estado vivo. Botón principal, punto "disponible" pulsante, nodo actual de la línea de tiempo, anillo de foco y estado de error en campos.
+- **Bermellón Señal** (signal): reservado a la acción y al estado vivo. Botón principal, el punto "disponible" pulsante (uno solo en la primera pantalla: el sello de la ficha; el rótulo del hero va en pino y estático), nodo actual de la línea de tiempo, anillo de foco y estado de error en campos.
 - **Bermellón Vivo** (signal-bright): hover del botón señal. Un paso más claro que la señal, sin bajar de 4,5:1 bajo el texto del botón.
 - **Lavado de Señal** (signal-wash): halo del nodo actual y del campo inválido.
 
