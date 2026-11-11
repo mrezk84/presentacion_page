@@ -35,11 +35,14 @@ const name = "Marcos Rezk";
 const role = "Full Stack Developer";
 
 // Availability facts a hiring manager screens for in the first 10 seconds.
+// "Nivel" separates the 17 years in tech from the 4+ as a developer, so the
+// headline's second line can't be read as 17 years of full stack.
 const availability = [
+  { label: "Nivel", value: "Semi Senior · 4+ años desarrollando" },
   { label: "Ubicación", value: "Uruguay · UTC−3, solapa con LATAM y EE.UU." },
   { label: "Modalidad", value: "Remoto · Híbrido · Presencial" },
-  { label: "Inglés", value: "Lectura técnica fluida · conversación básica‑intermedia" },
-  { label: "Respuesta", value: "Menos de 24 h hábiles" }
+  { label: "Respuesta", value: "Menos de 24 h hábiles" },
+  { label: "Inglés", value: "Lectura técnica fluida · conversación básica‑intermedia", wide: true }
 ];
 
 const stats = [
@@ -187,7 +190,7 @@ const stack = [
             <!-- Availability facts: the screening questions, answered up front. -->
             <dl class="rise grid grid-cols-2 gap-x-8 gap-y-5 border-t border-line pt-7" style="animation-delay: 440ms;">
               {availability.map((item) => (
-                <div>
+                <div class={item.wide ? "col-span-2" : ""}>
                   <dt class="label mb-1.5">{item.label}</dt>
                   <dd class="text-sm font-medium text-ink">{item.value}</dd>
                 </div>
@@ -225,7 +228,7 @@ const stack = [
 
                   <div class="min-w-0 pt-1">
                     <p class="font-display text-2xl font-bold text-ink leading-tight text-balance">{name}</p>
-                    <p class="text-sm text-ink-soft mb-4">{role}</p>
+                    <p class="text-sm text-ink-soft mb-4">{role}<span class="block">Semi Senior</span></p>
                     <!-- Sello de estado: el bermellón queda para lo vivo. -->
                     <span class="inline-flex items-center gap-2 border border-signal px-2.5 py-1.5">
                       <span class="pulse-dot"></span>
@@ -267,7 +270,7 @@ const stack = [
             <div class="bento bg-paper p-6 sm:p-7 reveal" data-reveal-delay={index * 70}>
               <Icon name={stat.icon} class="bento__ghost" strokeWidth={1.1} />
               <p class="relative font-display text-5xl sm:text-6xl font-bold text-pine leading-none mb-4 tracking-tight">
-                {stat.value}<span class="text-3xl sm:text-4xl align-top">{stat.unit}</span>
+                {stat.value}<span class:list={["text-3xl sm:text-4xl", stat.unit === "+" ? "align-top" : "ml-1"]}>{stat.unit}</span>
               </p>
               <p class="relative text-sm font-medium text-ink leading-snug mb-1.5">{stat.label}</p>
               <p class="relative label">{stat.note}</p>
