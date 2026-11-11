@@ -255,6 +255,8 @@ Es la celda de métrica o capacidad dentro de la grilla con filete: papel que pa
 - **Style:** fondo papel hundido, borde 1px `line`, esquinas rectas, padding 0.8125rem × 1rem, Plex Sans a 0.9375rem. El placeholder va en tinta tenue.
 - **Focus:** el fondo pasa a superficie, el borde a pino y aparece un halo de 3px de lavado de pino.
 - **Valid / Invalid:** el válido lleva borde pino. El inválido lleva borde bermellón con halo de lavado de señal y un mensaje bermellón de 0.75rem debajo.
+- **Selector de consulta (`.choice`):** dos radios en una grilla con filete, de 44 px de alto mínimo, sobre papel. El elegido pasa a lavado de pino con texto pino y un filete interior de 1px en pino; el foco usa el outline de foco. El input nativo queda en el orden de tabulación (`.sr-only`). Define el tipo de consulta (puesto o proyecto web): cambia placeholders, texto de WhatsApp, asunto del correo y mensaje de éxito.
+- **Contador:** aparece recién a 500 caracteres del límite, en `ink-faint` a 0.75rem; nunca acompaña a un mensaje normal.
 
 ### Navigation
 - Header fijo y transparente arriba. Con scroll se vuelve papel traslúcido con blur y filete inferior.

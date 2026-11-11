@@ -435,9 +435,9 @@ const stack = [
             Si llegaste hasta acá, hablemos.
           </h2>
           <p class="lg:col-span-5 text-lg text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
-            Contame del puesto: rol, equipo y modalidad. Te respondo en menos de 24 horas
-            hábiles, y si no soy la persona indicada para el puesto, te lo digo
-            de entrada.
+            Contame del puesto (rol, equipo y modalidad) o de tu proyecto (qué
+            vendés y qué necesitás). Te respondo en menos de 24 horas hábiles, y
+            si no soy la persona indicada, te lo digo de entrada.
           </p>
         </div>
 
@@ -464,6 +464,7 @@ const stack = [
               </a>
 
               <a
+                id="contact-whatsapp"
                 href="https://wa.me/59899845879?text=Hola%20Marcos%2C%20te%20escribo%20por%20una%20oportunidad%20laboral."
                 target="_blank"
                 rel="noopener noreferrer"
@@ -527,6 +528,24 @@ const stack = [
             <p class="label mb-6">Escribime</p>
 
             <form action={formAction} method="POST" class="space-y-5" novalidate data-live={String(formIsLive)}>
+              <!-- Sin JS el asunto queda en "Portfolio · Puesto"; con JS cambia
+                   con el tipo de consulta y suma el nombre. -->
+              <input type="hidden" name="_subject" value="Portfolio · Puesto" />
+
+              <fieldset class="min-w-0 border-0">
+                <legend class="label mb-2">Te escribo por</legend>
+                <div class="grid grid-cols-2 gap-px bg-line border border-line">
+                  <label class="choice">
+                    <input type="radio" name="tipo" value="puesto" class="sr-only" checked />
+                    <span>Un puesto</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="tipo" value="proyecto" class="sr-only" />
+                    <span>Un proyecto web</span>
+                  </label>
+                </div>
+              </fieldset>
+
               <div>
                 <label for="name" class="label block mb-2">Nombre completo</label>
                 <input type="text" id="name" name="name" required class="field" placeholder="Tu nombre" autocomplete="name" aria-describedby="name-tip" />
@@ -558,7 +577,8 @@ const stack = [
               </button>
 
               <p class="text-xs text-ink-faint leading-relaxed">
-                Tus datos se usan únicamente para responderte. Sin listas, sin reenvíos.
+                Tus datos se usan únicamente para responderte. Sin listas, sin reenvíos.{" "}
+                <a href="#privacidad" class="link-draw font-medium">Cómo se tratan</a>.
               </p>
               <p id="form-status" class="sr-only" role="status" aria-live="polite"></p>
             </form>
@@ -618,6 +638,16 @@ const stack = [
             </p>
           </div>
         </div>
+
+        <details id="privacidad" class="mt-10 pt-6 border-t border-line">
+          <summary class="label cursor-pointer w-fit tap-y">Privacidad de las consultas</summary>
+          <ul class="mt-4 space-y-2 text-sm text-ink-soft leading-relaxed measure">
+            <li><strong class="text-ink font-semibold">Qué recibo:</strong> tu nombre, tu correo, tu mensaje y si escribís por un puesto o por un proyecto.</li>
+            <li><strong class="text-ink font-semibold">Para qué:</strong> para responderte y, si es un proyecto, armar una propuesta. Sin listas ni reenvíos.</li>
+            <li><strong class="text-ink font-semibold">Quién lo procesa:</strong> el formulario lo recibe Formspree, un servicio de formularios, y me llega por correo.</li>
+            <li><strong class="text-ink font-semibold">Borrarlo:</strong> si querés que elimine tu consulta, escribime a <span class="label-file label">mrezk84@gmail.com</span>.</li>
+          </ul>
+        </details>
       </div>
     </footer>
 
@@ -776,6 +806,76 @@ const stack = [
     messageCount.textContent = `${length.toLocaleString('es-UY')} de ${MESSAGE_MAX.toLocaleString('es-UY')} caracteres`;
   });
 
+  // Two kinds of inquiry share one form. The radio decides what the visitor
+  // sees (placeholders, WhatsApp text, success message) and how the email
+  // arrives labelled; the value is always one of the two keys below.
+  type Inquiry = 'puesto' | 'proyecto';
+  const inquiryCopy: Record<Inquiry, {
+    message: string;
+    email: string;
+    subject: string;
+    whatsapp: string;
+    intro: string;
+    success: string;
+  }> = {
+    puesto: {
+      message: 'Rol, equipo, stack, modalidad… lo que tengas.',
+      email: 'tu@empresa.com',
+      subject: 'Portfolio · Puesto',
+      whatsapp: 'Hola Marcos, te escribo por una oportunidad laboral.',
+      intro: 'Te escribo por un puesto.',
+      success: 'Gracias por escribir. Recibí tu mensaje y te respondo en menos de 24 horas hábiles.'
+    },
+    proyecto: {
+      message: 'Qué vendés, qué necesitás (una landing, una tienda, un sistema…), si ya tenés sitio y para cuándo.',
+      email: 'tu@correo.com',
+      subject: 'Portfolio · Proyecto web',
+      whatsapp: 'Hola Marcos, te escribo por un proyecto web.',
+      intro: 'Te escribo por un proyecto web.',
+      success: 'Gracias por escribir. Te respondo en menos de 24 horas hábiles, con un par de preguntas para armar la propuesta.'
+    }
+  };
+
+  const typeRadios = form?.querySelectorAll<HTMLInputElement>('input[name="tipo"]');
+  const subjectInput = form?.querySelector<HTMLInputElement>('input[name="_subject"]');
+  const contactWhatsapp = document.getElementById('contact-whatsapp') as HTMLAnchorElement | null;
+
+  function currentType(): Inquiry {
+    const checked = form?.querySelector<HTMLInputElement>('input[name="tipo"]:checked')?.value;
+    return checked === 'proyecto' ? 'proyecto' : 'puesto';
+  }
+
+  function applyType(type: Inquiry) {
+    const copy = inquiryCopy[type];
+    if (messageInput) messageInput.placeholder = copy.message;
+    if (emailInput) emailInput.placeholder = copy.email;
+    if (subjectInput) subjectInput.value = copy.subject;
+    if (contactWhatsapp) contactWhatsapp.href = `https://wa.me/59899845879?text=${encodeURIComponent(copy.whatsapp)}`;
+  }
+
+  function setType(type: Inquiry) {
+    typeRadios?.forEach((radio) => (radio.checked = radio.value === type));
+    applyType(type);
+  }
+
+  typeRadios?.forEach((radio) => radio.addEventListener('change', () => applyType(currentType())));
+
+  // Any "Contame tu proyecto" style link can preselect the type...
+  document.addEventListener('click', (event) => {
+    const trigger = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-inquiry]');
+    if (trigger) setType(trigger.dataset.inquiry === 'proyecto' ? 'proyecto' : 'puesto');
+  });
+  // ...and so can a shared link: /?consulta=proyecto
+  if (new URLSearchParams(window.location.search).get('consulta') === 'proyecto') setType('proyecto');
+
+  // The privacy note lives in a <details>; open it when someone links to it.
+  const privacy = document.getElementById('privacidad') as HTMLDetailsElement | null;
+  const openPrivacy = () => {
+    if (privacy && window.location.hash === '#privacidad') privacy.open = true;
+  };
+  window.addEventListener('hashchange', openPrivacy);
+  openPrivacy();
+
   let lastFocused: HTMLElement | null = null;
 
   function openModal(isSuccess: boolean, message?: string) {
@@ -803,7 +903,7 @@ const stack = [
       modalDescription.textContent =
         message ??
         (isSuccess
-          ? 'Gracias por escribir. Recibí tu mensaje y te respondo en menos de 24 horas hábiles.'
+          ? inquiryCopy[currentType()].success
           : 'No es tu culpa: el envío falló de mi lado. Tu mensaje sigue en el formulario, y podés mandármelo directo desde acá.');
     }
 
@@ -814,7 +914,7 @@ const stack = [
       // Carry over what they wrote, so the fallback costs them nothing.
       const who = nameInput?.value.trim();
       const body = messageInput?.value.trim();
-      const text = [who ? `Hola Marcos, soy ${who}.` : 'Hola Marcos.', body].filter(Boolean).join(' ').slice(0, 1500);
+      const text = [who ? `Hola Marcos, soy ${who}.` : 'Hola Marcos.', inquiryCopy[currentType()].intro, body].filter(Boolean).join(' ').slice(0, 1500);
       modalWhatsapp.href = `https://wa.me/59899845879?text=${encodeURIComponent(text)}`;
     }
 
@@ -899,6 +999,8 @@ const stack = [
     nameInput.value = sanitize(nameInput.value);
     emailInput.value = sanitize(emailInput.value);
     messageInput.value = sanitize(messageInput.value);
+    // The subject carries the type and who wrote, so the inbox sorts itself.
+    if (subjectInput) subjectInput.value = `${inquiryCopy[currentType()].subject} · ${nameInput.value}`;
 
     const originalBtnHTML = submitBtn.innerHTML;
     submitBtn.disabled = true;
@@ -925,6 +1027,8 @@ const stack = [
       if (response.ok) {
         openModal(true);
         form.reset();
+        // reset() puts the radio back on "puesto"; bring the rest in line.
+        applyType(currentType());
         [nameInput, emailInput, messageInput].forEach((input) => setFieldState(input, false, false));
         if (messageCount) messageCount.hidden = true;
         // The attempt stays on the record deliberately: clearing it on success
