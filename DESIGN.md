@@ -231,7 +231,7 @@ Esquinas rectas sin excepción en botones, tarjetas, campos, tags, celdas, modal
 ### Buttons
 Táctiles y directos: bloques rectos que suben al cursor.
 - **Shape:** esquinas rectas (0px), padding 0.9375rem × 1.75rem, Plex Sans 600 a 0.9375rem, ícono con 0.625rem de gap.
-- **Señal (primario):** bermellón con texto claro y sombra `md`. En hover pasa a bermellón vivo, sube 2px y toma la sombra `lg`. Es la única acción principal por vista: contacto o envío.
+- **Señal (primario):** bermellón con texto claro y sombra `md`. En hover pasa a bermellón vivo, sube 2px y toma la sombra `lg`. Es la única acción principal por vista: contacto o envío, siempre hacia el puesto. La oferta de servicios no lo usa: su acción va en Outline, para que el bermellón siga siendo una sola voz.
 - **Outline (secundario):** transparente con borde `line-strong` y texto tinta. En hover, borde y texto pasan a pino y sube 2px. Se usa para descargar el CV y otras acciones de apoyo.
 - **Pino:** relleno pino para acciones estructurales que no son la conversión principal.
 - **Fantasma (terciario):** sin relleno ni borde, texto `ink-soft` que pasa a tinta en hover. Es la salida ("Cerrar") cuando arriba hay una acción más fuerte, como en el modal de error.
