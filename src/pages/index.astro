@@ -5,6 +5,8 @@ import SkipLink from "../components/SkipLink.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
 import ProjectsSection from "../components/ProjectsSection.astro";
 import CredentialsSection from "../components/CredentialsSection.astro";
+import ServicesSection from "../components/ServicesSection.astro";
+import { packages, maintenance } from "../data/services";
 import Icon from "../components/Icon.astro";
 import { Picture } from "astro:assets";
 import perfil from "../assets/perfil.jpg";
@@ -401,14 +403,17 @@ const alsoUse = [
     <!-- 05 — Credentials -->
     <CredentialsSection />
 
+    <!-- 06 — Services -->
+    <ServicesSection />
+
     <!-- ══════════════════════════════════════════════════════
-         06 — CONTACT
+         07 — CONTACT
          ══════════════════════════════════════════════════════ -->
     <section id="contacto" class="relative py-20 sm:py-28 border-t border-line grain scroll-mt-20 overflow-hidden">
 
       <div class="relative z-10 max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
-          <span class="label label-pine">06 / Contacto</span>
+          <span class="label label-pine">07 / Contacto</span>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-14">
@@ -527,6 +532,17 @@ const alsoUse = [
                 </div>
               </fieldset>
 
+              <!-- Solo para consultas de proyecto: sin JS ni tipo "proyecto" queda
+                   oculto y deshabilitado, así que no viaja en el envío. -->
+              <div id="project-fields" hidden>
+                <label for="paquete" class="label block mb-2">Qué necesitás</label>
+                <select id="paquete" name="paquete" class="field" disabled>
+                  <option value="">Todavía no sé</option>
+                  {packages.map((pkg) => <option value={pkg.name}>{pkg.name}</option>)}
+                  <option value={maintenance.name}>{maintenance.name}</option>
+                </select>
+              </div>
+
               <div>
                 <label for="name" class="label block mb-2">Nombre completo</label>
                 <input type="text" id="name" name="name" required class="field" placeholder="Tu nombre" autocomplete="name" aria-describedby="name-tip" />
@@ -583,6 +599,7 @@ const alsoUse = [
             <div class="flex flex-wrap items-center gap-x-6 gap-y-7">
               <a href="#contacto" class="link-draw tap-y text-sm font-semibold">Hablemos del puesto →</a>
               <a href={`${basePath}/Marcos_Rezk_CV.pdf`} download class="link-draw tap-y text-sm font-semibold">Descargar CV (PDF)</a>
+              <a href="#servicios" class="link-draw tap-y text-sm font-semibold">¿Tenés un producto? Ver servicios →</a>
             </div>
           </div>
 
@@ -820,6 +837,8 @@ const alsoUse = [
   const typeRadios = form?.querySelectorAll<HTMLInputElement>('input[name="tipo"]');
   const subjectInput = form?.querySelector<HTMLInputElement>('input[name="_subject"]');
   const contactWhatsapp = document.getElementById('contact-whatsapp') as HTMLAnchorElement | null;
+  const projectFields = document.getElementById('project-fields');
+  const packageSelect = document.getElementById('paquete') as HTMLSelectElement | null;
 
   function currentType(): Inquiry {
     const checked = form?.querySelector<HTMLInputElement>('input[name="tipo"]:checked')?.value;
@@ -832,6 +851,9 @@ const alsoUse = [
     if (emailInput) emailInput.placeholder = copy.email;
     if (subjectInput) subjectInput.value = copy.subject;
     if (contactWhatsapp) contactWhatsapp.href = `https://wa.me/59899845879?text=${encodeURIComponent(copy.whatsapp)}`;
+    // A disabled field is not sent, so a job inquiry never carries a package.
+    if (projectFields) projectFields.hidden = type !== 'proyecto';
+    if (packageSelect) packageSelect.disabled = type !== 'proyecto';
   }
 
   function setType(type: Inquiry) {
