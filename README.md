@@ -14,14 +14,12 @@ El sistema de diseño (**"Dispatch"**) usa una paleta semántica de tokens — p
 - Palabras clave técnicas para mejor posicionamiento
 
 ### Secciones
-- Hero con foto y descripción profesional
-- Experiencia laboral detallada
-- Proyectos profesionales destacados (SONDA, Ministerio del Interior, SEMM, 911)
-- Repositorios de GitHub con datos reales
-- Stack tecnológico organizado por categoría
-- Credenciales: formación académica, certificaciones e idiomas
-- Formulario de contacto (Formspree)
-- Enlaces a redes sociales y GitHub
+- Hero con foto, ficha de filtro (rol, nivel, disponibilidad, modalidad, zona horaria, inglés) y CTA único
+- 01 Números, 02 Proyectos con diagramas de arquitectura (Ministerio del Interior, 911, SEMM, SIEV)
+- 03 Trayectoria, 04 Capacidades y stack, 05 Credenciales (formación, certificaciones, idiomas)
+- 06 Servicios: tres paquetes, mantenimiento, proceso y condiciones (ver más abajo)
+- 07 Contacto: formulario Formspree con dos tipos de consulta (puesto o proyecto web)
+- Enlaces a LinkedIn, GitHub y descarga del CV
 
 ### Diseño y UX
 - Modo oscuro automático, con tokens semánticos que invierten toda la paleta
@@ -74,6 +72,31 @@ La única variable que afecta el comportamiento es `VITE_FORMSPREE_ENDPOINT`:
 debe ser el **ID del formulario** de Formspree (o la URL completa), no una
 dirección de correo. Si no está definida, el formulario cae a un enlace
 `mailto:` en lugar de fallar en silencio.
+
+`SERVICES_ALLOW_PLACEHOLDERS=1` solo sirve para desarrollo: deja compilar la
+sección Servicios con datos incompletos (ver la sección siguiente). No se
+define en Vercel ni en GitHub Pages.
+
+## Sección Servicios
+
+La oferta (paquetes, mantenimiento, proceso y condiciones) vive en un único
+archivo, `src/data/services.ts`, que alimenta la sección `ServicesSection.astro`
+y el selector "Qué necesitás" del formulario. Ningún precio, plazo ni
+condición se inventa: lo que falta definir queda como `null` o como texto entre
+`[CORCHETES]`.
+
+Mientras exista algún dato pendiente, `npm run build` **falla a propósito** y
+lista qué falta (`pendingServiceInputs()`), para que la oferta nunca se
+publique con huecos. Para revisar el diseño en local con los placeholders
+visibles:
+
+```bash
+SERVICES_ALLOW_PLACEHOLDERS=1 npm run build && npm run preview
+```
+
+Para publicar la sección hay que completar esos datos en `services.ts`; la
+lista de pendientes y las decisiones ya tomadas están en `PRODUCT.md`
+(apartado "Servicios").
 
 ## Formulario de contacto
 

@@ -1,0 +1,136 @@
+---
+import Icon from "./Icon.astro";
+import { packages, maintenance, processSteps, terms, pendingServiceInputs } from "../data/services";
+
+/**
+ * 06 / Servicios. Tres paquetes, una fila de mantenimiento, el proceso y las
+ * condiciones. Sin bermellón: la única acción es "Contame tu proyecto" en
+ * outline, para que el botón señal del puesto siga siendo el único.
+ *
+ * Puerta: si falta cualquier dato (precio, plazo, pasarela, condiciones), el
+ * build de producción falla. Para sacar capturas locales con la oferta
+ * incompleta: SERVICES_ALLOW_PLACEHOLDERS=1 npm run build
+ * (process.env, no import.meta.env: Astro no expone al servidor las variables
+ * sin prefijo PUBLIC_.)
+ */
+const pending = pendingServiceInputs();
+if (pending.length && import.meta.env.PROD && !process.env.SERVICES_ALLOW_PLACEHOLDERS) {
+	throw new Error(
+		`Servicios: faltan datos de Marcos, la oferta no se publica así.\n  - ${pending.join("\n  - ")}`
+	);
+}
+
+const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleString("es-UY")}`);
+---
+
+<section id="servicios" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+	<div class="max-w-6xl mx-auto px-6">
+		<div class="eyebrow mb-10 reveal">
+			<span class="label label-pine">06 / Servicios</span>
+		</div>
+
+		<div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
+			<h2 class="lg:col-span-7 display-xl text-[clamp(2rem,4.5vw,3.25rem)] reveal">
+				Si tenés un producto, te armo dónde venderlo.
+			</h2>
+			<p class="lg:col-span-5 text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
+				Webs, tiendas y sistemas para personas y negocios que quieren vender
+				en internet. Los construyo con el mismo criterio que uso en sistemas
+				que no pueden caerse: alcance por escrito y un link de prueba antes
+				de publicar.
+			</p>
+		</div>
+
+		<ul class="grid md:grid-cols-3 gap-px bg-line border border-line">
+			{packages.map((pkg, index) => (
+				<li class="bg-paper p-6 sm:p-7 flex flex-col reveal" data-reveal-delay={index * 80}>
+					<p class="label mb-4">Paquete 0{index + 1}</p>
+
+					<span class="w-11 h-11 flex items-center justify-center border border-line text-pine mb-5">
+						<Icon name={pkg.icon} class="w-5 h-5" />
+					</span>
+
+					<h3 class="font-display text-xl font-bold text-ink leading-tight mb-2">{pkg.name}</h3>
+					<p class="text-sm text-ink-soft leading-relaxed mb-5">{pkg.forWhom}</p>
+
+					<ul class="space-y-2.5 mb-6">
+						{pkg.includes.map((item) => (
+							<li class="flex items-start gap-2.5 text-sm text-ink-soft">
+								<Icon name="check" class="w-4 h-4 mt-0.5 shrink-0 text-pine" strokeWidth={2.5} />
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+
+					<div class="mt-auto pt-5 border-t border-line">
+						<p class="label mb-1">Desde</p>
+						<p class="font-display text-3xl font-bold text-ink leading-none mb-2">{usd(pkg.priceFromUSD)}</p>
+						<p class="label mb-4">{pkg.delivery ?? "[PLAZO]"}</p>
+
+						<p class="text-xs text-ink-faint leading-relaxed">
+							{pkg.proof.href ? (
+								<a
+									href={pkg.proof.href}
+									class="link-draw font-medium"
+									target={pkg.proof.external ? "_blank" : undefined}
+									rel={pkg.proof.external ? "noopener noreferrer" : undefined}
+								>
+									{pkg.proof.text}
+								</a>
+							) : (
+								pkg.proof.text
+							)}
+						</p>
+					</div>
+				</li>
+			))}
+		</ul>
+
+		<!-- Mantenimiento: cuarto servicio, sin una grilla aparte. -->
+		<div class="mt-px grid sm:grid-cols-12 gap-x-8 gap-y-3 border border-line border-t-0 bg-sunk p-6 sm:p-7 items-center reveal">
+			<div class="sm:col-span-5 flex items-center gap-4">
+				<span class="shrink-0 w-11 h-11 flex items-center justify-center border border-line text-pine bg-paper">
+					<Icon name={maintenance.icon} class="w-5 h-5" />
+				</span>
+				<h3 class="font-display text-xl font-bold text-ink leading-tight">{maintenance.name}</h3>
+			</div>
+			<p class="sm:col-span-5 text-sm text-ink-soft leading-relaxed">
+				{maintenance.body}
+				<span class="block label mt-2">{maintenance.pricing ?? "[MODALIDAD Y PRECIO]"}</span>
+			</p>
+			<p class="sm:col-span-2 text-xs text-ink-faint leading-relaxed">{maintenance.proof}</p>
+		</div>
+
+		<div class="mt-16">
+			<p class="label mb-5 reveal">Cómo trabajo</p>
+			<ol class="grid sm:grid-cols-5 gap-px bg-line border border-line">
+				{processSteps.map((step, index) => (
+					<li class="bg-paper p-5 reveal" data-reveal-delay={index * 60}>
+						<p class="label label-pine mb-2">0{index + 1}</p>
+						<h3 class="font-display text-base font-bold text-ink leading-tight mb-1.5">{step.title}</h3>
+						<p class="text-sm text-ink-soft leading-relaxed">{step.body}</p>
+					</li>
+				))}
+			</ol>
+		</div>
+
+		<div class="mt-10 grid lg:grid-cols-12 gap-8 items-start">
+			<div class="lg:col-span-8 p-5 bg-sunk reveal">
+				<p class="label label-pine mb-3">Lo que conviene saber</p>
+				<ul class="space-y-2 text-sm text-ink-soft leading-relaxed">
+					{terms.map((term) => (
+						<li>{term}</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="lg:col-span-4 flex flex-col items-start gap-3 reveal" data-reveal-delay="100">
+				<a href="#contacto" data-inquiry="proyecto" class="btn btn-outline">
+					<Icon name="mail" class="w-[18px] h-[18px]" strokeWidth={2} />
+					Contame tu proyecto
+				</a>
+				<p class="label">Respuesta en menos de 24 h hábiles</p>
+			</div>
+		</div>
+	</div>
+</section>

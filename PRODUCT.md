@@ -61,10 +61,14 @@ Confirmado como real y defendible en entrevista:
 - Proyectos propios: Arcade Vault (Next.js + Supabase, en vivo en arcade-valut.vercel.app), API de pagos segura (ASP.NET Core 8) y asistente RAG sobre PDFs (prueba de concepto).
 - Foto de perfil: `src/assets/perfil.jpg`.
 
-Servicios (decidido; faltan datos del dueño):
+Servicios (decidido y con precios cargados):
 - Qué se ofrece: landing o web para un producto; tienda y cobros online; sistema a medida (login, base de datos, panel de administración); mantenimiento y mejoras de un sitio existente.
 - Formato: 3 paquetes con precio "desde USD X" y una fila de mantenimiento. No se nombran clientes; la prueba son este sitio, Arcade Vault, la API de pagos y los 17 años en operación.
-- Pendiente de Marcos, y no se publica la oferta sin esto: precio "desde" de cada paquete y modalidad de mantenimiento (por hora o abono); plazos y límites de alcance; días de soporte, anticipo y forma de pago; si los precios llevan IVA o factura; qué pasarela de pago usó de verdad y con qué stack armaría una tienda; su disponibilidad para proyectos en paralelo a la búsqueda de puesto.
+- Definido por Marcos: los plazos se negocian con cada cliente; los avances son semanales, en un link de prueba; la entrega incluye 30 días de soporte y después pasa a mantenimiento; los precios van en dólares con IVA incluido.
+- Precios "desde" (USD, IVA incluido, cargados el 2026-11-12 en `src/data/services.ts`): landing 450; tienda y cobros 1.200; sistema a medida 2.000; mantenimiento 35 por hora o abono de 90 por mes con hasta 3 horas. Son pisos: cada propuesta cotiza por alcance real.
+- Alcances: landing de hasta 5 secciones; tienda de hasta 50 productos. La tienda dice "integración de pagos online" sin nombrar pasarela.
+- Condiciones: 50% al empezar y 50% al entregar; el código y los accesos quedan a nombre del cliente con el pago final.
+- Pendiente de Marcos (no bloquea el build): con qué pasarela y stack armaría una tienda; su disponibilidad para proyectos en paralelo a la búsqueda de puesto.
 - Fuera del código: cómo facturar en Uruguay (DGI, BPS, IVA y exportación de servicios), plantilla de propuesta y contrato, forma de cobro y posibles cláusulas de exclusividad.
 
 Ausencias que no se deben inventar:
@@ -72,7 +76,7 @@ Ausencias que no se deben inventar:
 - No hay clientes ni cifras más allá de los listados arriba.
 - No hay clientes de servicios web ni tiendas propias en producción.
 - No hay experiencia confirmada con una pasarela de pago concreta (Mercado Pago, Stripe, PayPal): se habla de "integración de pagos" sin nombrarlas.
-- No hay precios, plazos ni cifras de rendimiento (por ejemplo Lighthouse) medidos para los servicios.
+- Los precios de servicios son pisos fijados por Marcos, no cifras medidas; no hay plazos ni cifras de rendimiento (por ejemplo Lighthouse) para los servicios.
 
 ## Product Principles
 
