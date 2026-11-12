@@ -252,11 +252,12 @@ Táctiles y directos: bloques rectos que suben al cursor.
 Es la celda de métrica o capacidad dentro de la grilla con filete: papel que pasa a superficie en hover, la cifra en display pino, el rótulo en Plex Sans y la nota en label. El glifo fantasma en la esquina inferior derecha crece y rota −4° en hover.
 
 ### Servicios (paquete, proceso y condiciones)
-La sección 06 reutiliza la grilla con filete y no introduce color nuevo: todo en papel, tinta y pino, sin bermellón.
-- **Tarjeta de paquete:** celda de la grilla de 3 columnas, con rótulo "Paquete 0N", ícono de 44 px con borde, título, a quién sirve y hasta 4 viñetas con check pino. Al pie, bajo un filete, el precio en display ("Desde" + monto) con el plazo en label, y una línea de prueba en `ink-faint` que enlaza a lo que ya es real en el sitio. No se marca ningún paquete como "más elegido".
-- **Fila de mantenimiento:** a todo el ancho bajo los paquetes, en papel hundido, con el mismo ícono y una línea de prueba.
-- **Tira de proceso:** `ol` de 5 pasos en una grilla con filete (una columna en móvil); número en label pino, título en display y una línea de texto.
+La sección 07 va después de Contacto, a propósito: quien busca el puesto llega al formulario sin atravesar precios, y `?consulta=proyecto` aterriza directo en ella. Reutiliza la grilla con filete y no introduce color nuevo: todo en papel, tinta y pino, sin bermellón.
+- **Tarjeta de paquete:** celda de la grilla de 3 columnas, con rótulo "Paquete 0N", ícono de 44 px con borde, título, a quién sirve y hasta 4 viñetas con check pino. Al pie, bajo un filete, el precio en display ("Desde" + monto), sin plazo (se fija en la propuesta), y una línea de prueba en `ink-faint` que enlaza a lo que ya es real en el sitio. No se marca ningún paquete como "más elegido".
+- **Fila de mantenimiento:** a todo el ancho bajo los paquetes, en papel hundido, con el mismo ícono, el texto y la misma pila de precio que las tarjetas ("Desde" + monto en display + "por hora" en label, y el abono en label debajo). Sin línea de prueba: lo que probaría ya está dicho arriba.
+- **Tira de proceso:** `ol` de 5 pasos en una grilla con filete; número en label pino, título en display y una línea de texto. En móvil cada paso es una fila con el número al costado, no una celda apilada.
 - **Pozo de condiciones:** papel hundido con el rótulo pino "Lo que conviene saber".
+- **Selector del formulario:** las opciones de "Qué necesitás" llevan el precio de arranque ("Landing de producto · desde USD 450") para que nadie elija a ciegas; el `value` sigue siendo el nombre.
 - **Acción:** "Contame tu proyecto" va en Outline y preselecciona el tipo "Un proyecto web" del formulario (`data-inquiry`).
 - **Datos pendientes:** si algo vuelve a quedar sin definir en `src/data/services.ts` (`null` o [corchetes]), se ve así en desarrollo y hace fallar el build de producción.
 

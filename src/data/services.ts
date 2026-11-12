@@ -3,12 +3,14 @@
  * adelante) el JSON-LD.
  *
  * Reglas de este archivo:
- * - Ningún precio, plazo, pasarela ni condición se inventa. Lo que Marcos no
+ * - Ningún precio, pasarela ni condición se inventa. El plazo no se publica:
+ *   se fija en la propuesta de cada proyecto. Lo que Marcos no
  *   definió es `null` o un texto con [CORCHETES].
  * - `pendingServiceInputs()` los lista. Mientras haya pendientes, el build de
  *   producción falla (ver ServicesSection.astro): la oferta no se publica con
  *   huecos.
- * - Las pruebas citan solo cosas que ya son reales en el sitio.
+ * - Las pruebas citan solo cosas que ya son reales en el sitio, en términos de
+ *   resultado: el detalle técnico vive en Proyectos.
  */
 
 export type ServiceId = "landing" | "tienda" | "medida";
@@ -22,8 +24,6 @@ export interface ServicePackage {
 	includes: string[];
 	/** Precio de arranque en USD. `null` = Marcos todavía no lo definió. */
 	priceFromUSD: number | null;
-	/** Texto del plazo. `null` = sin definir. */
-	delivery: string | null;
 	proof: { text: string; href?: string; external?: boolean };
 }
 
@@ -31,18 +31,16 @@ export interface Maintenance {
 	icon: string;
 	name: string;
 	body: string;
-	/** Ej. "USD 40 por hora" o "abono desde USD 80 por mes". `null` = sin definir. */
-	pricing: string | null;
-	proof: string;
+	/** Precio por hora en USD. `null` = sin definir. */
+	hourlyUSD: number | null;
+	/** Abono mensual en USD y horas que incluye. `null` = sin abono. */
+	monthly: { usd: number; hours: number } | null;
 }
 
 export interface ProcessStep {
 	title: string;
 	body: string;
 }
-
-/** Los plazos se negocian con cada cliente según el alcance. */
-const DELIVERY = "Plazo a convenir";
 
 export const packages: ServicePackage[] = [
 	{
@@ -57,8 +55,7 @@ export const packages: ServicePackage[] = [
 			"Publicada en tu dominio."
 		],
 		priceFromUSD: 450,
-		delivery: DELIVERY,
-		proof: { text: "Este mismo sitio: Astro, modo claro y oscuro, formulario validado." }
+		proof: { text: "Este sitio lo hice yo, de punta a punta: lo estás viendo." }
 	},
 	{
 		id: "tienda",
@@ -72,9 +69,8 @@ export const packages: ServicePackage[] = [
 			"Panel para cargar productos y ver pedidos."
 		],
 		priceFromUSD: 1200,
-		delivery: DELIVERY,
 		proof: {
-			text: "API de pagos propia: ASP.NET Core 8, alineada a PCI-DSS v4.0, con webhooks verificados con HMAC.",
+			text: "Ya construí un sistema de cobros que verifica cada pago antes de confirmarlo.",
 			href: "#proyectos"
 		}
 	},
@@ -90,9 +86,8 @@ export const packages: ServicePackage[] = [
 			"Publicación, accesos y documentación de entrega."
 		],
 		priceFromUSD: 2000,
-		delivery: DELIVERY,
 		proof: {
-			text: "Arcade Vault: login y ranking global en PostgreSQL (Supabase).",
+			text: "Arcade Vault: un sistema con usuarios, login y ranking, en línea.",
 			href: "https://arcade-valut.vercel.app",
 			external: true
 		}
@@ -103,8 +98,8 @@ export const maintenance: Maintenance = {
 	icon: "refresh",
 	name: "Mantenimiento y mejoras",
 	body: "Arreglos, mejoras de velocidad, actualizaciones y funciones nuevas sobre el sitio que ya tenés.",
-	pricing: "USD 35 por hora, o abono de USD 90 por mes con hasta 3 horas incluidas",
-	proof: "17 años del lado de la operación y el soporte."
+	hourlyUSD: 35,
+	monthly: { usd: 90, hours: 3 }
 };
 
 export const processSteps: ProcessStep[] = [
@@ -123,6 +118,9 @@ export const terms: string[] = [
 	"Precios en dólares, con IVA incluido. Forma de pago: 50% al empezar y 50% al entregar.",
 	"El código y los accesos quedan a tu nombre con el pago final."
 ];
+
+/** "USD 1.200", con el separador de miles rioplatense. `null` = "[PRECIO]". */
+export const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleString("es-UY")}`);
 
 const PLACEHOLDER = /\[[^\]]+\]/;
 

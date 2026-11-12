@@ -60,9 +60,9 @@ const fullCanonicalURL = `${baseURLClean}/`;
 
 // Un Offer por paquete. El precio es un piso ("desde"), por eso va como
 // minPrice y no como price; si todavía no está definido, el Offer sale sin
-// priceSpecification en vez de inventar una cifra. Mantenimiento no tiene
-// precio numérico (hora o abono) y va solo como servicio.
-const serviceOffer = (name: string, description: string, url: string, priceFromUSD: number | null) => ({
+// priceSpecification en vez de inventar una cifra. Mantenimiento lleva el
+// precio por hora con unitText.
+const serviceOffer = (name: string, description: string, url: string, priceFromUSD: number | null, unit?: string) => ({
 	"@type": "Offer",
 	"url": url,
 	"availability": "https://schema.org/InStock",
@@ -81,14 +81,15 @@ const serviceOffer = (name: string, description: string, url: string, priceFromU
 				"@type": "PriceSpecification",
 				"priceCurrency": "USD",
 				"minPrice": priceFromUSD,
-				"valueAddedTaxIncluded": true
+				"valueAddedTaxIncluded": true,
+				...(unit ? { "unitText": unit } : {})
 			}
 		})
 });
 
 const makesOffer = [
 	...packages.map((pkg) => serviceOffer(pkg.name, pkg.forWhom, `${fullCanonicalURL}#servicios`, pkg.priceFromUSD)),
-	serviceOffer(maintenance.name, maintenance.body, `${fullCanonicalURL}#servicios`, null)
+	serviceOffer(maintenance.name, maintenance.body, `${fullCanonicalURL}#servicios`, maintenance.hourlyUSD, "hora")
 ];
 ---
 
