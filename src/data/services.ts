@@ -9,7 +9,8 @@
  * - `pendingServiceInputs()` los lista. Mientras haya pendientes, el build de
  *   producción falla (ver ServicesSection.astro): la oferta no se publica con
  *   huecos.
- * - Las pruebas citan solo cosas que ya son reales en el sitio.
+ * - Las pruebas citan solo cosas que ya son reales en el sitio, en términos de
+ *   resultado: el detalle técnico vive en Proyectos.
  */
 
 export type ServiceId = "landing" | "tienda" | "medida";
@@ -54,7 +55,7 @@ export const packages: ServicePackage[] = [
 			"Publicada en tu dominio."
 		],
 		priceFromUSD: 450,
-		proof: { text: "Este mismo sitio: Astro, modo claro y oscuro, formulario validado." }
+		proof: { text: "Este sitio lo hice yo, de punta a punta: lo estás viendo." }
 	},
 	{
 		id: "tienda",
@@ -69,7 +70,7 @@ export const packages: ServicePackage[] = [
 		],
 		priceFromUSD: 1200,
 		proof: {
-			text: "API de pagos propia: ASP.NET Core 8, alineada a PCI-DSS v4.0, con webhooks verificados con HMAC.",
+			text: "Ya construí un sistema de cobros que verifica cada pago antes de confirmarlo.",
 			href: "#proyectos"
 		}
 	},
@@ -86,7 +87,7 @@ export const packages: ServicePackage[] = [
 		],
 		priceFromUSD: 2000,
 		proof: {
-			text: "Arcade Vault: login y ranking global en PostgreSQL (Supabase).",
+			text: "Arcade Vault: un sistema con usuarios, login y ranking, en línea.",
 			href: "https://arcade-valut.vercel.app",
 			external: true
 		}
