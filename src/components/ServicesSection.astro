@@ -87,27 +87,31 @@ const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleSt
 
 		<!-- Mantenimiento: cuarto servicio, sin una grilla aparte. -->
 		<div class="mt-px grid sm:grid-cols-12 gap-x-8 gap-y-3 border border-line border-t-0 bg-sunk p-6 sm:p-7 items-center reveal">
-			<div class="sm:col-span-5 flex items-center gap-4">
+			<div class="sm:col-span-4 flex items-center gap-4">
 				<span class="shrink-0 w-11 h-11 flex items-center justify-center border border-line text-pine bg-paper">
 					<Icon name={maintenance.icon} class="w-5 h-5" />
 				</span>
 				<h3 class="font-display text-xl font-bold text-ink leading-tight">{maintenance.name}</h3>
 			</div>
-			<p class="sm:col-span-5 text-sm text-ink-soft leading-relaxed">
+			<p class="sm:col-span-8 text-sm text-ink-soft leading-relaxed">
 				{maintenance.body}
 				<span class="block label mt-2">{maintenance.pricing ?? "[MODALIDAD Y PRECIO]"}</span>
 			</p>
-			<p class="sm:col-span-2 text-xs text-ink-faint leading-relaxed">{maintenance.proof}</p>
 		</div>
 
 		<div class="mt-16">
 			<p class="label mb-5 reveal">Cómo trabajo</p>
+			<!-- One row per step on the phone (number beside the text), one cell
+			     per step from sm up: five tall cells for five one-line facts was
+			     most of a screen of scrolling. -->
 			<ol class="grid sm:grid-cols-5 gap-px bg-line border border-line">
 				{processSteps.map((step, index) => (
-					<li class="bg-paper p-5 reveal" data-reveal-delay={index * 60}>
-						<p class="label label-pine mb-2">0{index + 1}</p>
-						<h3 class="font-display text-base font-bold text-ink leading-tight mb-1.5">{step.title}</h3>
-						<p class="text-sm text-ink-soft leading-relaxed">{step.body}</p>
+					<li class="bg-paper p-4 sm:p-5 flex items-baseline gap-4 sm:block reveal" data-reveal-delay={index * 60}>
+						<p class="label label-pine shrink-0 w-5 sm:w-auto sm:mb-2">0{index + 1}</p>
+						<div>
+							<h3 class="font-display text-base font-bold text-ink leading-tight mb-1 sm:mb-1.5">{step.title}</h3>
+							<p class="text-sm text-ink-soft leading-relaxed">{step.body}</p>
+						</div>
 					</li>
 				))}
 			</ol>
@@ -128,7 +132,6 @@ const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleSt
 					<Icon name="mail" class="w-[18px] h-[18px]" strokeWidth={2} />
 					Contame tu proyecto
 				</a>
-				<p class="label">Respuesta en menos de 24 h hábiles</p>
 			</div>
 		</div>
 	</div>

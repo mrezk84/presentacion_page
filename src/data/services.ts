@@ -32,7 +32,6 @@ export interface Maintenance {
 	body: string;
 	/** Ej. "USD 40 por hora" o "abono desde USD 80 por mes". `null` = sin definir. */
 	pricing: string | null;
-	proof: string;
 }
 
 export interface ProcessStep {
@@ -96,8 +95,7 @@ export const maintenance: Maintenance = {
 	icon: "refresh",
 	name: "Mantenimiento y mejoras",
 	body: "Arreglos, mejoras de velocidad, actualizaciones y funciones nuevas sobre el sitio que ya tenés.",
-	pricing: "USD 35 por hora, o abono de USD 90 por mes con hasta 3 horas incluidas",
-	proof: "17 años del lado de la operación y el soporte."
+	pricing: "USD 35 por hora, o abono de USD 90 por mes con hasta 3 horas incluidas"
 };
 
 export const processSteps: ProcessStep[] = [
