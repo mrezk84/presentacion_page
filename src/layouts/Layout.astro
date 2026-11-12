@@ -19,6 +19,10 @@ import "@fontsource/ibm-plex-mono/latin-500.css";
 import bricolageWoff2 from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
 import plexSansWoff2 from "@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url";
 
+// La oferta de servicios sale de la misma fuente que la sección 06, así el
+// JSON-LD nunca contradice lo que se ve en pantalla.
+import { packages, maintenance } from "../data/services";
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -53,6 +57,39 @@ const fullImageURL = `${baseURLClean}/${imagePath}`;
 // The Person entity wants a portrait, not the landscape card.
 const portraitURL = `${baseURLClean}/perfil.jpg`;
 const fullCanonicalURL = `${baseURLClean}/`;
+
+// Un Offer por paquete. El precio es un piso ("desde"), por eso va como
+// minPrice y no como price; si todavía no está definido, el Offer sale sin
+// priceSpecification en vez de inventar una cifra. Mantenimiento no tiene
+// precio numérico (hora o abono) y va solo como servicio.
+const serviceOffer = (name: string, description: string, url: string, priceFromUSD: number | null) => ({
+	"@type": "Offer",
+	"url": url,
+	"availability": "https://schema.org/InStock",
+	"itemOffered": {
+		"@type": "Service",
+		"name": name,
+		"description": description,
+		"serviceType": "Desarrollo web",
+		"areaServed": "UY",
+		"provider": { "@type": "Person", "name": "Marcos Rezk" }
+	},
+	...(priceFromUSD === null
+		? {}
+		: {
+			"priceSpecification": {
+				"@type": "PriceSpecification",
+				"priceCurrency": "USD",
+				"minPrice": priceFromUSD,
+				"valueAddedTaxIncluded": true
+			}
+		})
+});
+
+const makesOffer = [
+	...packages.map((pkg) => serviceOffer(pkg.name, pkg.forWhom, `${fullCanonicalURL}#servicios`, pkg.priceFromUSD)),
+	serviceOffer(maintenance.name, maintenance.body, `${fullCanonicalURL}#servicios`, null)
+];
 ---
 
 <!doctype html>
@@ -94,7 +131,7 @@ const fullCanonicalURL = `${baseURLClean}/`;
 		<meta name="twitter:creator" content="@mrezk84" />
 
 		<!-- Additional SEO -->
-		<meta name="keywords" content="Marcos Rezk, Full Stack Developer, React Developer, C# Developer, .NET, SQL Server, ORT Uruguay, Web Developer, Software Developer, Uruguay, TypeScript, Next.js, ASP.NET Core, Java, Spring Boot, Go, Backend, Frontend, contratar desarrollador" />
+		<meta name="keywords" content="Marcos Rezk, Full Stack Developer, React Developer, C# Developer, .NET, SQL Server, ORT Uruguay, Web Developer, Software Developer, Uruguay, TypeScript, Next.js, ASP.NET Core, Java, Spring Boot, Go, Backend, Frontend, contratar desarrollador, desarrollo web Uruguay, landing page, tienda online, sistema a medida, mantenimiento web" />
 		<meta name="robots" content="index, follow" />
 		<meta name="googlebot" content="index, follow" />
 		<!-- Matches --c-paper in each scheme so the browser chrome blends in. -->
@@ -125,8 +162,9 @@ const fullCanonicalURL = `${baseURLClean}/`;
 				"name": "Universidad ORT Uruguay"
 			},
 			"knowsLanguage": ["es", "en"],
-			"knowsAbout": ["React", "TypeScript", "Next.js", "C#", ".NET", "ASP.NET Core", "SQL Server", "T-SQL", "Dapper", "WCF", "JavaScript", "Node.js", "Java", "Spring Boot", "Go", "Full Stack Development"],
-			"description": "Desarrollador Full Stack con más de 4 años construyendo aplicaciones web de punta a punta con React, TypeScript, C# .NET y SQL Server en entornos de alta disponibilidad."
+			"knowsAbout": ["React", "TypeScript", "Next.js", "C#", ".NET", "ASP.NET Core", "SQL Server", "T-SQL", "Dapper", "WCF", "JavaScript", "Node.js", "Java", "Spring Boot", "Go", "Full Stack Development", "Desarrollo web", "Landing pages", "Tiendas online", "Integración de pagos", "Astro"],
+			"description": "Desarrollador Full Stack con más de 4 años construyendo aplicaciones web de punta a punta con React, TypeScript, C# .NET y SQL Server en entornos de alta disponibilidad. También desarrolla landings, tiendas online y sistemas a medida para personas y negocios.",
+			"makesOffer": makesOffer
 		})}>
 		</script>
 
