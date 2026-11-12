@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { packages, maintenance, processSteps, terms, pendingServiceInputs } from "../data/services";
+import { packages, maintenance, processSteps, terms, pendingServiceInputs, usd } from "../data/services";
 
 /**
  * 07 / Servicios. Tres paquetes, una fila de mantenimiento, el proceso y las
@@ -20,7 +20,6 @@ if (pending.length && import.meta.env.PROD && !process.env.SERVICES_ALLOW_PLACEH
 	);
 }
 
-const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleString("es-UY")}`);
 ---
 
 <section id="servicios" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
@@ -93,10 +92,18 @@ const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleSt
 				</span>
 				<h3 class="font-display text-xl font-bold text-ink leading-tight">{maintenance.name}</h3>
 			</div>
-			<p class="sm:col-span-8 text-sm text-ink-soft leading-relaxed">
-				{maintenance.body}
-				<span class="block label mt-2">{maintenance.pricing ?? "[MODALIDAD Y PRECIO]"}</span>
-			</p>
+			<p class="sm:col-span-5 text-sm text-ink-soft leading-relaxed">{maintenance.body}</p>
+			<!-- Same price stack as the packages: the cheapest ticket was the
+			     only one set in 11px label. -->
+			<div class="sm:col-span-3 sm:border-l sm:border-line sm:pl-6">
+				<p class="label mb-1">Desde</p>
+				<p class="font-display text-3xl font-bold text-ink leading-none">
+					{usd(maintenance.hourlyUSD)}<span class="label ml-2">por hora</span>
+				</p>
+				{maintenance.monthly && (
+					<p class="label mt-2">o abono {usd(maintenance.monthly.usd)} / mes, {maintenance.monthly.hours} h</p>
+				)}
+			</div>
 		</div>
 
 		<div class="mt-16">

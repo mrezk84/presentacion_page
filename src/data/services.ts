@@ -30,8 +30,10 @@ export interface Maintenance {
 	icon: string;
 	name: string;
 	body: string;
-	/** Ej. "USD 40 por hora" o "abono desde USD 80 por mes". `null` = sin definir. */
-	pricing: string | null;
+	/** Precio por hora en USD. `null` = sin definir. */
+	hourlyUSD: number | null;
+	/** Abono mensual en USD y horas que incluye. `null` = sin abono. */
+	monthly: { usd: number; hours: number } | null;
 }
 
 export interface ProcessStep {
@@ -95,7 +97,8 @@ export const maintenance: Maintenance = {
 	icon: "refresh",
 	name: "Mantenimiento y mejoras",
 	body: "Arreglos, mejoras de velocidad, actualizaciones y funciones nuevas sobre el sitio que ya tenés.",
-	pricing: "USD 35 por hora, o abono de USD 90 por mes con hasta 3 horas incluidas"
+	hourlyUSD: 35,
+	monthly: { usd: 90, hours: 3 }
 };
 
 export const processSteps: ProcessStep[] = [
@@ -114,6 +117,9 @@ export const terms: string[] = [
 	"Precios en dólares, con IVA incluido. Forma de pago: 50% al empezar y 50% al entregar.",
 	"El código y los accesos quedan a tu nombre con el pago final."
 ];
+
+/** "USD 1.200", con el separador de miles rioplatense. `null` = "[PRECIO]". */
+export const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleString("es-UY")}`);
 
 const PLACEHOLDER = /\[[^\]]+\]/;
 

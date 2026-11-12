@@ -6,7 +6,7 @@ import ScrollToTop from "../components/ScrollToTop.astro";
 import ProjectsSection from "../components/ProjectsSection.astro";
 import CredentialsSection from "../components/CredentialsSection.astro";
 import ServicesSection from "../components/ServicesSection.astro";
-import { packages, maintenance } from "../data/services";
+import { packages, maintenance, usd } from "../data/services";
 import Icon from "../components/Icon.astro";
 import { Picture } from "astro:assets";
 import perfil from "../assets/perfil.jpg";
@@ -535,8 +535,8 @@ const alsoUse = [
                 <label for="paquete" class="label block mb-2">Qué necesitás</label>
                 <select id="paquete" name="paquete" class="field" disabled>
                   <option value="">Todavía no sé</option>
-                  {packages.map((pkg) => <option value={pkg.name}>{pkg.name}</option>)}
-                  <option value={maintenance.name}>{maintenance.name}</option>
+                  {packages.map((pkg) => <option value={pkg.name}>{pkg.name} · desde {usd(pkg.priceFromUSD)}</option>)}
+                  <option value={maintenance.name}>{maintenance.name} · desde {usd(maintenance.hourlyUSD)} por hora</option>
                 </select>
               </div>
 
