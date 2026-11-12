@@ -17,8 +17,8 @@ El sistema de diseño (**"Dispatch"**) usa una paleta semántica de tokens — p
 - Hero con foto, ficha de filtro (rol, nivel, disponibilidad, modalidad, zona horaria, inglés) y CTA único
 - 01 Números, 02 Proyectos con diagramas de arquitectura (Ministerio del Interior, 911, SEMM, SIEV)
 - 03 Trayectoria, 04 Capacidades y stack, 05 Credenciales (formación, certificaciones, idiomas)
-- 06 Servicios: tres paquetes, mantenimiento, proceso y condiciones (ver más abajo)
-- 07 Contacto: formulario Formspree con dos tipos de consulta (puesto o proyecto web)
+- 06 Contacto: formulario Formspree con dos tipos de consulta (puesto o proyecto web)
+- 07 Servicios, al final a propósito: tres paquetes, mantenimiento, proceso y condiciones (ver más abajo)
 - Enlaces a LinkedIn, GitHub y descarga del CV
 
 ### Diseño y UX

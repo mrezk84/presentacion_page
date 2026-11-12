@@ -3,7 +3,8 @@
  * adelante) el JSON-LD.
  *
  * Reglas de este archivo:
- * - Ningún precio, plazo, pasarela ni condición se inventa. Lo que Marcos no
+ * - Ningún precio, pasarela ni condición se inventa. El plazo no se publica:
+ *   se fija en la propuesta de cada proyecto. Lo que Marcos no
  *   definió es `null` o un texto con [CORCHETES].
  * - `pendingServiceInputs()` los lista. Mientras haya pendientes, el build de
  *   producción falla (ver ServicesSection.astro): la oferta no se publica con
@@ -22,8 +23,6 @@ export interface ServicePackage {
 	includes: string[];
 	/** Precio de arranque en USD. `null` = Marcos todavía no lo definió. */
 	priceFromUSD: number | null;
-	/** Texto del plazo. `null` = sin definir. */
-	delivery: string | null;
 	proof: { text: string; href?: string; external?: boolean };
 }
 
@@ -41,9 +40,6 @@ export interface ProcessStep {
 	body: string;
 }
 
-/** Los plazos se negocian con cada cliente según el alcance. */
-const DELIVERY = "Plazo a convenir";
-
 export const packages: ServicePackage[] = [
 	{
 		id: "landing",
@@ -57,7 +53,6 @@ export const packages: ServicePackage[] = [
 			"Publicada en tu dominio."
 		],
 		priceFromUSD: 450,
-		delivery: DELIVERY,
 		proof: { text: "Este mismo sitio: Astro, modo claro y oscuro, formulario validado." }
 	},
 	{
@@ -72,7 +67,6 @@ export const packages: ServicePackage[] = [
 			"Panel para cargar productos y ver pedidos."
 		],
 		priceFromUSD: 1200,
-		delivery: DELIVERY,
 		proof: {
 			text: "API de pagos propia: ASP.NET Core 8, alineada a PCI-DSS v4.0, con webhooks verificados con HMAC.",
 			href: "#proyectos"
@@ -90,7 +84,6 @@ export const packages: ServicePackage[] = [
 			"Publicación, accesos y documentación de entrega."
 		],
 		priceFromUSD: 2000,
-		delivery: DELIVERY,
 		proof: {
 			text: "Arcade Vault: login y ranking global en PostgreSQL (Supabase).",
 			href: "https://arcade-valut.vercel.app",

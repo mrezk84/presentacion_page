@@ -403,17 +403,14 @@ const alsoUse = [
     <!-- 05 — Credentials -->
     <CredentialsSection />
 
-    <!-- 06 — Services -->
-    <ServicesSection />
-
     <!-- ══════════════════════════════════════════════════════
-         07 — CONTACT
+         06 — CONTACT
          ══════════════════════════════════════════════════════ -->
     <section id="contacto" class="relative py-20 sm:py-28 border-t border-line grain scroll-mt-20 overflow-hidden">
 
       <div class="relative z-10 max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
-          <span class="label label-pine">07 / Contacto</span>
+          <span class="label label-pine">06 / Contacto</span>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-14">
@@ -583,6 +580,11 @@ const alsoUse = [
         </div>
       </div>
     </section>
+
+    <!-- 07 — Services. Last on purpose: the job seeker reaches the form
+         without crossing a price list, and the project visitor lands here
+         straight from ?consulta=proyecto. -->
+    <ServicesSection />
 
     <!-- ══════════════════════════════════════════════════════
          FOOTER
@@ -869,7 +871,13 @@ const alsoUse = [
     if (trigger) setType(trigger.dataset.inquiry === 'proyecto' ? 'proyecto' : 'puesto');
   });
   // ...and so can a shared link: /?consulta=proyecto
-  if (new URLSearchParams(window.location.search).get('consulta') === 'proyecto') setType('proyecto');
+  if (new URLSearchParams(window.location.search).get('consulta') === 'proyecto') {
+    setType('proyecto');
+    // The shared link is the project visitor's front door: land them on the
+    // offer, not on the hero written for recruiters. scroll-margin keeps the
+    // fixed header off the eyebrow; reduced-motion CSS makes the jump instant.
+    if (!window.location.hash) document.getElementById('servicios')?.scrollIntoView({ block: 'start' });
+  }
 
   // The privacy note lives in a <details>; open it when someone links to it.
   const privacy = document.getElementById('privacidad') as HTMLDetailsElement | null;

@@ -3,7 +3,7 @@ import Icon from "./Icon.astro";
 import { packages, maintenance, processSteps, terms, pendingServiceInputs } from "../data/services";
 
 /**
- * 06 / Servicios. Tres paquetes, una fila de mantenimiento, el proceso y las
+ * 07 / Servicios. Tres paquetes, una fila de mantenimiento, el proceso y las
  * condiciones. Sin bermellón: la única acción es "Contame tu proyecto" en
  * outline, para que el botón señal del puesto siga siendo el único.
  *
@@ -26,7 +26,7 @@ const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleSt
 <section id="servicios" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
 	<div class="max-w-6xl mx-auto px-6">
 		<div class="eyebrow mb-10 reveal">
-			<span class="label label-pine">06 / Servicios</span>
+			<span class="label label-pine">07 / Servicios</span>
 		</div>
 
 		<div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
@@ -64,8 +64,7 @@ const usd = (n: number | null) => (n === null ? "[PRECIO]" : `USD ${n.toLocaleSt
 
 					<div class="mt-auto pt-5 border-t border-line">
 						<p class="label mb-1">Desde</p>
-						<p class="font-display text-3xl font-bold text-ink leading-none mb-2">{usd(pkg.priceFromUSD)}</p>
-						<p class="label mb-4">{pkg.delivery ?? "[PLAZO]"}</p>
+						<p class="font-display text-3xl font-bold text-ink leading-none mb-4">{usd(pkg.priceFromUSD)}</p>
 
 						<p class="text-xs text-ink-faint leading-relaxed">
 							{pkg.proof.href ? (
