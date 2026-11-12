@@ -144,7 +144,7 @@ const alsoUse = [
          Asymmetric 7/5 split. The left column carries the claim,
          the right one carries the evidence card.
          ══════════════════════════════════════════════════════ -->
-    <section id="inicio" class="relative overflow-hidden grain pt-32 pb-16 lg:pt-40 lg:pb-20">
+    <section id="inicio" aria-labelledby="inicio-titulo" class="relative overflow-hidden grain pt-32 pb-16 lg:pt-40 lg:pb-20">
       <div class="blueprint absolute inset-0 pointer-events-none" aria-hidden="true"></div>
       <div
         class="absolute -top-24 -right-32 w-[36rem] h-[36rem] rounded-full pointer-events-none opacity-40"
@@ -163,7 +163,7 @@ const alsoUse = [
               <span class="label label-pine">Disponible para incorporarme ya</span>
             </div>
 
-            <h1 class="display-xl text-[clamp(2rem,4.2vw,3.75rem)] mb-7">
+            <h1 id="inicio-titulo" class="display-xl text-[clamp(2rem,4.2vw,3.75rem)] mb-7">
               <span class="rise block" style="animation-delay: 120ms;">Full Stack .NET + React</span>{" "}
               <span class="rise block text-pine" style="animation-delay: 200ms;">17 años en tecnología.</span>
             </h1>
@@ -259,7 +259,7 @@ const alsoUse = [
     <!-- ══════════════════════════════════════════════════════
          01 — NUMBERS
          ══════════════════════════════════════════════════════ -->
-    <section class="relative py-20 sm:py-24 bg-sunk border-y border-line grain">
+    <section id="numeros" aria-label="En números" class="relative py-20 sm:py-24 bg-sunk border-y border-line grain">
       <div class="relative z-10 max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-12 reveal">
           <span class="label label-pine">01 / En números</span>
@@ -286,7 +286,7 @@ const alsoUse = [
     <!-- ══════════════════════════════════════════════════════
          03 — EXPERIENCE
          ══════════════════════════════════════════════════════ -->
-    <section id="experiencia" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+    <section id="experiencia" aria-labelledby="experiencia-titulo" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
       <div class="max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
           <span class="label label-pine">03 / Trayectoria</span>
@@ -294,7 +294,7 @@ const alsoUse = [
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <div class="lg:col-span-4">
-            <h2 class="display-xl text-[clamp(2rem,4.5vw,3rem)] mb-5 reveal">
+            <h2 id="experiencia-titulo" class="display-xl text-[clamp(2rem,4.5vw,3rem)] mb-5 reveal">
               Diecisiete años cerca de los mismos problemas.
             </h2>
             <p class="text-ink-soft leading-relaxed reveal" data-reveal-delay="100">
@@ -339,14 +339,14 @@ const alsoUse = [
     <!-- ══════════════════════════════════════════════════════
          04 — CAPABILITIES AND STACK
          ══════════════════════════════════════════════════════ -->
-    <section id="capacidades" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
+    <section id="capacidades" aria-labelledby="capacidades-titulo" class="py-20 sm:py-24 border-t border-line scroll-mt-20">
       <div class="max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
           <span class="label label-pine">04 / Capacidades y stack</span>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
-          <h2 class="lg:col-span-7 display-xl text-[clamp(2rem,4.5vw,3.25rem)] reveal">
+          <h2 id="capacidades-titulo" class="lg:col-span-7 display-xl text-[clamp(2rem,4.5vw,3.25rem)] reveal">
             Cuatro cosas que sé hacer bien.
           </h2>
           <p class="lg:col-span-5 text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
@@ -406,7 +406,7 @@ const alsoUse = [
     <!-- ══════════════════════════════════════════════════════
          06 — CONTACT
          ══════════════════════════════════════════════════════ -->
-    <section id="contacto" class="relative py-20 sm:py-28 border-t border-line grain scroll-mt-20 overflow-hidden">
+    <section id="contacto" aria-labelledby="contacto-titulo" class="relative py-20 sm:py-28 border-t border-line grain scroll-mt-20 overflow-hidden">
 
       <div class="relative z-10 max-w-6xl mx-auto px-6">
         <div class="eyebrow mb-10 reveal">
@@ -414,7 +414,7 @@ const alsoUse = [
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-14">
-          <h2 class="lg:col-span-7 display-xl text-[clamp(2.25rem,5.5vw,4rem)] reveal">
+          <h2 id="contacto-titulo" class="lg:col-span-7 display-xl text-[clamp(2.25rem,5.5vw,4rem)] reveal">
             Si llegaste hasta acá, hablemos.
           </h2>
           <p class="lg:col-span-5 text-lg text-ink-soft leading-relaxed self-end reveal" data-reveal-delay="100">
@@ -861,6 +861,10 @@ const alsoUse = [
   function setType(type: Inquiry) {
     typeRadios?.forEach((radio) => (radio.checked = radio.value === type));
     applyType(type);
+    // A link or the shared URL changed the radio for them: say so, since a
+    // screen reader never saw the click land on the fieldset.
+    const status = document.getElementById('form-status');
+    if (status) status.textContent = type === 'proyecto' ? 'Consulta por un proyecto web seleccionada.' : 'Consulta por un puesto seleccionada.';
   }
 
   typeRadios?.forEach((radio) => radio.addEventListener('change', () => applyType(currentType())));
